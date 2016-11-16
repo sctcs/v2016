@@ -1,0 +1,7 @@
+CREATE TABLE `tblFamily` (
+ `FamilyID` int(11) NOT NULL,
+ `CreditChoice` varchar(20) DEFAULT NULL,
+ `PaymentChoice` varchar(20) DEFAULT NULL,
+ `Date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (`FamilyID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8

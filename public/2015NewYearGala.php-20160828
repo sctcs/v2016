@@ -1,0 +1,13 @@
+<?php include "header.html"; ?>
+<div class="container body-col" id="body">
+    <div class="col-sm-4 body-col">
+        <?php include "NewsMenu.html"; ?>
+    </div>
+    <div class="col-sm-8 body-col">
+       <h3 class="text-center">2015 Spring Gala and Festival (南康中文学校羊年迎春会) </h3>
+       <?php  include "2015NewYearGala.html" ;?>
+       </div>
+    </div>
+</div>
+<footer><?php include "footer.html" ?></footer>
+

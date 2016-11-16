@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Teacher Corner</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/index.css" />
+        <style> .error {  
+                border-color: red ; 
+            } 
+            #term, #grades {background: #c9e2b3; 
+                            border: none;
+                            #details {margin-left: 10px; }
+                            #studentWorkForm #sessions {margin: 0; }
+                            #sessions ul {margin: 10px auto; padding: 0;}
+                            #sessions ul li a {padding: 0; margin-left: 20px; }
+            }
+            #grades {  margin-top: 2px; }
+        </style>
+    </head>
+    <body>
+        <section id="content" class="container">
+            <h3 class='text-center'>Student Work Display</h3>
+            <div class="row">
+                <div class="col-md-3 well">
+                    <form id='studentWorkForm'>
+                        <select id="term" name="term" class="form-control custom"  onchange="configureList(this, document.getElementById('grades'))">
+                            <option value="" selected>--SELECT TERM YEAR--</option>
+                            <option value="Fall2016">Fall 2016</option>
+                            <option value="Spring2016">SPRING 2016</option>
+                            <option value="Fall2015">FALL 2015</option>
+                            <option value="Spring2015">SPRING 2015</option>
+                        </select> 
+                        <select id="grades" class="form-control custom"><!--Display a dropdown list based on the semester selected-->
+                        </select>
+                    </form>   
+                    <div id="sessions">
+                        <!--display student work by grade/subject-->
+                        <p class="text-danger text-center">Please select term year first then grade: </p>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <!--Individual student work display area-->
+                    <div id="details">&nbsp;</div>
+                </div>
+            </div>
+        </section>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script>
+                        $(window).load(function () {
+                            document.forms['studentWorkForm'].reset();
+                        });
+                        function configureList(term, grades) {
+                            //clear the data in the display area
+                            $("#sessions").html("");
+                            $("#details").html("");
+
+                            var spring2015 = ['--SELECT A GRADE--', 'GRADE 2', 'GRADE 3', 'GRADE 4', 'GRADE 5', 'GRADE 8', 'GRADE 9', 'GRADE 10', 'Drawing']; //based on the selection of the first dropdown list pop up the second dropdown lists of student work
+                            var fall2015 = ['--SELECT A GRADE--', 'GRADE 2', 'GRADE 3', 'GRADE 5', 'Painting'];
+                            var spring2016 = ['--SELECT A GRADE--', 'GRADE 3'];
+                            var fall2016 = ['--SELECT A GRADE--', 'GRADE 5', 'GRADE 9'];
+
+                            var termVal = term.value.toLowerCase();
+
+                            switch (termVal) {
+
+                                case 'fall2016':
+                                    grades.options.length = 0;
+                                    for (i = 0; i < fall2016.length; i++) {
+                                        createOptions(grades, fall2016[i], fall2016[i]);
+                                    }
+                                    break;
+
+                                case 'spring2016':
+                                    grades.options.length = 0;
+                                    for (i = 0; i < spring2016.length; i++) {
+                                        createOptions(grades, spring2016[i], spring2016[i]);
+                                    }
+                                    break;
+
+                                case 'spring2015':
+                                    grades.options.length = 0;
+                                    for (i = 0; i < spring2015.length; i++) {
+                                        createOptions(grades, spring2015[i], spring2015[i]);
+                                    }
+                                    break;
+
+                                case 'fall2015':
+                                    grades.options.length = 0;
+                                    for (i = 0; i < fall2015.length; i++) {
+                                        createOptions(grades, fall2015[i], fall2015[i]);
+                                    }
+                                    break;
+
+                                default:
+                                    grades.options.length = 0;
+                                    break;
+                            }
+
+                            function createOptions(optionList, text, value) {
+                                var opt = document.createElement('option');
+                                opt.value = value;
+                                opt.text = text;
+                                optionList.options.add(opt);
+                            }
+                        }
+                        $("#grades").on('change', function () {
+
+                            //clear the two selection area 
+                            $("#sessions").html("");
+                            $("#details").html("");
+
+                            errorMessage = "Please select an item to continue";
+
+                            var term = $("#term").val();  //term year value
+                            var selected = $("#grades").val();
+                            //alert (selected + "original");
+                            var grade = selected.toLowerCase();
+
+                            //if more than one space, can use grade.replace(/ /g, "")
+                            grade = grade.replace(" ", "");
+
+                            if (grade === '--selectagrade--') { //if user did not make a selection, display error message
+                                alert(errorMessage);
+                            }
+
+                            var fragment = grade + term;
+                            $("#sessions").load("htmlFiles/StudentWork" + "/" + term + ".html" + " #" + fragment);
+                        });
+
+                        $("#content").on('click', '#sessions li a', function (e) {
+
+                            e.preventDefault();
+                            $('#details').html("");
+                            var url = this.href;
+                            $('#details').append('<object>');
+                            $('object').attr('data', url);
+                            $('object').attr('type', "application/pdf");
+                            $('object').append('<embed>');
+                            $('embed').attr('src', url);
+                            $('embed').attr('type', "application/pdf");
+                            $('embed').attr('width', "100%");
+                            $('embed').attr('height', "100%");
+                            $('#sessions a.current').removeClass('current');
+                            $(this).addClass('current');
+                        });
+        </script>
+    </body>
+</html>

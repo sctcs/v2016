@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>2015 SCCS Students Summer Footprint Show</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="jQuery Responsive Carousel - Owl Carousel">
+        <meta name="author" content="Bartosz Wojciechowski">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+        <link href="owlCarousel/assets/css/bootstrapTheme.css" rel="stylesheet">
+        <link href="owlCarousel/assets/css/custom.css" rel="stylesheet">
+
+        <!-- Owl Carousel Assets -->
+        <link href="owlCarousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+        <link href="owlCarousel/owl-carousel/owl.theme.css" rel="stylesheet">
+        <link href="owlCarousel/owl-carousel/owl.transitions.css" rel="stylesheet">
+
+        <link href="owlCarousel/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+        <link href="owlCarousel/owl-carousel/owl.carousel.sync.css" rel="stylesheet">
+        <link href="owlCarousel/owl-carousel/modified_css.css" rel="stylesheet">
+        <!-- Le fav and touch icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+    <body>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="owl-wrapper">
+                        <div id="sync1" class="owl-carousel">
+
+                            <script>
+                                var len = 437;
+                                for (var i = 1; i < len; i++) {
+                                    document.write("<div class='item'><h1>2016 SCCS Summer Camp Image Slide" + i + "</h1>");
+                                    document.write("<img src='" + 'assets/images/events/2016SummerCamp/2016SummerCamp' + i + '.jpg' + "' + height='550' class='img-responsive' />");
+                                    document.write("</div>");
+                                }
+                            </script>
+                        </div>
+                        <div id="sync2" class="owl-carousel">
+                            <script>
+                                for (var j = 2; j < len; j++) {
+                                    document.write("<div class='item'>");
+                                    document.write("<img src='" + 'assets/images/events/2016SummerCamp/2016SummerCamp' + j + '.jpg' + "' + class='img-responsive thumbnail' />");
+                                    document.write("</div>");
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+        <script src="owlCarousel/owl-carousel/owl.carousel.js"></script>
+        <script src="owlCarousel/assets/js/bootstrap-transition.js"></script>
+
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+        <script src="owlCarousel/owl-carousel/owl.carousel.sync.js"></script>
+
+    </body>
+</html>

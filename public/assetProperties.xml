@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TEAMS_ASSET_FILE PUBLIC "-//TEAMS//DTD asset and link file//EN" "Tasset.dtd" [
+
+<!ENTITY asset0000001 SYSTEM "Desert.jpg" NDATA image_jpeg>
+]>
+
+<TEAMS_ASSET_FILE>
+  <!--Artesia Export - name="null" id="" createDate="" updateDate="" description="Created from ExportJob" notes="Create from ExportJob" startTime="Thu Jan 22 16:19:17 EST 2015" userId=""-->
+  <ASSETS>
+    <ASSET>
+      <METADATA>
+        <UOIS UOI_ID="17560bd85e3b130374eb9207307e28b232c332d1" NAME="Desert.jpg" METADATA_STATE_DT="2015-01-15 10:27:15.697" IMPORT_DT="2015-01-15 10:26:27.003" MASTER_OBJ_MIME_TYPE="image/jpeg" MODEL_ID="17">
+          <YALE_COMMON_FIELDS REPOSITORY_CODE="ODAI" />
+          <YALE_IPTC_XMP_EXIF COPYRIGHT_IMAGE="© Corbis.  All Rights Reserved." Y_RES="72" CREATOR="Corbis" DATE_FILE_CREATED="2008-03-14 00:00:00.0" X_RES="72" BIT_DEPTH="8" />
+          <YALE_FILE_SIZE_VW FILE_SIZE="826.11 KB" />
+          <SECURITY_POLICY_UOIS SEC_POLICY_ID="66" />
+        </UOIS>
+      </METADATA>
+      <CONTENT>
+        <MASTER FILE="asset0000001" />
+      </CONTENT>
+    </ASSET>
+  </ASSETS>
+  <LINKS />
+  <HIERARCHY />
+</TEAMS_ASSET_FILE>
+

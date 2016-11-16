@@ -1,0 +1,190 @@
+.loginbar {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+
+a.loginbar {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFF00;
+}
+.maintable {
+	padding-top: 3px;
+}
+.footer {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #1B76B3;
+}
+a.footer {
+	text-decoration:none;
+}
+a.footer:hover {
+	color: #1B76B3;
+	text-decoration:underline;
+}
+.textsmall {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 14px;
+	color: #1B76B3;
+}
+.textsmallblack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 14px;
+	color: #000000;
+}
+.textmedium {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #1B76B3;
+	padding: 0px;
+}
+.textmediumblack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	padding: 0px;
+}
+.textlarge {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #1B76B3;
+	padding: 0px;
+}
+.textlargeblack {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #000000;
+	padding: 0px;
+}
+.textlargeBrown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #993333;
+	padding: 0px;
+}
+.textlargeBoldBrown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #993333;
+	padding: 0px;
+	font-weight: bold;
+}
+.textlargelarge {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #1B76B3;
+	padding: 0px;
+}
+.menuline1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+a.menuline1 {
+	text-decoration:none;
+}
+.menuline1_2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+}
+a.menuline1_2 {
+	text-decoration:none;
+}
+a.menuline1:hover {
+	color: #0F3B68;
+}
+a.menuline1highlight {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.menuline2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #0F3B68;
+}
+a.menuline2 {
+	text-decoration:none;
+}
+a.menuline2:hover {
+	color: #1B76B3;
+	text-decoration: underline;
+}
+.textsmallhead {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	color: #1B76B3;
+	font-weight: bold;
+}
+.textsmallheadBrown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 14px;
+	color: #993333;
+	font-weight: bold;
+}
+.textsmallFAQ {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 14px;
+	color: #003B68;
+}
+a.textsmallFAQ {
+	text-decoration:none;
+	color: #000000;
+}
+a.textsmallFAQ:hover {
+	text-decoration:underline;
+}
+.forgotpassword {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+
+h2.title {
+	font-family: Arial, Helvetica, sans-serif;
+	color:navy;
+	font-size: 14px;
+}
+th.page {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+td.page {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 12px;
+}
+input.page {
+	font-size: 11px;
+}
+div.page {
+	text-align:left;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333333;
+	font-size: 12px;
+}
+
+
+
+/* ALL THE OOOOOOOLD STUFF IS HERE */
+.toptablebg {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; background-color: #336699}
+.row1 {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; background-color: #dddddd; padding-top: 3px; padding-right: 3px; padding-bottom: 1px; padding-left: 3px}
+.required { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #FF0000; padding-top: 2px; padding-right: 3px; padding-bottom: 1px; padding-left: 3px}
+.row2 {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; background-color: lightsteelblue; padding-top: 3px; padding-right: 3px; padding-bottom: 1px; padding-left: 3px}
+.row3 {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:black  background-color: #FFFFFF; padding-top: 3px; padding-right: 3px; padding-bottom: 1px; padding-left: 3px}
+.row4 {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:black  background-color: #BBE0FF; padding-top: 3px; padding-right: 3px; padding-bottom: 1px; padding-left: 3px}
+.black_on_white {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color: #000000; text-decoration: none; background-color: #FFFFFF; padding-top: 2px; padding-bottom: 1px; padding-left: 3px}

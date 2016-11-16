@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SCCS Announcements in 2016</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Southern Connecticut Chinese School, Announcements, 2016 Announcements,南康中文学校，2016年南康中文学校通知">
+
+    </head>
+    <body>
+        <article class="20161105CH">
+            <h3 class="text-center">2016年11月5日: 夏令时、停车场、代理教务长... </h3>
+            <p class="lead">南康中文学校的家长，</p>
+            <p>你们好！</p>
+            <p> 明天中文学校正常上课。</p>
+            <ol>
+                <li><span class="red-color">夏令时今天夜间结束，</span>请记得把时钟往回拨一个小时。明天学校将按正常时间上课。
+                </li>
+                <li>明天Lyman Center有活动，所有靠近Lyman Center的停车场将关闭，除了靠近Engleman A-wing的停车场(P-2停车场），大家还可以把车停到Fitch Street Garage，也就是下图的Building 4. <a href="http://southernct.edu/files/general/maps/scsu-map.pdf" target="_blank">http://southernct.edu/files/general/maps/scsu-map.pdf</a>
+                </li>
+                <li>欢迎沈建华老师加入我们行政团队，沈老师明年一月一日起任代理教务长，非常感谢她愿意出来为学校服务，她现在执教的班级，将在春季学期由新的老师任教，学校将和所在班级的家长沟通。同时也感谢李戎真教务长在学校最艰苦的时候来学校服务，李戎真教务长由于即将休产假，明年一月起暂时休息半年，现在的中文教师队伍非常强大，完全得利于戎真的辛苦劳动。从现在开始到一月一日，沈老师除了继续担任4年级的中文老师外，还会以志愿者的形式和戎真一起合作，把教师的培训工作安排好，做到有连续性、系统性。另外，她还将负责学校校刊的编辑。
+                </li>
+                <li>学校校刊招募志愿者，欢迎有中文或英文写作经验的家长、老师和高年级的同学报名。同时，如果谁有排版经验或愿意学习排版技术,如使用InDesign or Scribus，也欢迎报名。请直接和我联系。
+                </li>
+            </ol>
+            <p>谢谢，明天中文学校见。</p>
+
+
+            <p>丁俊琪</p>
+            <p>南康中文学校校长</p>
+        </article>
+        <article id="20161115EN">
+            <h3 class="text-center">Nov 11, 2016: Daylight saving ends, parking, deputy...
+            </h3>
+            <p class="lead">Dear SCCS members,</p>
+            <p>The school will have regular classes tomorrow.</p>
+            <ol>
+                <li><span class="red-color"> The Daylight Saving Time ends tonight.</span> Please remember to adjust your clock accordingly. The school will use the normal time starting from tomorrow.
+                </li>
+                <li> The parking lots near Lyman Center will close tomorrow due to the activities in Lyman Center. In addition to the parking lot outside the A-Wing of Engleman Building, you can use Fitch Street Garage (building 4 in the map:<a href="http://southernct.edu/files/general/maps/scsu-map.pdf" target="_blank"> http://southernct.edu/files/general/maps/scsu-map.pdf)</a>. Please allow additional time for you to find the parking lot and walk to our school.
+                </li>
+                <li>Welcome Ms. Jianhua Shen to the Administration team. Starting from Jan 1, 2017, she will be the Deputy Provost. We want to thank Ms. Shen for her willing to serve our school. I also want to use this opportunity to thank Ms. Rongzhen Li, the Provost, to join our team during the difficult time of our school. Because of her hard working, we recruited and trained more than 10 new teachers and have more substitute teachers. She will take a half year maternity leave from January 1. Let's wish her the best.
+
+                    Before Ms. Shen assumes the responsibility of the Deputy Provost, she will work closely with Ms. Rongzhen Li as a volunteer in addition to her regular teaching job. They will make sure the teacher training is well organized and continuous. In addition, Ms. Shen will lead the Newsletter team.
+                </li>
+                <li> The Newsletter team wans to have more volunteers. Any parent, teacher and high-grade student with strong writing skill either in Chinese or English are welcome. In addition, anyone who knows how to use publish software such as InDesign, Scribus, or wants to learn is also welcome. Please contact me directly.
+                </li>
+                <p>Best wishes to all of you.</p>
+                <p> Regards,<p>
+                <p>Junqi Ding </p>
+                <p> -- </p>
+                <p> Junqi Ding, PhD<br />
+                    Principal<br />
+                    Southern Connecticut Chinese School<br>
+                    <a href="mailto:principal@ynhchineseschool.org">principal@ynhchineseschool.org</a><br />
+                    <a href="www.ynhchineseschool.org">www.ynhchineseschool.org</a><br />
+                </p>
+        </article>
+
+
+        <br><br>
+        <p class="lead"><a href="Announcements2016.php">***More Announcements in 2016***</a></p>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!--        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+        <script src="assets/js/Readmore.js"></script>
+        <script>
+            $('#info').readmore({
+                collapsedHeight: 384,
+                afterToggle: function (trigger, element, expanded) {
+                    if (!expanded) { // The "Close" link was clicked
+                        $('html, body').animate({scrollTop: element.offset().top}, {duration: 100});
+                    }
+                }
+            });
+            // $('article').wrap("<div class='col-sm-6'></div>");
+            $('article').readmore({speed: 500});
+        </script>
+        <script>
+            $(document).ready(function () {
+                //    $("a").tooltip();
+                $('[data-toggle="tooltip"]').tooltip({
+                });
+
+            });
+        </script>
+    </body>
+</html>

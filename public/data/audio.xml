@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <textbook class="v5">
+        <volume>第五册</volume> 
+        <lesson>第三课</lesson>
+        <title>加油站 (Gas Station) </title>
+        <author>钟梅老师朗诵</author>
+        <source>assets/audios/G5L3_Zhongmei.mp3</source>
+    </textbook>
+    
+<textbook class="v5">
+        <volume>第五册</volume> 
+        <lesson>第四课</lesson>
+        <title>狼和小羊 (Wolf and Lamb) </title>
+        <author>钟梅老师朗诵</author>
+        <source>assets/audios/G5L4_Zhongmei.mp3</source>
+    </textbook>
+
+<textbook class="v5">
+        <volume>第五册</volume> 
+        <lesson>第五课</lesson>
+        <title>狐狸和葡萄 (the Fox and the Grapes) </title>
+        <author>钟梅老师朗诵</author>
+        <source>assets/audios/G5L5_Zhongmei.mp3</source>
+    </textbook>
+
+<textbook class="v5">
+        <volume>第五册</volume> 
+        <lesson>第六课</lesson>
+        <title>成语故事 (Idioms) </title>
+        <author>钟梅老师朗诵</author>
+        <source>assets/audios/G5L6_Zhongmei.mp3</source>
+    </textbook>
+
+    <textbook class="v6">
+        <volume>第六册</volume>
+        <lesson>第四课</lesson>
+        <title>埋在地里的金子 (The Buried Gold) </title>
+        <author>王宗媛老师朗诵</author>
+        <source>assets/audios/G6L4_ZongYuanWang.mp3</source>
+    </textbook>
+    
+    <textbook class="v6">
+        <volume>第六册</volume>
+        <lesson>第五课</lesson>
+        <title>巨人的花园 (Giant's Garden) </title>
+        <author>王宗媛老师朗诵</author>
+        <source>assets/audios/G6L5_ZongYuanWang.mp3</source>
+    </textbook>
+
+    <textbook class="v6">
+        <volume>第六册</volume>
+        <lesson>第六课</lesson>
+        <title>成语故事 (Idiom Stories) </title>
+        <author>王宗媛老师朗诵</author>
+        <source>assets/audios/G6L6_ZongYuanWang.mp3</source>
+    </textbook>
+    
+</catalog>

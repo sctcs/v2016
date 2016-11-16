@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resources</title>
+        <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <!--link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/index.css" rel="stylesheet" -->
+    <script>
+            $(document).ready(function() {
+                $.get("data/faculty.xml", function(data) {
+                    $("#teachers-area").html("");
+                    $(data).find("teachers").children().each(function() {
+                        var xmlDoc = $(this);
+                        $("#teachers-area").append("<h5>"+
+                                xmlDoc.find("name").text()+ "</h5>"+ "<p><b>"+
+                                xmlDoc.find("title").text() + "</b></p>"+"<p>" +
+                                xmlDoc.find("bioEN").text() + "</p>" + 
+                                xmlDoc.find("bioCH").text());
+                    });
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="container" id="teacher-section">
+        <h3 class="text-center">SCCS Faculty (南康中文学校教师)</h3>
+            <div id="teachers-area">
+            </div>
+        </div>
+         <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </body>
+</html>

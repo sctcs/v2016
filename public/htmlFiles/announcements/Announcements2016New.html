@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SCCS Announcements in 2016</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Southern Connecticut Chinese School, Announcements, 2016 Announcements,南康中文学校，2016年南康中文学校通知">
+
+    </head>
+    <body>
+        <article class="20161105CH">
+            <h3 class="text-center">2016年11月13日: 请支持我们学校， 用 <a style="color: #424d81" href="https://smile.amazon.com/ch/20-4180579">Amazon</a></h3>
+            <p class="lead">各位南康中文学校的家长：</p>
+
+            <p> 明天中文学校正常上课。</p>
+            <ol>
+                <li>节日临近，请大家支持南康中文学校，如果财力允许，可以考虑为学校捐赠，如果公司有match fund，请充分利用这一福利，同时你的捐赠可以免税。如果你经常在Amazon上购物，请使用下列地址进入Amazon，<a href="https://smile.amazon.com/ch/20-4180579">https://smile.amazon.com/ch/20-4180579</a>。也可以通过学校网站首页的连接进入，Amazon将会捐赠部分给中文学校。
+                </li>
+                <li>明年1月29日，学校将举办新年联欢晚会。和往年一样，PTA将负责新年晚会的筹备，班级节目和个人节目将分两个渠道进行，请大家注意PTA的通知。
+                </li>
+            </ol>
+            <p>明天见。</p>
+            <p>丁俊琪</p>
+            <p>南康中文学校校长</p>
+        </article>
+        <article id="20161115EN">
+            <h3 class="text-center">Nov 13, 2016: Support SCCS, use <a style="color: #424d81" href="https://smile.amazon.com/ch/20-4180579">Amazon</a>
+            </h3>
+            <p class="lead">Dear SCCS members,</p>
+            <p>The school will have regular classes tomorrow.</p>
+            <ol>
+                <li>It is near holiday season. Please consider to support our school by taking advantage to make tax-deductible donation. In addition, you can use smile program by Amazon to support our school. You can use the link: <a href="https://smile.amazon.com/ch/20-4180579">https://smile.amazon.com/ch/20-4180579 </a>to shop at Amazon. It will not cost you more but SCCS will benefit from your shopping.
+                </li>
+                <li>We will have Chinese New Year Gala on Jan 29, 2017. The school PTA will organize the event. Please pay attention to e-mails from PTA regarding program sign-up.
+                </li>
+            </ol>
+            <p>See you tomorrow.</p>
+            <p> Regards,<p>
+            <p>Junqi Ding </p>
+            <p> -- </p>
+            <p> Junqi Ding, PhD<br />
+                Principal<br />
+                Southern Connecticut Chinese School<br>
+                <a href="mailto:principal@ynhchineseschool.org">principal@ynhchineseschool.org</a><br />
+                <a href="www.ynhchineseschool.org">www.ynhchineseschool.org</a><br />
+            </p>
+        </article>
+
+
+        <br><br>
+        <p class="lead"><a href="Announcements2016.php">***More Announcements in 2016***</a></p>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <!--        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+        <script src="assets/js/Readmore.js"></script>
+        <script>
+            $('#info').readmore({
+                collapsedHeight: 384,
+                afterToggle: function (trigger, element, expanded) {
+                    if (!expanded) { // The "Close" link was clicked
+                        $('html, body').animate({scrollTop: element.offset().top}, {duration: 100});
+                    }
+                }
+            });
+            // $('article').wrap("<div class='col-sm-6'></div>");
+            $('article').readmore({speed: 500});
+        </script>
+        <script>
+            $(document).ready(function () {
+                //    $("a").tooltip();
+                $('[data-toggle="tooltip"]').tooltip({
+                });
+
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Newsletter Menu(新闻校刊)</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="SCCS news, newsletter, school day, events, Spring Festival Celebration, Summer Foote Print, Talent Show, Registration">
+        <link rel="styleshett" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/index.css">
+        <link rel="stylesheet" href="assets/css/menu.css">
+    </head>
+    <body>
+        <div class="menu_title">
+            <title>Newsletter Menu（新闻校刊）</title>
+        </div>
+        <div class="menu_wrapper" id="menu_wrapper">
+            <h3 class="text-center">Newsletter Menu (新闻)</h3>
+            <div class="menu_content">
+                    <a href="NewsFlash.php">News Flash (新闻快讯)</a><br />
+                    <a href="NewsEvents.php">Events (动态)</a><br />
+                    <a href="NewsLetter.php">Newsletter (校刊)</a><br />
+                    <a href='Archives.php'>Archives (资料库)</a><br />
+                    <hr>
+<a href="Clarifications.php">2014 Important Clarifications from the Board</a><br />
+<a href="2016SummerPicnic.html" target = "_blank">SCCS 2016 Summer Picnic</a><br />
+<a href="2015SummerFootPrintSlide.html">SCCS 2015 Summer Footprint(2015我的夏日足迹)</a><br />
+<a href="2016NewYearGala.php">SCCS 2016 New Year Gala (南康中文2016 迎新春)</a><br />
+<a href="Announcement20150913.php">2015 Fall First Day of School (南康中文2015秋季开学通知）</a><br />
+                   <a href="Announcement20150801.php">2015 Fall Registration August 1</a><br />
+<a href="20150413SCCSSummerCampOnFoxNews.php">SCCS Summer Program August 10-21, 2015</a><br />
+                    <a href="Announcement20150113.php">2015 Spring Semester (南康中文2015春季开学通知 )</a><br />
+               <a href="2015NewYearGala.php">2015 Spring Festival Celebration (2015 羊年迎春会)</a><br />
+                   <a href="Announcement20150212.php">2015 New Year Kicks Off(南康中文2015羊年迎春)</a><br />
+                     <a href="Announcement20141212.php">End-of-Semester Announcement (2014学期结束通知）</a><br/>
+     <a href="Announcement20141122.php">SCCS Talent Show (南康中文才艺表演)</a><br />
+                  <a href="2014SummerFootPrint.php">2014 Summer Footprint (我的夏日足迹) </a><br/>
+                    <a href="2014Summer.php">2014 Summer News（2014 夏学校活动）</a><br />
+                     <a href=AnnouncementEN_II.php>2014 Upcoming Events at SCCS</a><br />
+                     <a href="EnrichmentClass_II.php">2014 More Enrichment Classes</a><br />
+                    <a href="EnrichmentClass.php">SCCS 2014 Offers Additional Enrichment Classes</a><br />
+                    <a href="Reminder.php">2014 Early Registration Discount and more...</a><br />
+                    <a href="AnnouncementEN.php">Fall 2014 Registration Available...</a><br />
+                    <a href="AnnouncementCH.php">SCCS从8月3日起开始网上注册(2014)</a><br />
+            </div>
+        </div>
+    </body>
+</html>

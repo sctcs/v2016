@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Advertisement</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/ad.css">
+    </head>
+    <body>
+        <div class="row-fluid">
+            <div class="carousel slide" id="adCarousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <ul class="container">
+                            <!-- Car Li 1/24/2014-1/23/2015  renewed: 10/12/2015 -10/12/2016-->
+                            <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
+                                <div class="thumbnail">
+                                    <a href="http://www.ynhchineseschool.org/prod_v08/Advertisment/carli3.htm" target="_blank">
+                                        <img src="assets/images/Advertisement/car-li.gif" alt="Car Repair" class="img-responsive" />
+                                    </a>
+                                </div> 
+                            </li>
+
+                            <!--Construction company  ad: 9/21/2015-9/21/2016-->
+                            <li class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="thumbnail">
+                                    <a href="assets/images/Advertisement/CBO.pdf"  target="_blank"><img src="assets/images/Advertisement/CBO.jpg" alt="C.B.O. Construction, LLC" class="img-responsive">     </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div> <!--end div item-->
+
+                </div><!--end carousel-inner--> 
+
+                <!--controls -->
+                <a class="left carousel-control" href="#adCarousel" role="button" data-slide="prev">
+<!--                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">previous</span>-->
+                </a>
+                <a class="right carousel-control" href="#adCarousel" role="button" data-slide="next">
+<!--                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>-->
+                </a>
+            </div> <!--end carousel slide-->         
+        </div> <!--end-->
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#adCarousel').carousel({
+                interval: 5000
+            });
+        });
+    </script>
+    </body>
+</html>

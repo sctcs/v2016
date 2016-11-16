@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>南康中文学校二十周年纪念</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        .hidecontainer {display: none; } 
+        .showlink {display: none; }
+        </style>
+    </head>
+    <body>
+
+        <h3 class="text-center">SCCS 二十年纪念（SCCS 20th Anniversary)</h3>
+        <div class="temp">
+            <div class="col-sm-5">
+               <p class="lead">各位中文学校现今和以往成员：</p>
+               <p>今年是南康中文学校（原耶鲁纽黑文中文学校）成立二十周年。学校决定在学校网站专设一网页以记载学校二十年的发展。我们在此收集各类反映学校活动的照片和故事，特别是与学校重要历史事件相关的照片和故事。早期学校历史的记录尤为重要。欢迎新老成员积极参与。<a class="button" data-rel="#sccsCH" href="#">详情请见</a></p>
+         </div>
+        <div class="col-sm-7">
+            <p class="lead"> Dear current or former members,</p>
+            <p>This year marks the 20th anniversary of the Southern Connecticut Chinese School (formerly Yale-New Haven Chinese School). The school has decided to dedicate a web page with a timeline recording the historical development of the school. Please help the school by going to your old album or digital photo repository to find photos reflecting school classrooms, performances, and other activities. <a class="button active" data-rel="#sccsEN" href="#"> Please read details</a></p>
+     </div>
+    </div>  
+        <p class="showlink"><a class="button active" data-rel="#sccsEN" href="#"> English </a> | <a class="button" data-rel="#sccsCH" href="#">Chinese</a></p>
+  </p>
+        <div id="sccsCH" class="hidecontainer">
+            <p class="lead">各位中文学校现今和以往成员：</p>
+
+            <p>今年是南康中文学校（原耶鲁纽黑文中文学校）成立二十周年。学校决定在学校网站专设一网页以记载学校二十年的发展。</p>
+
+            <p>为了长期保留学校重要历史大事纪，我们在此收集各类反映学校活动的照片和故事，特别是与学校重要历史事件相关的照片和故事。早期学校历史的记录尤为重要。</p>
+
+            <p>敬请成员们去搜寻你的老照片和记忆，以帮助学校完成此重要任务。请把照片和中文或英文的故事在六月三十号之前送到 <a href="mailto:timeline@ynhchineseschool.org">timeline@ynhchineseschool.org</a>。如有可能，请注明照片记录的时间和事件。学校在收齐照片和故事以后会决定哪些照片上学校官方历史记录，哪些故事可放到网页。希望在下学年开学之前把纪念页在学校网站上正式发表。</p>
+
+            <p>你如果和以前的学校成员家庭、教师、或学校早期领导有联系，请帮忙转发此信件以便收集到更完整的资料。</p>
+
+            <p>此致</p>
+
+            <p>敬礼!</p>
+            <p>南康中文学校二十年纪念工作组</p>
+        </div>
+        <div id="sccsEN" class="hidecontainer">
+            <p class="lead"> Dear current or former members,</p>
+            <p>This year marks the 20th anniversary of the Southern Connecticut Chinese School (formerly Yale-New Haven Chinese School). The school has decided to dedicate a web page with a timeline recording the historical development of the school.</p>
+
+            <p>In order to create this page to permanently archive important school moments and landmark events, we are reaching out current and former members of the school to collect photos and stories of school activities. Photos and stories from the early years are also among the most important group.</p>
+
+            <p>Please help the school by going to your old album or digital photo repository to find photos reflecting school classrooms, performances, and other activities. You may send your photos and stories in either Chinese or English to <a href="mailto:timeline@ynhchineseschool.org">timeline@ynhchineseschool.org</a> by June 30, 2016. When you send a photo to this address, please indicate the year (or date if you have) the photo was taken and the event that photo registered. Once we collect the photos, the school will decide what to put on the timeline. Selected stories will be put on the same page below the timeline. The timeline page will be at the school Website by the beginning of next school year.</p>
+
+            <p>Please also help to forward this message to former members, teachers, and school leaders you know so that we can reach the community for the past twenty years.</p>
+
+            <p>Best regards,</p>
+
+            <p>SCCS 20th Anniversary Task Force  </p>
+        </div>
+        <script type="text/javascript" src="../assets/js/jQuery.min.js"></script>
+        <script type="text/javascript">
+            
+           //set content on click
+           $('.button').click(function(e) {
+               e.preventDefault();
+               $('.temp').hide();
+               setContent($(this));
+           });
+           
+           //set content on load
+           $('.button .active').length && setContent($('.button .active'));
+           
+           function setContent($el) {
+               $('.button').removeClass('active');
+               $('.hidecontainer').hide();
+              $('.showlink').show();
+               
+               $el.addClass('active');
+               $($el.data('rel')).show();
+           }
+            
+        </script>
+    </body>
+</html>

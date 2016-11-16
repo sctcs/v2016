@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:xlink="http://www.w3.org/1999/xlink">
+    <name>
+        <subject> 中文天下</subject>
+        <description>中文天下为海外中文学习者和中文教育机构提供中文教材和中文教学服务。朗朗中文开发的中文学习系列课程涵盖从幼儿启蒙到大学、成人各阶段。。该网站提供很多课外读物和中文教学资源、教学课件制作工具和个性网络中文教室等</description>
+        <link>http://www.yes-chinese.com/zh-cn</link>
+    </name>  
+    <name> 
+        <subject> 中国华文教育网</subject>
+        <description>中国华文教育网是面向全球华文学校教师、华裔青少年学习中华语言和传统文化的服务平台，是华文教育专家、学者、教师和学生相互交流及分享经验心得的园地。
+            有《中文》教材、作业及教师参考全套资料下载</description>
+           <link>http://www.hwjyw.com/textbooks/downloads/zhongwen/</link>
+     </name>  
+   <name>
+     <subject>中文学校五，六年级教科书录音朗诵材料</subject>
+    <description>该材料由南康中文学校钟梅老师和王宗媛老师录制, 以便同学们更好地学习中文</description>
+   <link>Audio.php</link>
+  </name>
+   <name> 
+        <subject>《新启蒙汉语》教学参考资料</subject>
+        <description>该网页包含每课的汉字卡片和汉字动画演示</description>
+        <link>http://www.ynhchineseschool.org/prod_v08/public/xinqimeng/teaching</link>
+     </name>  
+    <name> 
+        <subject>《标准中文》课本、录音、及部分教案下载:</subject>
+        <description>《标准中文》课本、录音、及部分教案下载:</description>
+        <link>http://www.dhcca.org/SC1-1/SC1-1.htm</link>
+     </name>  
+    <name> 
+        <subject>看图学中文(真人发音，声音随着鼠标走)</subject>
+        <description>学词汇配图片</description>
+        <link>http://www.languageguide.org/mandarin</link> 
+     </name>  
+    <name>     
+        <subject> Learning Chinese and culture through street signs</subject>
+        <description>Native Speakers Pronounce Vocabulary with Pictures in many Languages</description>
+        <link>http://www.languageguide.org/mandarin</link>
+     </name>  
+    <name> 
+        <subject>课外阅读资料</subject>
+        <description>英华中文学校，网上图书馆里有很多适合中小学生的课外阅读</description>
+        <link>  http://yhls.yinghuaschool.org/library/onlinelib.php</link>
+     </name>  
+    <name> 
+        <subject>童话故事阅读资料</subject>
+        <description>Children't fairy tales</description>
+        <link><a>http://www.ichinesestudy.org/index_files/extrareading.htm</a></link>
+     </name>  
+    <name> 
+        <subject>汉语网</subject>
+        <description>有成语，谚语介绍，有拼音，有英文解释</description>
+        <link>http://www.hanyu.com.cn/en/music.aspx</link>
+    </name>
+    <name>
+        <subject>听故事学成语</subject>
+        <description>Learning through listening </description>
+        <link>http://www.wellesley.edu/Chinese/Chinese_Fables/title/title_page.html</link>
+    </name>  
+    <name>        
+        <subject>中英文儿童动画</subject>
+        <description>English-Chinese Children's Cartoon</description>
+        <link>http://kids.lekan.com/tagSearch/0/27_0_36_0_26_5824/?entranceId=4101</link>
+     </name>  
+     <name> 
+        <subject>Children’s songs</subject>
+        <description>无歌词，但可以下载mp3 文件</description>
+        <link>http://music.ibiblio.org/pub/multimedia/chinese-music/html/children.html</link>
+    </name>  
+   <name> 
+        <subject>汉字游戏</subject>
+        <description>Hanzi games </description>
+        <link>http://www.ichinesestudy.org/index_files/games.htm</link>
+    </name>  
+   <name> 
+        <subject>中文游戏</subject>
+        <description>Games and activities at Quia</description>
+        <link>http://www.quia.com/web</link>
+    </name>  
+  <name> 
+        <subject>汉字卡片游戏</subject>
+        <description>flashcard game</description>
+        <link>http://www.zein.se/patrick/chinen13p.html</link>
+     </name>  
+    <name> 
+        <subject>汉字笔画笔顺</subject>
+        <description></description>
+        <link> http://www.shuifeng.net/pinyin.asp</link>
+    </name>  
+    <name> 
+        <subject> 中文汉字谜语</subject>
+        <description>Chinese puzzles</description>
+        <link> http://www.ynhchineseschool.org/prod_v08/classes/TeachingMaterials/zimi.doc</link>
+     </name>  
+    <name> 
+        <subject>制作田字格</subject>
+        <description>This page can print special format to write Chinese characters and pinyin</description>
+        <link>http://www.yes-chinese.com/tzg/</link>
+    </name>  
+     <name> 
+        <subject>怎么标注拼音调号typing Pinyin with tone marks </subject>
+        <description>typing Pinyin with tone marks</description>
+        <link>http://www.chinese-tools.com/tools/converter-pinyin-unicode.html</link>
+    </name>  
+    <name> 
+        <subject>在线汉字转化成拼音 </subject>
+        <description>只适用于IE, firefox 不行</description>
+        <link>http://tool.webmasterhome.cn/Word_Spell.asp</link>
+    </name>
+</resources>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resources</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/index.css">
+        <link rel="stylesheet" href="assets/css/resources.css">
+        <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script>
+            $(document).ready(function() {
+                $.get("data/resources.xml", function(data) {
+                    $("#learning").html("");
+                    $(data).find("resources").children().each(function() {
+                        var xmlDoc = $(this);
+                        $("#learning").append("<h3>" +
+                                xmlDoc.find("subject").text() + "</h3>" +
+                                xmlDoc.find("description").text() + "<br>" +
+                                "<a href=" +
+                                xmlDoc.find("link").text() + ">" + xmlDoc.find("link").text() + "</a>" + "<br>");
+                    });
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="container" id="learning_section">
+        <h3 class="text-center">Useful Sites for Learning Chinese</h3>
+        
+            <div id="learning">
+            </div>
+        
+        </div>
+    </body>
+</html>

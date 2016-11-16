@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Advertisement</title>
+        <meta http-equiv="Content-Type" content='text/html; charset=UTF-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+       
+        <style>
+            #adCarousel {height: 150px; width: 280px; }
+            #adCarousel .carousel-inner {height: 150px; width: 280px; margin-left: 0; padding-left: 0;}
+            .container{padding: 0; }
+           @media (min-width: 768px) {
+               #adCarousel.item.container {padding: 0;}
+           }
+        </style>
+    </head>
+    <body>
+        <div class="carousel slide" id="adCarousel">
+            <div class="carousel-inner">
+
+                <div class="item">
+                    <div class="container">
+                        <!--Car Li 1/24/2014-1/23/2015  renewed: 10/12/2015-10/12/2016-->
+                        <a href="http://www.ynhchineseschool.org/prod_v08/Advertisment/carli3.htm" target="_blank">
+                            <img src="assets/images/Advertisement/car-li.gif" alt="Car Repair" width="280" height="150" class="image-responsive">
+                        </a>
+                    </div>
+                </div>
+                <div class="item active">
+                    <div class="container">  <!--Construction company  ad: 9/21/2015-9/21/2016-->
+                        <a href="assets/images/Advertisement/CBO.pdf"  target="_blank">
+                            <img src="assets/images/Advertisement/CBO.jpg" alt="C.B.O. Construction, LLC" width="280" height="150" class="image-responsive">
+                        </a>   
+                    </div>
+                </div>
+
+            </div><!--end carousel-inner--> 
+
+            <!--controls -->
+            <a class="left carousel-control" href="#adCarousel" role="button" data-slide="prev">
+              <!--   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+               <span class="sr-only">previous</span>-->
+            </a>
+            <a class="right carousel-control" href="#adCarousel" role="button" data-slide="next">
+          <!--      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>-->
+            </a>
+
+        </div>
+ <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+        </script>
+        <script>
+            $('#adCarousel').carousel({
+                interval: 8000
+            })
+        </script>
+    </body>
+</html>

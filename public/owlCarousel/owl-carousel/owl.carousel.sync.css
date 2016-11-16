@@ -1,0 +1,43 @@
+  #sync1 .item{
+             background: #c4e3f3;
+             background-repeat: no-repeat;
+             padding: 80px 0px;
+             // background: url("PosterSession2015_800x450.jpg");
+             
+               background-position: center;
+             
+                padding:30px 0px;
+                margin: 5px;
+                color: #FFF;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                text-align: center;
+            }
+            #sync2 .item{
+                background: #C9C9C9;
+                padding: 10px 0px;
+                margin: 5px;
+                color: #FFF;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                text-align: center;
+                cursor: pointer;
+            }
+            #sync2 .item h1{
+                font-size: 18px;
+            }
+            
+            //added
+              #sync2 .item.thumbnail {
+                height:80px; 
+                width: 60px;
+                margin: auto;
+            }
+            
+            #sync2 .synced .item{
+                background: #0c83e7;
+            }
+            
+          

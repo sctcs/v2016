@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>南康中文学校二十周年纪念</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        .hidecontainer {display: none; } 
+        .showlink {display: none; }
+        </style>
+    </head>
+    <body>
+
+        <h3 class="text-center">SCCS 二十年纪念（SCCS 20th Anniversary)</h3>
+        <div class="temp">
+            <div class="col-sm-5">
+           <p class="lead">南康中文学校大事纪</p>
+
+            <p>1995 – 1996：中文学校开始于一个课后班；一名老师带几个学生。地点在纽黑文的加略山浸信会。由厉平发起。晚些时候，中文学校由第一任校长鲍觉吾接管。</p>
+
+            <p>2001 – 2002：中文学校迁入耶鲁大学并作为耶鲁大学中国学生学者联合会的一个分支机构。中文学校正式注册为耶鲁社区中文学校。注册人为鲍觉吾、孙曙东。</p>
+
+            <p>2006：中文学校又正式注册为耶鲁纽黑文中文学校。注册人为牟岭、孙曙东、范晓宁、傅乙光。中文学校迁入南康州立大学。</p>
+
+            <p>2007：中文学校全体会员大会选出第一届理事会和通过学校章程。中文学校的所有权正式移交给全体会员。中文学校的领导权正式移交给理事会。理事会主席丁俊琪，校长牟岭。</p>
+			
+            <p>2008：在丁俊琪和其他几位会员的帮助下，中文学校被批准为501(c)(3)免税机构。中文学校更名为南康中文学校。</p>
+			
+            <p>2009 – 2013：第二和第三届理事会。理事会主席赵立平，魏宁，冯宾涛。校长孙金华，程贺南。</p>
+            
+			<p>2013：中文学校财务条例获得通过。</p>
+			
+			<p>2013 – 2017：第四和第五届理事会。理事会主席党长久，童戟。校长程贺南，丁俊琪。</p>
+         </div>
+        <div class="col-sm-7">
+            <p class="lead"> School Timeline</p>
+            <p>1995 – 1996: The school started as a small after-school class with one teacher and several students in Calvary Baptist Church at New Haven. Initiator was Ping Li. Later, the first principal Juewu Bao took over the school later.</p>
+
+            <p>2001 – 2002: The school moved to Yale University as Chinese Language School of ACSSY, then registered as Yale Community Chinese School with incorporators of Juewu Bao and Shudong Sun.</p>
+
+            <p>2006: The school was registered as Yale-New Haven Chinese School with incorporators of Ling Mu, Shudong Sun, Xiaoning Fan and Yiguang Fu. The school relocated to Southern Connecticut State University.</p>
+
+            <p>2007: The school board was elected and bylaw was passed in the general council meeting. Ownership of the school was transferred to all the general members Leadership of the school was transferred to the board. Chairpersons of the Board: Junqi Ding. Principal: Ling Mu.</p>
+
+            <p>2008: With the help of Mr. Junqi Ding and several other members, the school was approved as tax exempt status under section 501(c)(3) of the Internal Revenue Code. The school was renamed as Southern Connecticut Chinese School.</p>
+
+            <p>2009 – 2013: second board and third board. Chairperson of the Board: Liping Zhao, Ning Wei, Bingtao Feng. Principals: Jinghua Sun and Henan Cheng.</p>
+			
+			<p>2013：Financial regulation is passed by the Board.</p>
+			
+			<p>2013 – 2017：fourth and fifth board. Chairperson of the Board: Changjiu Dang and Tong Ji. Principals: Henan Cheng and Junqi Ding.</p>
+     </div>
+    </div>  
+        <p class="showlink"><a class="button active" data-rel="#sccsEN" href="#"> English </a> | <a class="button" data-rel="#sccsCH" href="#">Chinese</a></p>
+  </p>
+        <div id="sccsCH" class="hidecontainer">
+
+        </div>
+        <div id="sccsEN" class="hidecontainer">
+ 
+        </div>
+        <script type="text/javascript" src="../assets/js/jQuery.min.js"></script>
+        <script type="text/javascript">
+            
+           //set content on click
+           $('.button').click(function(e) {
+               e.preventDefault();
+               $('.temp').hide();
+               setContent($(this));
+           });
+           
+           //set content on load
+           $('.button .active').length && setContent($('.button .active'));
+           
+           function setContent($el) {
+               $('.button').removeClass('active');
+               $('.hidecontainer').hide();
+              $('.showlink').show();
+               
+               $el.addClass('active');
+               $($el.data('rel')).show();
+           }
+            
+        </script>
+    </body>
+</html>

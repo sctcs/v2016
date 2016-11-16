@@ -1,0 +1,16 @@
+#sync1.item h1 {padding-bottom: 20px;}  
+#sync2 .thumbnail{
+                height: 50px;
+                width: 50px; 
+                margin: auto;
+            
+            }
+            #sync2.item {height:50px; padding: 0;}
+            
+            #sync2.item h1 {
+                margin: 0 auto;
+                margin-top: 0;
+                padding: 0;
+            }
+            
+            .owl-wrapper { margin: auto ;}

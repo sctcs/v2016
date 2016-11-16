@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Owl Carousel - Art Work from Autumn Leaves Using Lazy Load</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQuery Responsive Carousel - Owl Carousel">
+    <meta name="author" content="Bartosz Wojciechowski">
+   <meta name="description" content="autumn leaves, SCCS Student art work, Chinese class">
+    
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600,700' rel='stylesheet' type='text/css'> 
+    <!--<link href="owlCarousel/assets/css/bootstrapTheme.css" rel="stylesheet">-->
+
+    <!-- Owl Carousel Assets -->
+    <link href="owlCarousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="owlCarousel/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet">
+    <!-- Prettify -->
+    <link href="owlCarousel/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+        <style> 
+            /*   .thumbnail { height: 220px; width: 200px; }*/
+    #owl-demo .item{
+        margin: 3px;
+    //   margin: 3px 0px;
+    //   width: 200px; 
+    }
+    #owl-demo .item img{
+        display: block;
+        width: 100%;
+        height: auto;
+      //  width: 200px;
+     //   height: 150px;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div id="title">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+            <h3 class="text-center">Autumn Leaves from SCCS Grade 2 Class 2 Students</h3>
+         
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div id="demo">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <div id="owl-demo" class="owl-carousel">
+                <div class="item"><img class="lazyOwl" data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves1_800x530.jpg" alt="Image"></div>
+                <div class="item"><img class="lazyOwl" data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves2_800x530.jpg" alt="Lazy Owl Image"></div>
+                <div class="item"><img class="lazyOwl" data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves3_800x530.jpg" alt="Autumn Leaves 4"></div>
+                <div class="item"><img class="lazyOwl " data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves4_800x530.jpg" alt="Autumn Leaves"></div>
+                <div class="item"><img class="lazyOwl" data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves5_800x530.jpg" alt="Autumn Leaves 5"></div>
+             <div class="item"><img class="lazyOwl" data-src="assets/images/events/2015AutumnLeavesG2C2/2015AutumnLeaves6_800x534.jpg" alt="Autumn6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <script src="owlCarousel/assets/js/jquery-1.9.1.min.js"></script> 
+    <script src="owlCarousel/owl-carousel/owl.carousel.js"></script>
+
+  
+
+    <script>
+    $(document).ready(function() {
+
+      $("#owl-demo").owlCarousel({
+        items :3,
+        lazyLoad : true,
+        navigation : true
+      });
+
+    });
+    </script>
+    <script src="owlCarousel/assets/js/bootstrap-collapse.js"></script>
+    <script src="owlCarousel/assets/js/bootstrap-transition.js"></script>
+    <script src="owlCarousel./assets/js/google-code-prettify/prettify.js"></script>
+  </body>
+</html>

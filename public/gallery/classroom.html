@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Classroom Photos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/index.css" rel="stylesheet">
+        <link href="assets/css/photo.css" rel="stylesheet">
+    </head>
+    <body>
+        <h3 class="text-center"> Classroom Photos</h3>
+        <p class="text-center"><a href="StudentTeacherCorner.php">Back to Gallery</a></p>
+        <div class="container">
+            <ul class="row">
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-5"><img src="assets/images/classroom/1.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-5"><img src="assets/images/classroom/2.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/3.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/4.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/5.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/6.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/7.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/8.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/9.jpg"></li>
+                <li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/10.jpg"></li>
+<li class="col-lg-3 col-md-3 col-sm-4 col-xs-4"><img src="assets/images/classroom/11.jpg"></li>
+            </ul>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">         
+                    <div class="model-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times; </button>
+                    <h3 class="modal-title text-center" id="myModalLabel">Gallery</h3>
+                    </div>
+                    <div class="modal-body">                
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                $('li img').on('click', function() {
+                    var src = $(this).attr('src');
+                    var img = '<img src="' + src + '" class="img-responsive"/>';
+                    $('#myModal').modal();
+                    $('#myModal').on('shown.bs.modal', function() {
+                        $('#myModal .modal-body').html(img);
+                    });
+                    $('#myModal').on('hidden.bs.modal', function() {
+                        $('#myModal .modal-body').html('');
+                    });
+                });
+            })
+        </script>
+    </body>
+</html>

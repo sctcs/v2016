@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio from Southern Connecticut Chinese School</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/bootstrap.css" />
+        <link rel="stylesheet" href="assets/css/index.css" />
+        <script>
+            $(document).ready(function () {
+                $.get("data/audio.xml", function (data) {
+                    $("#audio_area").html("");
+                    $(data).find("catalog").children().each(function () {
+                        var xmlDoc = $(this);
+                        $("#audio_area").append("<div class='col-sm-12'>" + "<div class='col-sm-7'><p class='lead'>" +
+                                xmlDoc.find("volume").text() + " " +
+                                xmlDoc.find("lesson").text() + " : " +
+                                xmlDoc.find("title").text() + "<span class='small' style='color: #309;'>" + " ---" +
+                                xmlDoc.find("author").text() + "</span></p></div> " +
+                                "<div class='col-sm-5'><audio preload='auto' tabindex='0' controls type='audio/mpeg'>" +
+                                "<source type='audio/mp3' src=" +
+                                xmlDoc.find("source").text() + ">" + xmlDoc.find("source").text() + "</source>" + "Sorry, your browser does not support audio" + "</audio>" + "</div>" +
+                                "<br><br></div>");
+                    });
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h3 class="text-center">Textbooks Audio Recorded by Teachers from SCCS</h3><div id="audio_area"></div></div>
+        <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    </body>
+</html>

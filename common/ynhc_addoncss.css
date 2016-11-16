@@ -1,0 +1,40 @@
+.tablewrapper {
+    border: 1px solid #993333; 
+    margin: 20px 5px;
+    padding: 10px;
+    width: 96%;
+}
+.tablewrapper table {width: 100%; margin: 10px auto; border: 3px solid darkslategrey;}
+.tablewrapper table tr:nth-child(even) { background: #dddddd; }
+.tablewrapper table th {background: #993333; color: white; height: 40px; padding: 5px;}
+.tablewrapper table tr td {padding: 5px 0 5px 5px;}
+.center {text-align: center; }
+.margin10 {padding-left: 10px;}
+p.bigfont {font-size: 1.2rem; }
+
+.wrapper { width: 100%; margin: 0;}
+.footer {padding: 10px 0 ; margin-left: 30%;}
+.header {padding: 10px 0; margin-left: 22%;}
+.formwrapper {width: 100%; margin: 20px; padding: 20px;}
+.formwrapper form {width: 80%; margin: 0 auto;}
+.formwrapper form legend {font-size: 1.5rem; font-weight: 800; margin-left: 20%;}
+.formwrapper form fieldset {border: 1px solid darkgreen; 
+                            border-radius: 2px; 
+                            margin:0; width: 80%; padding-left: 5%; 
+                            background: #dddddd;}
+form input {margin-bottom: 15px; height: 30px; width: 180px;}
+form input.phone {width: 50px;}
+form input.actionbutton {width: 120px; height: 40px; font-size:1.2rem; font-weight: 500; margin-left: 20px;}
+form input.addressfield {width: 350px;}
+form label {font-size: 1.2rem; width: 120px; float: left; display: inline-block;}
+hr {margin-bottom: 30px;}
+.grayout{ color: graytext; }
+
+.payment {list-style-type: none; background: #4cae4c; }
+.paymentli { padding-bottom: 10px; list-style-type: none; height: 35px; margin-left: 30%;} 
+.payment li a {margin-bottom: 10px; line-height: 35px; color: #FFF;}
+table th{background-color: #993333; color: white;}
+.payment_management{border: 3px solid darkgray;}
+.payment_management th a{color: white;}
+table tbody tr:nth-child(even) {background: #ebebeb;}
+
