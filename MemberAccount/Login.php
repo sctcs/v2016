@@ -48,6 +48,8 @@ $SQLstring = "SELECT tblMember.MemberID,tblMember.Email,tblMember.FamilyID,tblMe
 $RS1=mysqli_query($conn,$SQLstring);
 $rc=0;
 
+$former_member=0;
+$former_student=0;
 while ($row=mysqli_fetch_array($RS1)) {
   $memberid=$row[MemberID];
   $useremail=$row[Email];
@@ -56,7 +58,12 @@ while ($row=mysqli_fetch_array($RS1)) {
   $seclevel=$row[SecurityLevel];
   $loginid=$row[LoginID];
   $membertypeid=$row[MemberTypeID];
-
+  if ($membertype =="Former Member") {
+     $former_member=1;
+  }
+  if ($membertype =="Former Student") {
+     $former_student=1;
+  }
   $membertypes[$seclevel]=$membertype;
   $rc = $rc + 1;
 }
@@ -66,10 +73,27 @@ if ($loginid == "")
 	header( 'Location: MemberLoginForm.php?error=2' ) ;
 	exit();
 }
+
 if ($membertypeid == 14)
 {
     echo "<center>";
 	echo "Your membership application will be processed as soon as possible, check your email within the following 1-2 days. <BR>You will be able to login when it is approved. <a href=\"MemberAccountMain.php\">continue</a>";
+	echo "</center>";
+	exit();
+}
+
+if ($former_student )
+{
+    echo "<center>";
+	echo "<br><br>Dear Former Student, <br>Welcome back! <br>If you want to register new classes again, please contact support team to re-activate your login first. <br>Thanks for your patience. <br><a href=\"../index.php\">Back to home</a>";
+	echo "</center>";
+	exit();
+}
+
+if ($former_member )
+{
+    echo "<center>";
+	echo "<br><br>Dear Former Member, <br>Welcome back! <br>If you want to register new classes again, please contact support team to re-activate your login first. <br>Thanks for your patience. <br><a href=\"../index.php\">Back to home</a>";
 	echo "</center>";
 	exit();
 }
