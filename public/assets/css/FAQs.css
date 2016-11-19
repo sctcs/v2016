@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 8, 2014, 9:17:48 AM
+    Author     : pinxiali
+    Document: styles for FAQs section
+*/
+
+/*styles for FAQs*/
+
+.panel-heading span {
+    margin-top: -20px;
+    font-size: 15px;
+}
+.row {
+    margin-top: 40px;
+    padding: 0 10px;
+}
+.clickable {
+    cursor: pointer;
+}    
+

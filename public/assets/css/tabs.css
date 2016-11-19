@@ -1,0 +1,71 @@
+/* 
+    Created on : Aug 3, 2014, 10:46:20 AM
+    Author     : Pinxia Li
+*/
+
+.tab-container {
+    background-color: white;
+    width: 100%;
+    height: auto;
+    width:100%;
+}
+
+.tab-pane {
+    height: auto;
+}
+.tab-container ul
+{
+    padding: 15px auto;
+    list-style-type: none;
+    position:relative;
+    display: inline;
+}
+
+.tab-container ul li {
+  // background-color: #843534;
+   background-color: #c8c8c8;
+    width: 200px; 
+    height: 55px; 
+    display: inline;
+    float: right; 
+    padding-top: 5px;
+    text-align: center;
+/*    -moz-box-shadow: 5px -5px -5px #888;
+    -webkit-box-shadow: 5px -5px -5px #888;
+   box-shadow: 5px -5px -5px #888;
+    border-radius: 12px 12px 0 0; 
+    margin-right: 5px;*/
+}   
+
+.tab-container ul li a
+{
+    height: 35px;
+    width: 180px; 
+    color: #fff;
+  //  color: #800000;
+    padding-left: 8px; 
+    padding-top: 2px;
+    text-decoration: none;
+    font-size:12px;
+    font-weight: normal;
+}
+
+.tab-content {
+    width: 90%;
+   padding: 25px auto; 
+}
+ 
+.tab-content > .tab-pane {
+  visibility:hidden;
+  position: absolute;
+}
+
+.tab-content > .active{
+    display:inline;
+    visibility: visible;
+    position: absolute;
+}
+
+
+
+
