@@ -1,0 +1,773 @@
+/* CSS Document: 
+   Overwrite some css properties in bootstrap 
+   Define some css properties for this project
+*/
+
+body {
+    font-family: tahoma, "Times New Roman", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans",      Geneva, Verdana, sans-serif;
+}
+
+.small { font-size: 80%; }
+ul li {
+    list-style: none;
+}
+.clear {clear: both; }
+a {
+    text-decoration: none; 
+}
+
+a:hover{
+    text-decoration:underline;
+    background-color: transparent;
+}
+
+ul.navbar-nav li a:hover{
+    color: #eea236 !important;
+    background-color: transparent;
+}
+ul .navbar-nav li a:visited{
+    color:#fff;
+    background:inherit;
+}
+nav ul,nav li, .nav, .nav ul, .nav li, nav {
+    margin:0;
+    padding:0;
+}
+
+
+h2,.h2 {   
+    font-size:20px;
+    letter-spacing: -2px;
+    color: #fff;
+    //  padding-top: 35px;
+    padding-top:0;
+    padding-bottom:0px;
+}
+
+h3,.h3 { //for title use only 
+         margin:10px 0 5px;
+         letter-spacing: -1px;  //thin out letter spacing
+         display:block;
+         font-family: inherit;
+         border-bottom:2px solid #336600;
+         padding:15px 0px;
+         font-size:20px;
+         font-weight:500;
+         color: #800000;
+         white-space: nowrap;
+}
+h3 a:first-child { color: #800000;}
+
+h5, .h5 {
+    margin:10px 0 5px;
+    display:block;
+    border-bottom:1px solid #F0F0F0;
+    padding:15px 0px;
+    font-size: 20px;
+    font-weight:500;
+    color: #800000;
+    white-space: nowrap;
+}
+
+.container {
+    width:100%;
+}
+//overwrite default carousel-control property
+
+/*.carousel-control.left{ background-image: transparent important! }
+
+.carousel-control.right{ background-image: transparent important! }*/
+
+.background-none {background: transparent; }
+
+@media (min-width: 1300px){
+    .container {
+        max-width:1300px;
+    }
+}
+
+address {
+    margin-left: 25%;
+    display: table;
+}
+
+//change the default carousel height in carousel.css file
+.carousel {
+    margin-bottom: 0;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    width: 60%;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    bottom:20px;
+    width: 20px;
+    height: 20px;
+    // background-color: #fff;
+    background-color: transparent;
+    border-radius: 20px;
+}
+.carousel-indicators .active {
+    width: 22px;
+    height: 22px;
+    background-color: #800000;
+}
+.carousel-caption {
+    bottom: 0px;
+    text-decoration:none;
+    padding-bottom:0px;
+    text-align: center;
+}
+
+h4, .h4 { //for carousel's caption use only
+          font-size: 18px;
+          font-family: Didot, "Didot LT STD", "Hoefler Text", Georgia, Garamond, "Times New Roman", serif;	color:#044759;
+          margin:10px 0 5px;
+          display:block;
+          color: #ffffff;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+.logo {
+    color:#660033;
+    padding-top:1.5em;
+    margin-left: 5%;
+}
+.logo img {
+    display:inline-block;
+    vertical-align: bottom;
+    height: auto;
+    width: 100%;
+}
+.logo a {
+    color:#660033;
+    display:block;
+}
+
+.logo a:hover { text-decoration:none; }
+
+.thumb img {
+    height: 50px; 
+    width:25px;
+}
+header {
+    padding-top:10px;
+}
+header {
+    position:relative;
+    z-index:1001;
+}
+.eyebrow .nav > li >a:hover, .eyebrow .nav > li > a:focus,
+.eyebrow li.open>a {
+    color:#fff;
+}
+.eyebrow .nav .open .caret,
+.eyebrow .nav a:hover .caret {
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+.eyebrow .nav {
+    margin-top: 35px;
+}
+.navbar-default {
+    background-color: #800000;
+}
+.navbar-default {
+    border-color: #717171;
+    margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color:#fff;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:hover, 
+.navbar-default .navbar-default 
+.navbar-nav>.open>a:focus{
+    color:#ff0;
+}
+
+
+
+.navbar-custom {
+    background-color: #800000;
+}
+
+.navbar-custom .dropdown-menu li:first-child>a {
+    border-top:none;
+}
+
+.navbar {
+    border-radius: 0px;
+}
+
+/*dropdown menu on hover display block*/
+.dropdown-menu .sub-menu {
+    left: 100%;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    margin-top: -1px;
+}
+
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.left-padding {
+    padding-left: 3%;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+.body {
+    position:relative;
+    z-index:5;
+}
+hr {
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    margin: 15px auto;
+    border: 1px solid #e3e3e3;
+}
+
+.body-col {
+    padding-bottom:30px;
+}
+
+#calendar table {
+    border: 1px solid #336600;
+}
+
+#calendar th{
+    border-left: 1px solid #336600;
+    border-right: 1px solid darkgreen;
+    text-align: center;
+    background-color: #c0c0c0;
+    color: #fff;
+}
+#calendar tr {
+    border-bottom: 1px solid darkgreen;
+    font-weight: 200;
+    text-align: center;
+}
+
+.title {
+    font-size: 18px;
+    font-family:inherit;
+    letter-spacing: 0;
+    padding: 15px 0;
+    font-weight:400;
+    color:black;
+    white-space:nowrap;
+}
+
+#calendar td {
+    border: 1px solid darkgreen;
+}
+#calendar td:first-child {
+    font-weight: bold;
+} 
+footer {
+    font-size:11px;
+    border-bottom:25px solid #630000;//#032197;
+    background-color:#800000;
+    padding:5px 0;
+    color:#fff;
+    line-height:20px;
+}
+
+@media (max-width: 480px){
+    .carousel-indicators {
+        position: absolute;
+        bottom: 35%;
+        left: 50%;
+        width: 60%;
+    }
+
+    .carousel-indicators li {
+        display: inline-block;
+        bottom:10px;
+        width: 15px;
+        height: 15px;
+        background-color: #ffffff;
+        border-radius: 15px;
+    }
+    .carousel-indicators .active {
+        width: 16px;
+        height: 16px;
+        background-color: #800000;
+    }
+
+    h3, .h3 {
+        font-size:20px;
+    }
+    header {
+        padding-top:10px;
+    }
+    address {
+        margin-left: 5%;
+    }
+}
+
+.table tr td:first-child {
+    text-align: left;
+}
+
+#improveTeaching img{
+    margin: 10px auto 20px auto;
+    padding: 0;
+}
+
+@media (max-width: 600px) {
+    .logo img {
+        padding-left: 0px;
+        margin-left: -20px;
+    }
+}
+
+
+@media (min-width: 768px){
+    .navbar > .container .nav {
+        margin-left:-15px;
+    }
+} 
+
+@media (max-width: 767px) {
+    .body-col {
+        min-height:0 !important;
+        padding-bottom:10px;
+    }
+    h3, .h3 {
+        font-size:22px;
+    }
+    address {
+        margin-left: 10%;
+    }
+}
+@media (min-width: 768px){
+    .navbar {
+        margin-bottom: 0px;
+    }   
+} 
+
+@media(min-width: 768px) and (max-width:1243px){
+    h3, .h3 {
+        white-space:nowrap;
+    }
+}
+
+@media (min-width:845px) and (max-width:1230px){
+    //TODO: address collapsible navbar 
+}
+@media screen and (max-width: 848px) {
+    .carousel-indicators {
+        bottom: 12%;
+    }
+}
+
+@media (max-width:991px){
+    .carousel-caption{
+        display: none; 
+    }
+}
+
+@media(max-width: 1000px){
+    .container .col-sm-8 {
+        padding-left:10%;
+    }
+}
+
+/*studentTeacherCorner*/
+#studentTeacherCornerArea select { height: 2.5em; width: 130px; background-color: #bade9b; } 
+
+.studentTeacherCorner ul {
+    margin: 0 auto;
+    // padding-left: 10px;
+    padding: 0px; 
+}
+.studentTeacherCorner ul li {
+    list-style: none;
+    padding: 0;
+    line-height: 3em;
+    margin: -10px auto 0 auto;
+    // margin: 0 auto;
+}
+.studentTeacherCorner ul li:first-child{
+    margin-top: 40px;
+}
+.studentTeacherCorner a {
+    font-size: 1.8em;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 4.5em;
+    display: block;
+    height: 100px;
+    width: 100%;
+    color: #285e8e;
+}
+.discIndent {list-style: disc;}
+#studentTeacherCorner ul {
+    margin: 0 auto;
+    padding-left: 15px;
+    //  border-right: 1px solid #999;
+}
+#studentTeacherCorner ul li {
+    list-style: none;
+    padding: 0;
+    margin: -10px auto 0 auto;
+}
+
+#studentTeacherCorner ul li:first-child{
+    margin-top: 10px;
+}
+#studentTeacherCorner ul li a {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 4.5em;
+    display: block;
+    height: 120px;
+    width: 100%;
+    color: black;
+}
+
+#sessions {
+    margin-left: -20px;
+}
+#sessions p {
+    padding: 20px 0;
+    //  border-bottom: 1px solid #044759;
+}
+#sessions ul {
+    padding: 0 10px;
+    margin: 0 0 40px 0;
+}
+#sessions li {
+    list-style-type: none;
+    padding:10px 0;
+    background-color: #fff;
+    border-top: 1px solid #d6d6d6;
+    text-align:left;
+}
+
+#sessions li:first-child {
+    border-top: none;
+    padding-top: 1.8em;
+}
+
+#details {
+    width: 100%;
+    height: 800px;
+    border-left: 1px solid #999;
+}
+
+#details object{
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin-top: 0;
+    margin-left: 0;
+    float: left;
+}
+#details{
+    width: 100%;
+    height: 800px;
+    border-left: 1px solid #999;
+}
+
+/*Student Work Display Section*/
+
+#studentWorkDisplay {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#studentWorkDisplay li {
+    margin:0;
+    border: 1px solid #254117;
+    background-color: #99ccff;
+    width:110px;
+    height:165px;
+    padding: 20px 10px 0 10px;
+    margin: 5px;
+}
+
+#studentWorkDisplay  .thumb {
+    width: 80px;
+    height: auto;
+}
+
+#rightCol  .iframeArea {
+    height: 650px;
+}
+
+//accordion stylesheet
+#accordion {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    background: #E0E3E1;
+    width: 100%;
+}
+.panel-heading a:after{
+    font-family: 'Glyphicons Halflings';
+    content: '\e114';
+    float: right;
+    color:#e3e3e3;
+}
+.panel-heading a.collapsed:after{
+    content: '\e080';
+}
+
+#pdf_area object {
+    width: 100%;
+    height: 800px;
+    padding: 0;
+    margin:0;
+}
+
+.pdfFiles {
+    background: transparent;
+    width: 85%;
+    margin: 30px auto 0 auto;
+}
+.pdfFiles span {
+    color: #eea236;
+    font-size: 1.2em;
+    padding-right: 10px;
+}
+
+.pdfFiles ul li {
+    padding-top: 10px;
+    list-style: none;
+}
+
+//for supportSchool file in donation form area
+#supportUs form {
+    width: 100%;
+    height: 35px;
+}
+#donationForm input{
+    width: 120px;
+    height: 35px;
+}
+
+//Community area
+
+#education {
+    color: #800000;
+}
+#education > ul > li > span {
+    // font-size: 1.2em;
+    color: #800000;
+}
+
+#education > ul > li {
+    padding: 5px 2px;
+    list-style: none;
+}
+#education ul li a {
+    color: #000;
+    padding-left: 20px;
+}
+
+#culture a, #culture button {
+    color: black;
+}
+
+/*for student work display area*/
+
+.kFiles ul li{
+    list-style: none;
+    color: goldenrod;
+}
+
+.kFiles ul li:before { 
+    //  content:"•"; 
+    content: "\2666";
+    font-size:15px; 
+    vertical-align:top; 
+    padding-right:27px; 
+}
+.kFiles ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.announcement ul li {
+    padding-left: 0px;
+    list-style: none;
+}
+.announcement ul li ul li{
+    padding-left: 0px;
+    list-style: disc;
+
+}
+
+
+.box {
+    margin-left: 30%;
+    width: 180px;
+    height: 280px;
+    background-image: url("assets/images/announcement/AmyChua.jpg");
+    -webkit-transition: 0.1s ease-out;
+    -moz-transition: 0.1s ease-out;
+    -o-transition: 0.1s ease-out;
+    -ms-transition: 0.1s ease-out;
+}
+
+.box:hover {
+    -webkit-transform: scale(4.0);
+    -moz-transform: scale(4.0);
+    -o-transform: scale(4.0);
+    -ms-transform: scale(4.0);
+}
+
+#alumini1Carousel {
+    background: #fff;
+}
+
+#alumini1Carousel img {
+    width: 230px;
+    height: auto;
+    margin: 5px 5px 0px 0px; 
+    padding: 5px 2px 2px 0px; 
+}
+
+
+#alumini1Carousel.carousel-control{
+    text-shadow:none;
+}
+
+.darkred {
+    color: #630000;
+}
+
+#alumini1Carousel.carousel  .item{
+    height: 600px;
+    background-color: white;
+}
+
+#alumini1Carousel img {
+    width: auto;
+    height: 230px;
+}
+#aluminiSection {
+    padding: 10px 0px;
+}
+@media(max-width: 992px){
+    #aluminiSection{
+        height: 1200px;
+    }
+    #alumini1Carousel {
+        height: 100%;
+        margin: 2%;
+    }
+}
+@media(max-width:760px){
+    #alumini1Carousel img {
+        width: auto;
+        height:120px;
+        margin: 0 auto;
+        padding-left: 10%;
+    }
+    #aluminiSection{
+        height: 980px;
+        overflow: hidden;
+    }
+    #alumini1Carousel {
+        height: 100%;
+    }
+}
+
+
+#alumini1Carousel.carousel.slide a.left.carousel-control, 
+#alumini1Carousel.carousel.slide a.right.carousel-control {
+    background-image: none !important;
+    background: darkgrey;
+    width: 15%;
+    height: 50px;
+    margin-top: 0px;
+    //  top: 40%;
+}
+
+.height100 {height: 100%; }
+.summerProgram {background: 3fc;}
+.summerProgramFlyer  { border: 1px solid black; }
+.summerProgramFlyerDetail {  margin: 2px auto; }
+
+.triColumn {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+.twoColumn {
+    -webkit-column-count:2;
+    -moz-column-count:2;
+    column-count:2;
+}
+
+.space { height: 100px; }
+.space20{ height: 5px;}
+
+/*For announcement page*/
+aside {margin: 25px 0;}
+aside h2 {font-size: 2rem; line-height: 50px; color: #800000; margin: 20px 0; border-bottom: 1px solid green; text-align: center;}
+
+aside a {margin: 5px auto; border-bottom: 1px dotted gray; line-height: 3rem; margin-bottom: 30px; }
+
+//for 2015 new year gala height
+.flex-container {  
+    /*    min-height: 70vh; */
+
+    min-height: 630px;
+}
+
+h1 { margin-bottom: 0; }
+h1 a#top { color: black;}
+
+.tooltipcolor a {
+   // background: #FFAD33; 
+   background: #336600;
+    border:1px solid black; 
+    color: #285e8e;
+}
+.green-tooltip + .tooltip > .tooltip-inner {
+   // background-color: #468847; 
+   background-color: #285e8e;
+   // color: #000;
+    color: white;
+    border: 1px solid goldenrod  ; //#428bca ;
+    padding: 15px;
+    white-space: pre-wrap;
+    text-align: left;
+}
+.green-tooltip > p {text-align: left;}
+.green-tooltip + .tooltip.bottom > .tooltip-arrow {border-bottom-color:#285e8e; }
+.green-tooltip + .tooltip.top > .tooltip-arrow {border-bottom-color: #285e8e; }
+.green-tooltip + .tooltip.left > .tooltip-arrow {border-left-color: #285e8e; }
+.tooltip-inner {max-width: 650px; width: 350px;}
+
+a.read_more, a.read_less {margin-top: 20px; color: white; text-decoration: none; font-size: 2rem; width: 150px; height:30px; line-height: 30px; border-radius: 5px;}
+a.read_more:hover, a.read_less:hover {background: #31B404;}
+a.read_less {background: #DBA901;}
+a.read_more {background: #0B614B;}
+.red-color {color: red;}
