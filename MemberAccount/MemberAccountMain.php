@@ -165,6 +165,9 @@ include("../common/CommonParam/params.php");
                         <br /><a href="../classes/listallstudents_by_term.php?type=reg&term=spring">Spring Student-Class List</a>
                         <br /><a href="../Directory/Classes.php">Course Catalog</a>
                         <br /><a href="OpenSeats.php" >View Class Opening/Available Seats</a>
+                        <br />Student Attendance Report
+                              <a href="studentAttendanceAllClass.php?show_all=No&year=<?php echo $CurrentYear; ?>&term=Fall" ><?php echo $CurrentYear; ?> Fall</a>, 
+                              <a href="studentAttendanceAllClass.php?show_all=No&year=<?php echo $NextYear; ?>&term=Spring" ><?php echo $NextYear; ?> Spring</a> 
 
                         <br /><a href="SchoolLeadershipDocument.php">School Policies and Documents for Leaders</a>
                         <br /><a href="../MemberAccount/TeacherDocument.php">Teacher Manual</a>
