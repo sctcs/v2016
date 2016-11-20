@@ -64,10 +64,10 @@ Show those students attended no
 <a href="studentAttendanceAllClass.php?ATT=0&show_all=No&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" > sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
 
 Show those students attended no more than 
-<a href="studentAttendanceAllClass.php?ATT=2&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" >2 sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
+<a href="studentAttendanceAllClass.php?ATT=2&show_all=No&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" >2 sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
 
 Show those students attended no more than 
-<a href="studentAttendanceAllClass.php?ATT=3&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" >3 sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
+<a href="studentAttendanceAllClass.php?ATT=3&show_all=No&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" >3 sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
 
 Show all students attended  
 <a href="studentAttendanceAllClass.php?ATT=0&show_all=Yes&year=<?php echo $_GET[year]; ?>&term=<?php echo $_GET[term]; ?>" >no or any sessions in <?php echo $_GET[year]." ".$_GET[term]; ?> </a><br> 
