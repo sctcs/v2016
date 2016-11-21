@@ -19,4 +19,3 @@
     <li><a href="../Files/Documents/Teachers/regulation.htm">&#25945;&#24072;&#39035;&#30693; / Teacher's Rule</a></li>
     <li><a href="../Files/Documents/Teachers/ApplyTeachingJobs.htm">&#30003;&#35831;&#25945;&#32844; / Apply Teaching Job</a></li>
 </ul>
- 
