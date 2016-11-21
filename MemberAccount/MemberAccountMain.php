@@ -50,7 +50,8 @@ include("../common/CommonParam/params.php");
 
         <?php if ($seclvl == 10 || $seclvl == 15 || $seclvl == 20 || $seclvl == 40 || $seclvl == 55) { ?>
             <div class="col-md-12"> 
-                <br><p class="text-center lead"><b><a href="../MemberAccount/MemberLookupForm.php">Member Lookup</a></b></p>
+                <br><p class="text-center lead"><b><a href="../MemberAccount/MemberLookupForm.php">Member Lookup By Name</a></b></p>
+                <p class="text-center lead"><b><a href="../MemberAccount/MemberLookupByIDForm.php">Member Lookup By ID</a></b></p>
             </div>               
         <?php } ?>
         <!-- MemberType and SecurityLevel --
