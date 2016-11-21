@@ -99,8 +99,8 @@ $sqlatt="SELECT * from tblCalendar where Year='". $_GET[year] ."' and Term='".$_
               echo "  </tr>";
 
      $SQLstring = "select *   from viewClassStudents v, tblMember m where v.MemberID=m.MemberID "
-                                                            ." and v.ClassID='".$classid."'"
-                                                            ."                           order by v.LastName";//.$_SESSION[memberid];
+                 ." and v.ClassID='".$classid."'"
+                 ." and v.Status in ('OK','Taken')   order by v.LastName";//.$_SESSION[memberid];
     if ($DEBUG) { echo "see111: ".$SQLstring; }
     $RS1=mysqli_query($conn,$SQLstring);
     while ( $row=mysqli_fetch_array($RS1) ){
