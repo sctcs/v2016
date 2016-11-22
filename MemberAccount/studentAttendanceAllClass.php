@@ -80,10 +80,14 @@ $sqlclass="SELECT * from tblClass where Year='". $_GET[year] ."' and Term='".$_G
 $RSAclass=mysqli_query($conn,$sqlclass);
 while ( $rowclass=mysqli_fetch_array($RSAclass) ){
  $classid=$rowclass[ClassID];
-			echo "ClassID:	" . $rowclass[ClassID] .", "; 
-			echo "GradeOrSubject:	" . $rowclass[GradeOrSubject] .", "; 
-			echo "ClassNumber:	" . $rowclass[ClassNumber] .", "; 
-			echo "Teacher:	" . $rowclass[TeacherMemberID]; 
+			echo "ClassID: <font color=BLUE>" . $rowclass[ClassID] ."</font>, "; 
+			echo "GradeOrSubject: <font color=BLUE>" . $rowclass[GradeOrSubject] ."</font>, "; 
+			echo "ClassNumber: <font color=BLUE>" . $rowclass[ClassNumber] ."</font>, "; 
+   
+$sqlteacher="SELECT Firstname,Lastname from tblMember where MemberID=". $rowclass[TeacherMemberID] ;
+$RSAteacher=mysqli_query($conn,$sqlteacher);
+$rowteacher=mysqli_fetch_array($RSAteacher);
+			echo "Teacher: <font color=BLUE>" . $rowteacher[Firstname] . " " . $rowteacher[Lastname]."</font>"; 
 ?>
   <form method="POST" name="attendance" action="updateAttendanceAll.php">
 			<table width="100%" CELLSPACING="0" CELLPADDING="0" border="1">
@@ -99,8 +103,8 @@ $sqlatt="SELECT * from tblCalendar where Year='". $_GET[year] ."' and Term='".$_
               echo "  </tr>";
 
      $SQLstring = "select *   from viewClassStudents v, tblMember m where v.MemberID=m.MemberID "
-                                                            ." and v.ClassID='".$classid."'"
-                                                            ."                           order by v.LastName";//.$_SESSION[memberid];
+                 ." and v.ClassID='".$classid."'"
+                 ." and v.Status in ('OK','Taken')   order by v.LastName";//.$_SESSION[memberid];
     if ($DEBUG) { echo "see111: ".$SQLstring; }
     $RS1=mysqli_query($conn,$SQLstring);
     while ( $row=mysqli_fetch_array($RS1) ){
