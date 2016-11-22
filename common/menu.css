@@ -1,0 +1,84 @@
+/* 
+    Created on : Aug 1, 2014, 11:51:10 AM
+    Author     : Pinxia Li
+    Document: styles for menu on the left side
+*/
+
+.menu_wrapper {
+    width:350px;
+    min-height: 200px;
+    line-height:35px;
+    background:white;
+    vertical-align: baseline;
+    
+    /*Internet Explorer 9 and earlier version does not support gredient*/
+    background: -moz-linear-gradient(right, rgba(255, 0, 0, 0), rgba(252, 230, 230, .3));/*For Firefox 3.6 to 12.0*/
+  // background: -moz-linear-gradient(left,#ffffff, #fce6e6);/*For Firefox 3.6 to 12.0*/
+    background: -webkit-linear-gradient(left, #fff 0%, #fce6e6 60%, #fff 100%);/*For Safari 5.1 to 6.0*/
+    background: -o-linear-repeating-gradient (left, #fff 0%, #fce6e6 60%, #fff 100%);/*For Opera 11.1. to 12.0*/
+    background: linear-gradient        (left, #fff 0%, #fce6e6 60%, #fff 100%);/*Standard syntax*/
+} 
+
+
+.menu_wrapper > .menu_content {
+    margin:0 5px;
+   // margin:0 5px;
+    min-height:250px;
+    line-height:35px;
+    border:none;
+    padding: 0 0 10px 0;
+}
+
+.menu_wrapper li {
+     list-style: none;
+     padding-left: 20px;
+}
+
+/*.menu_wrapper li a {
+   color: #000;
+} */
+
+.menu_wrapper li a:hover{ background: lightgrey; }
+//adjust the line height 
+.menu_wrapper > p {
+    margin-top: 0px;
+}
+
+.menu_content>a{
+    margin: 0px; 
+    padding-left: 28px; 
+    padding-right: 0px;
+    margin-top:0px;
+    font-size: 100%;
+    color: black;
+    text-justify:inter-ideograph;
+    text-align:justify;
+    text-decoration: none;
+}
+//make the dropdown menu float to the right on side menu 
+.menu_wrapper .menu_content .nav .dropdown-floatRight {
+    float: right;
+    margin-left: 40%;
+    margin-top: -30px;
+    border: none;
+    background: #E0E3E1;
+}
+.newsMenu {
+    width:250px;
+}
+
+.side-nav ul ul {
+    padding-left: 20px;
+    border-top:1px dotted #52cc8b;
+    display: none;
+}
+
+.menu_wrapper .menu_content ul {
+    margin-left: -20px;
+}
+
+#menu_wrapper  a {
+color: #000;
+padding-left: 20px;
+} 
+

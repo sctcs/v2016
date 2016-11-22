@@ -111,7 +111,7 @@ while ($currentRow = mysqli_fetch_array($RSmember)) {
         <?php
         if ($memberCount == 1) {         //one record found
             $row = $members[1];
-			?>
+	?>
             <h3>Member Record</h3>
             <table border="1" class="table table-striped">
             <?php
@@ -168,7 +168,7 @@ while ($currentRow = mysqli_fetch_array($RSmember)) {
 				{
 					if ( $existingFamilyID != -1 )
 					{
-						?></td></tr>
+						?>
 						<?php
 					}
 					?><tr><td valign="top">Family # <?php echo $currentRow["FamilyID"];?></td>
@@ -232,4 +232,5 @@ while ($currentRow = mysqli_fetch_array($RSmember)) {
 		<table><tr><td><a href="MemberLookup.php?lname=<?php echo $lname; ?>">View list of <?php echo $lname; ?></a></td></tr>
 			<tr><td><a href="MemberLookupForm.php">New Lookup</a></td></tr></table>
 		</div>
-		<?php include("../common/site-footer1.php"); ?>
+    </div>
+	<footer><?php include("../common/site-footer1.php"); ?></footer>

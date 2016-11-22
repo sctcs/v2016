@@ -1,3 +1,25 @@
+/*for header*/
+.nav>li>a { display: inline-block;}
+.narbar-nav {margin-left: 180px; }
+.navbar-nav li a {line-height: 30px; margin-right: 45px;}
+
+.navbar-nav {margin-left: 180px; }
+.navbar-nav li a {margin-right: 10px; }
+.navbar-nav>li>a:hover{color: yellow; }
+
+
+
+/*footer*/
+footer {
+    font-size:11px;
+    border-bottom:25px solid #630000;//#032197;
+    background-color:#800000;
+    padding:5px 0;
+    color:#fff;
+    line-height:20px;
+}
+
+
 .tablewrapper {
     border: 1px solid #993333; 
     margin: 20px 5px;
@@ -13,8 +35,8 @@
 p.bigfont {font-size: 1.2rem; }
 
 .wrapper { width: 100%; margin: 0;}
-.footer {padding: 10px 0 ; margin-left: 30%;}
-.header {padding: 10px 0; margin-left: 22%;}
+/*.footer {padding: 10px 0 ; margin-left: 30%;}*/
+/*.header {padding: 10px 0; margin-left: 22%;}*/
 .formwrapper {width: 100%; margin: 20px; padding: 20px;}
 .formwrapper form {width: 80%; margin: 0 auto;}
 .formwrapper form legend {font-size: 1.5rem; font-weight: 800; margin-left: 20%;}
@@ -33,8 +55,29 @@ hr {margin-bottom: 30px;}
 .payment {list-style-type: none; background: #4cae4c; }
 .paymentli { padding-bottom: 10px; list-style-type: none; height: 35px; margin-left: 30%;} 
 .payment li a {margin-bottom: 10px; line-height: 35px; color: #FFF;}
-table th{background-color: #993333; color: white;}
+table th{background-color: #449d44 !important; color: white;}
 .payment_management{border: 3px solid darkgray;}
 .payment_management th a{color: white;}
-table tbody tr:nth-child(even) {background: #ebebeb;}
+/*table tbody tr:nth-child(even) {background: #ebebeb;}*/
+table.payment_management tbody tr:nth-child(odd){background: #ebebeb;}
 
+#memberFunctionWrapper { width: 90%; margin: 0 auto 10px auto; border: 1px solid green; background: #468847; }
+#memberFunctionWrapper .accessFrame {
+    background: #DFFEDF;
+}
+#memberFunctionWrapper p a { line-height: 30px; font-size: 15px; color: #0000FF; }
+.wrapper {width:600px; margin: 30px auto 10px auto; }
+table {background-color: white; width: 100%;}
+
+/*Member Login*/
+.login_wrapper {width: 400px; margin: 20px auto;}
+.login_wrapper form label, .login_wrapper form input {font-size: 1.5rem;}
+.help-block {width: 100%; margin: 20px auto;}
+.help-block ol {margin-bottom: 30px;}
+.help-block li ul {list-style-type: square; list-style-position: inside;}
+.red-color {color: red; }
+.main-body {width: 60%; margin: 10px auto;}
+#memberFunctionWrapper h3 {border-bottom: 1px dotted green !important;}
+ ul.site-headerPro { list-style-type: none; margin-bottom: 20px; margin-top: 0;padding: 0; }
+
+ .lefMargin20 {margin-left: 20px;}

@@ -50,7 +50,8 @@ include("../common/CommonParam/params.php");
 
         <?php if ($seclvl == 10 || $seclvl == 15 || $seclvl == 20 || $seclvl == 40 || $seclvl == 55) { ?>
             <div class="col-md-12"> 
-                <br><p class="text-center lead"><b><a href="../MemberAccount/MemberLookupForm.php">Member Lookup</a></b></p>
+                <br><p class="text-center lead"><b><a href="../MemberAccount/MemberLookupForm.php">Member Lookup By Name</a></b></p>
+                <p class="text-center lead"><b><a href="../MemberAccount/MemberLookupByIDForm.php">Member Lookup By ID</a></b></p>
             </div>               
         <?php } ?>
         <!-- MemberType and SecurityLevel --
@@ -165,6 +166,9 @@ include("../common/CommonParam/params.php");
                         <br /><a href="../classes/listallstudents_by_term.php?type=reg&term=spring">Spring Student-Class List</a>
                         <br /><a href="../Directory/Classes.php">Course Catalog</a>
                         <br /><a href="OpenSeats.php" >View Class Opening/Available Seats</a>
+                        <br />Student Attendance Report
+                              <a href="studentAttendanceAllClass.php?show_all=No&year=<?php echo $CurrentYear; ?>&term=Fall" ><?php echo $CurrentYear; ?> Fall</a>, 
+                              <a href="studentAttendanceAllClass.php?show_all=No&year=<?php echo $NextYear; ?>&term=Spring" ><?php echo $NextYear; ?> Spring</a> 
 
                         <br /><a href="SchoolLeadershipDocument.php">School Policies and Documents for Leaders</a>
                         <br /><a href="../MemberAccount/TeacherDocument.php">Teacher Manual</a>
