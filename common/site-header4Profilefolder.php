@@ -2,7 +2,7 @@
     ul.site-headerPro { list-style-type: none; margin-bottom: 20px; margin-top: 0;padding: 0; }
 
 </style>
-<h3 class="leftMargin20"> &#33756;&#21333; / Menu</h3>
+<h3> &#33756;&#21333; / Menu</h3>
 <ul class='site-headerPro menu_wrapper'>
     <li><a href="../SchooProfile/AboutSchool.php">&#20851;&#20110;&#23398;&#26657; / About School</a></li>
     <!--    <li><a href="../MemberAccount/SchoolSafetyPatrol.php">学校安全值班 / School Safety Patrol</a></li>-->
