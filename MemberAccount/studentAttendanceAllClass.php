@@ -150,9 +150,19 @@ $sqlatt="SELECT * from tblCalendar where Year='". $_GET[year] ."' and Term='".$_
 					?>
 
 			</table>
-<br>
 </form>
-<?php } //end-loop-classed ?>
+<?php 
+$sqlnotes="SELECT * from tblAttendanceNote where ClassID=". $classid ;
+$RSnotes=mysqli_query($conn,$sqlnotes);
+$rownotes=mysqli_fetch_array($RSnotes);
+$notes = $rownotes[Notes];
+if ( isset($notes) && $notes !="" ) {
+  echo "<B> Notes: </b>";
+  echo $notes; 
+  echo "<br>";
+}
+echo "<br>";
+} //end-loop-classed ?>
 
 </body>
 </html>

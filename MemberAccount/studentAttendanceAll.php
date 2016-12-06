@@ -61,10 +61,15 @@ $seclvl = $_SESSION[membertype];
 <br><br>
 
 <?php
-			echo "ClassID:	" . $classid ."  "; 
-			echo "Teacher:	" . $_GET[firstname]." ".$_GET[lastname] .""; 
+			echo "<b>ClassID:</b>	" . $classid ."  "; 
+			echo "<b>Teacher:</b>	" . $_GET[firstname]." ".$_GET[lastname] .""; 
 ?>
   <form method="POST" name="attendance" action="updateAttendanceAll.php">
+<input type="hidden" name="MID" value="<?php echo $_GET[MID];?>">
+<input type="hidden" name="year" value="<?php echo $_GET[year];?>">
+<input type="hidden" name="term" value="<?php echo $_GET[term];?>">
+<input type="hidden" name="lastname" value="<?php echo $_GET[lastname];?>">
+<input type="hidden" name="firstname" value="<?php echo $_GET[firstname];?>">
 			<table width="100%" CELLSPACING="0" CELLPADDING="0" border="1">
 			<tr>
 			<th>ID</th><th>Eng. Name</th><th>Chi. Name</th>
@@ -118,9 +123,17 @@ $sqlatt="SELECT * from tblCalendar where Year='". $_GET[year] ."' and Term='".$_
 
 
 		}	
+
+
+$sqlnotes="SELECT * from tblAttendanceNote where ClassID=". $_GET[classid] ;
+$RSnotes=mysqli_query($conn,$sqlnotes);
+$rownotes=mysqli_fetch_array($RSnotes);
+$notes = $rownotes[Notes];
 					?>
 
 			</table>
+<br><B> Notes:</b><br>
+    <textarea name="notes" rows="5" cols="70" wrap="hard"><?php echo $notes; ?></textarea><br/>
 <br>
  <input type="submit" style="font-size : 20px; font-weight: bold;" value="Update">
 </form>
