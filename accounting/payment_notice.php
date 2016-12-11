@@ -12,13 +12,9 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Yale-New Haven Community Chinse School Payment Notice</title>
-<meta name="keywords" content="New Haven Chinese School, Yale New Haven Chinese School , Connecticut Chinese School, Chinese School">
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> -->
+<title>SCCS Payment Notice</title>
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
 <link href="../../common/ynhc.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="http://www.jschart.com/cgi-bin/action.do?t=l&f=jspage.js"></script>
-<script language="javascript" src="../common/JS/MainValidate.js"></script>
 
 </head>
 
@@ -36,7 +32,7 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 					<td width="28%" align="center" valign="top">
 						<table width="100%">
 							<tr><td>&nbsp;</td></tr>
-							<tr><td><?php include("../common/site-header4Profilefolder.php"); ?></td></tr>
+							<tr><td><?php //include("../common/site-header4Profilefolder.php"); ?></td></tr>
 						</table>
 					</td>
 					<td align="center" valign="top" >
@@ -53,7 +49,7 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 										</tr>
 										<tr align="left">
 											<td colspan=2>
-												<b>Please enter a valid Family ID.</b>
+												Please enter a valid Family ID:
 											</td>
 										</tr>
 										<tr>
@@ -92,7 +88,7 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 
 										<tr align="center">
 											<td align="right">
-												<b>Family ID:</b>
+												Family ID: 
 											</td>
 											<td align="left">
 											<input type="text" name="familyid" size="40">
@@ -110,7 +106,7 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 										</tr>
 										<tr align="center">
 											<td colspan=2>
-											<input type="submit" value="Go" >
+											<input type="submit" value="Send" >
 											</td>
 										</tr>
 										<tr>
@@ -131,9 +127,6 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 
 						</table>
 					</td>
-					<!-- <td  width="6%">
-						<?php include("Advertisment/ad1.php"); ?>
-					</td> -->
 				</tr>
 			</table>
 		</td>
