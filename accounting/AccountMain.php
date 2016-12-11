@@ -27,6 +27,7 @@ function AccountingMenu()
 <a href="paymentviewsetup.php">View&nbsp;all Payments&nbsp;collected</a><br><br>
 
 <a href="balancelisting.php">View&nbsp;Balances&nbsp;of all Families</a><br>
+<a href="balanceListingToPay.php">Send Payment Reminder Notice</a><br>
 <a href="creditSelectionListing.php">Credit and Payment Selection</a><br><br>
 
 <a href="balanceHistory.php">Balance&nbsp;History of all Families</a><br>

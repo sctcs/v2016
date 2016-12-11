@@ -13,6 +13,7 @@ include("../common/DB/DataStore.php");
 require_once("payment_notice_mail.php");
 //mysqli_select_db($dbName, $conn);
 
+
 if ( isset($_GET[familyid]) && trim($_GET[familyid]) != "") {
   $familyid=$_GET[familyid];
 }
@@ -21,9 +22,38 @@ if ( isset($_POST[familyid]) && trim($_POST[familyid]) != "") {
   $familyid=$_POST[familyid];
 }
 
-if ($familyid=="")
+// if DEBUG
+$debug=0;
+if ($debug) {
+// loop through every form field
+while ( list( $field, $value ) = each( $_POST )) {
+   // display values
+   if ( is_array( $value )) {
+      // if checkbox (or other multiple value fields)
+      while ( list( $arrayField, $arrayValue ) = each( $value )) {
+       if ( is_array( $arrayValue )) {
+       while ( list( $arrayField1, $arrayValue1 ) = each( $arrayValue )) {
+     echo "<p>" . $arrayField1 . "</p>\n";
+     echo "<p>" . $arrayValue1 . "</p>\n";
+       }
+       } else {
+     echo "<p>" . $arrayField . "</p>\n";
+     echo "<p>" . $arrayValue . "</p>\n";
+       }
+      }
+   } else {
+  echo "<p>" . $field . "</p>\n";
+  echo "<p>" . $value . "</p>\n";
+   }
+}
+}
+
+//mysqli_close($conn);
+//exit;
+
+if ($familyid=="" && !isset($_POST[fids] ) )
 {
- header( 'Location: payment_notice.php?error=1' ) ;
+ header( 'Location: balanceListingToPay.php?error=1' ) ;
  exit();
 }
 
@@ -73,6 +103,14 @@ if ( strpos($familyid, ":") != false ) {
    //}
 } else if ( strpos($familyid, ",") != false ) {
    $fids = split(',', $familyid);
+} else if (isset($_POST[fids] )) {
+  $i=0;
+  while ( list( $sidArrayField, $sidArrayValue ) = each( $_POST[fids] )) {
+  // echo "<p>" . $sidArrayField . "</p>\n";
+  // echo "<p>" . $sidArrayValue . "</p>\n";
+     $fids[$i]=$sidArrayValue;
+     $i++;
+  }
 } else {
    $fids[0] = $familyid;
 }
@@ -82,7 +120,11 @@ if ( strpos($familyid, ":") != false ) {
 <html>
 <head></head>
 <body>
+<a href="../MemberAccount/MemberAccountMain.php">My Account</a><br><br>
+<a href="balanceListingToPay.php">Balance to Pay</a><br><br>
+
 Payment notice summary:
+<br>
 <table border="1">
 <tr><td>FamilyID</td><td>Name</td><td>Home Phone</td><td>Office Phone</td><td>Cell Phone</td><td>Email</td><td>Status</td></tr>
 <tr>
@@ -124,16 +166,20 @@ for ($i=0;$i<count($fids);$i++) {
 <td>
 <?php
  if ( trim($useremail) != "" ) {
-  mail_notice($fid,$useremail,$fname,$lname) ;
+  mail_notice_msg($fid,$useremail,$fname,$lname,$_POST[msgsubj],$_POST[msgbody]) ;
 
-  echo "sent";
+  echo "<font color=green>sent</font>";
  } else {
-  echo "not";
+  echo "<font color=red>not</font>";
  }
 ?>
 </td></tr>
 <?php
 }
+echo "</table>";
+echo "Subject: ". $_POST[msgsubj];
+echo "<br>Content:<br>";
+echo $_POST[msgbody];
 
 mysqli_close($conn);
 
