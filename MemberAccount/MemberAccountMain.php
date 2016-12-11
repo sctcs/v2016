@@ -212,7 +212,6 @@ include("../common/CommonParam/params.php");
                 <?php } if ($seclvl > 0) { ?>
                     <p class="text-center"><a href="../Curriculum/Curriculum.php">Curriculum</a></p>
                 <?php } if ($_SESSION['logon'] != '') { ?>
-                    <!-- <br /><a href="../accounting/payment_notice.php">Payment Reminder</a> -->
 
                     <p class="text-center"><a href="../Activity/ActivityListForMember.php">Register Activity</a>
                         <br><a href="SchoolPolicyDocument.php">School Policies and Programs</a>
