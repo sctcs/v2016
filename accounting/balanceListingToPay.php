@@ -127,11 +127,11 @@ var elemArray = document.mainform.elements;
             <h3 class="center">Balance to Pay</h3>
             <ul class="payment">
                 <li><a href="index.php?view=SearchReceivable">Payment Management Home</a></li>
-                <li><a href="balancelisting.php?registered_only=Yes">Balance Listing of Currently Registered Families only</a>
+                <li><a href="balanceListingToPay.php?registered_only=Yes">Balance Listing of Currently Registered Families only</a>
                 </li>
-                <li> <a href="balancelisting.php?registered_only=Unr&show_last_reg=No">Balance Listing of Currently Un-Registered Families only</a>
+                <li> <a href="balanceListingToPay.php?registered_only=Unr&show_last_reg=No">Balance Listing of Currently Un-Registered Families only</a>
                 </li>
-                <li><a href="balancelisting.php?registered_only=No">Balance Listing of All Families</a></li>
+                <li><a href="balanceListingToPay.php?registered_only=No">Balance Listing of All Families</a></li>
             </ul>
 <form method="POST" name="mainform" action="payment_noticeS_create.php">
 
