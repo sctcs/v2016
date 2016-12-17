@@ -101,17 +101,8 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                                               <tr><td>Family ID:</td>
                                               <td><?php echo $row[FamilyID]; ?></td>
                                               </tr>
-                                              <?php if (isset($_SESSION['logon']) && ($seclvl === 20)) { ?>
-                                                  <tr><td>Login:</td>
-                                                  <td><?php echo $row[UserName]; ?></td>
-                                                  </tr>
-                                                  <tr><td>Password:</td>
-                                                  <td><?php echo $row[Password]; ?></td>
-                                                  </tr>
-                                                  <?php
-                                              }
-                                          }
-                                          ?>
+                                              
+                                 <?php  } ?>
 
                                           <tr><td>Last Name:</td>
                                           <td><?php echo $row[LastName]; ?></td>
@@ -126,7 +117,18 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                                               <tr><td>Home Phone:</td>
                                               <td><?php echo $row[HomePhone]; ?></td>
                                               </tr>
-                                              <?php if ($seclvl <= 25 || $seclvl == 35 || $seclvl == 40 || $seclvl == 55) { ?>
+                                              
+                                              <?php if ($seclvl == 20) { ?>
+                                                  <tr><td>Login:</td>
+                                                  <td><?php echo $row[UserName]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Password:</td>
+                                                  <td><?php echo $row[Password]; ?></td>
+                                                  </tr>
+                                                  <?php
+                                              }
+                                              
+                                               if ($seclvl <= 25 || $seclvl == 35 || $seclvl == 40 || $seclvl == 55) { ?>
                                                   <tr><td>Email:</td>
                                                   <td><?php echo $row[Email]; ?></td>
                                                   </tr>
