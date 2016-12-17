@@ -45,7 +45,11 @@ if (isset($_SESSION['logon'])) {
     $secdesc = $_SESSION['MemberTypes'][$seclvl];
 }
 
+
 $SQLstring = 'SELECT `FamilyID`, `MemberID`, `FirstName`, `LastName`, `ChineseName`, `HomePhone`, `OfficePhone`, `CellPhone`, `Email`, `SecondEmail`, `HomeAddress`, `HomeCity`, `HomeState`, `HomeZip`, `Profession`,`UserName`,`Password`,`PrimaryContact` FROM `tblMember`';
+
+$SQLstring = 'SELECT `FamilyID`, `MemberID`, `FirstName`, `LastName`, `ChineseName`, `HomePhone`, `OfficePhone`, `CellPhone`, `Email`, `SecondEmail`, `HomeAddress`, `HomeCity`, `HomeState`, `HomeZip`, `Profession`,`UserName`,`Password` FROM `tblMember`';
+
 
 
 if ($memberID != "") {
@@ -161,11 +165,19 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                 }
             }
 
+
         if ($rc > 1) {
                 ?>
                 <h3>Member Records</h3>
                 <table border="0" class="table table-striped">
                     <tr><th>Member List</th><th>English Name</th><th>Chinese Name</th><th>Member ID</th><th>Primary Contact</th></tr>
+
+            if ($rc > 1) {
+                ?>
+                <h3>Member Records</h3>
+                <table border="0" class="table table-striped">
+                    <tr><th>Member List</th><th>English Name</th><th>Chinese Name</th><th>Member ID</th></tr>
+
                     <?php
                     //   echo "see 2: ".$SQLstring;
                     $RS1 = mysqli_query($conn, $SQLstring);
@@ -174,6 +186,7 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                     while ($row = mysqli_fetch_array($RS1)) {
                         $rc = $rc + 1;
                         ?>
+
                     
                         <tr><td><?php echo $rc; ?>.&nbsp</td><td>
                            <a href="MemberLookupByID.php?memid=<?php echo $row[MemberID] . "\">" . $row[LastName] . ", " . $row[FirstName]  ."</a></td><td>";?><?php echo $row[ChineseName] . "</td><td> " . $row[MemberID]. "</td><td>".$row[PrimaryContact]."</td>"; ?></td>
@@ -183,7 +196,14 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                             ?>
                         </tr>
                         
-                          <?php
+                         
+
+                        <tr><td><?php echo $rc; ?>.&nbsp</td><td>
+                                   <a href="MemberLookupByID.php?memid=<?php echo $row[MemberID] . "\">" . $row[LastName] . ", " . $row[FirstName]  ."</a></td><td>";?><?php echo $row[ChineseName] . "</td><td> " . $row[MemberID]; ?></td>
+
+                        </tr>
+                                   <?php
+
                                }
                            } //$rc > 1 
                            else if ($rc == 1) {
@@ -229,7 +249,11 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                            <p>
                            <a href="MemberLookupByID.php?
                            <?php if ($familyID != "") { ?>
+
                                fid=<?php echo $familyID; ?>">View list of Family ID=<?php echo $familyID; ?> ||
+
+                               fid=<?php echo $familyID; ?>">View list of <?php echo $familyID; ?> ||
+
                            <?php } else if ($memberID != "") { ?> 
                                memid=<?php echo $memberID; ?>">Details of Member ID='<?php echo $memberID; ?>' 
                            <?php } ?></a> ||

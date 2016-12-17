@@ -81,6 +81,19 @@ $sql="insert into tblAttendance values ".$sql;
 } //studentid
 }
 
+if ( isset($_POST[notes]) && $_POST[notes] !="" ) {
+ $notes = $_POST[notes];
+ $notes = str_replace("'","&apos;", $notes);
+   $sql="insert into tblAttendanceNote(ClassID,Notes) values(" . $_POST[classid]. ", '" . $notes . "')" ;
+ //echo $sql;
+ if (!mysqli_query($conn,$sql))      {
+ $sql="update tblAttendanceNote set Notes='" . $notes . "' where ClassID=".$_POST[classid] ;
+      //echo $sql;
+   if (!mysqli_query($conn,$sql))      {
+      die('Error: ' . mysqli_error($conn));
+   }
+ }
+}
 ?>
 <p>
 
@@ -88,7 +101,9 @@ Attendance data have been saved successfully!
 
 </p>
 <?php
-
+echo "Back to <a href=\"" .
+"studentAttendanceAll.php?MID=".$_POST[MID] ."&classid=".$_POST[classid].
+"&year=".$_POST[year]."&term=".$_POST[term]."&lastname=".$_POST[lastname]."&firstname=".$_POST[firstname]."\">Attendance</a><br>";
 if ( isset($_SESSION[membertype]) && 
      $_SESSION[membertype] == 25 ) {
 echo "Back to <a href=\"MyClasses_frame.php\">My Classes</a>";

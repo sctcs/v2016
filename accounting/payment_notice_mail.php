@@ -2,47 +2,54 @@
 
 function mail_notice($fid,$useremail,$fname,$lname) {
 
+//echo "Payment notice has been sent to ".$useremail."<br><br>";
+$message = "Dear ".$fname." ".$lname.",
 
-						//	if ( isset($useremail) && $useremail != "") {
+Our school system shows that you still have unpaid balance. Please make a payment at your earliest convenience. You can login to your account for detail information or come to school office at A107 and I will help you to figure out how much you should pay. 
 
+Best Regards,
+Min Li
+SCCS Financial Manager
+";
 
+$to      = $useremail;
+$subject = 'Please pay your SCCS balance';
 
-							 //echo "Payment notice has been sent to ".$useremail."<br><br>";
-							 $message = "Dear ".$fname." ".$lname.",\n\n";
-							 $message .= "Happy New Year!\n\n";
-							 $message .= "The YNHCS Spring 2008 Term will start on Jan. 20, 2008. To save the school and teachers time for the first day of class, so that teachers can concentrate on teaching from day-one, ";
-							 $message .= "please mail your payment of tuition to the following address as soon as you can.\n\n";
+$headers = 'From: finance@ynhchineseschool.org' . "\r\n" .
+'Reply-To: finance@ynhchineseschool.org' . "\r\n" .
+'X-Mailer: PHP/' . phpversion() . "\r\n";
+$headers .= 'Bcc: finance@ynhchineseschool.org' . "\r\n";
 
-                             $message .= "Please remember to:\n";
-							 $message .= "1, write down your family ID, ".$fid.", and student name(s) on your check.\n";
-							 $message .= "2, make your check payable to: Yale-New Haven Community Chinese School\n";
-							 $message .= "3, mail your check along with this payment notice before Jan 15, 2008 to:\n\n";
+mail($to, $subject, $message, $headers);
 
-							 $message .= "	Yale-New Haven Community Chinese School\n";
-							 $message .= "	P.O.Box  207105\n";
-							 $message .= "	Yale Station\n";
-							 $message .= "	New Haven, CT 06520\n\n";
-							 //$message .= "Re: Tuition Fee Spring 2008\n";
+}
 
-							 $message .= "Note: The fee is $120 per student for all Chinese classes and $70 for all Art classes (including chess class). If you want to add or drop an art class, please write down at the end of this notice. You can use a single check for all children you have.\n";
-							 $message .= "If you or your spouse is a teacher at our school, the tuition fee of $120 for your first child will be waived. You are responsible to pay tuition fee for all art classes and any class other children take. This policy is different from the past, so please mark so on your check if you still have a non-zero balance to school.\n";
-							 $message .= "If you have any question regarding the change of tuition fee policy, please visit our website: www.ynhchineseschool.org to read the letter from the Principal.\n\n";
+function mail_notice_msg($fid,$useremail,$fname,$lname,$subject, $message) {
 
-							 $message .= "If you have any other questions, please email support@ynhchineseschool.org.\n\n";
+if (!isset($subject) || $subject == "") {
+$subject = 'Please pay your SCCS balance';
+}
 
-							 $message .= "Thank you for your prompt payment.\n\n";
+if (!isset($message) || $message == "") {
+//echo "Payment notice has been sent to ".$useremail."<br><br>";
+$message = "Dear ".$fname." ".$lname.",
 
-							 $message .= "YNH Chinese School";
+Our school system shows that you still have unpaid balance. Please make a payment at your earliest convenience. You can login to your account for detail information or come to school office at A107 and I will help you to figure out how much you should pay. 
 
-							 $to      = $useremail;
-							 $subject = 'Payment reminder of YNHCS Tuition for Spring 2008';
+Best Regards,
+Min Li
+SCCS Financial Manager
+";
+}
 
-							 $headers = 'From: support@ynhchineseschool.org' . "\r\n" .
-							     'Reply-To: support@ynhchineseschool.org' . "\r\n" .
-							     'X-Mailer: PHP/' . phpversion() . "\r\n";
-							 $headers .= 'Bcc: neil.guo@comcast.net' . "\r\n";
+$to      = $useremail;
 
-							 mail($to, $subject, $message, $headers);
+$headers = 'From: finance@ynhchineseschool.org' . "\r\n" .
+'Reply-To: finance@ynhchineseschool.org' . "\r\n" .
+'X-Mailer: PHP/' . phpversion() . "\r\n";
+$headers .= 'Bcc: finance@ynhchineseschool.org' . "\r\n";
+
+mail($to, $subject, $message, $headers);
 
 }
 ?>
