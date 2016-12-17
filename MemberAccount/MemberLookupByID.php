@@ -92,75 +92,72 @@ while ($row1 = mysqli_fetch_array($RS1)) {
             ?>
             <h3>Member Record</h3>
             <table border="1" class="table table-striped">
-                <?php if(isset($_SESSION['logon']) && ( $seclvl <= 25 || $seclvl === 35 || $seclvl === 40 || $seclvl === 55)) {
+                <?php if (isset($_SESSION['logon']) && ( $seclvl <= 25 || $seclvl === 35 || $seclvl === 40 || $seclvl === 55)) {
                     ?>
                     <p class="text-center"><a href="MemberLookupByID.php?fid=<?php echo $row[FamilyID] . "\">" . "More Members in FamilyID#='" . $row[FamilyID] . "' && LastName='" . $row[LastName] . "'</a>"; ?><?php $row[LastName] . " " . $row[FamilyID]; ?></p>
-                            <tr><td>Member ID:</td>
-                            <td><?php echo $row[MemberID]; ?></td>
-                            </tr>
-                            <tr><td>Family ID:</td>
-                            <td><?php echo $row[FamilyID]; ?></td>
-                            </tr>
-                       <?php   
-                        }
-                        ?>
+                                              <tr><td>Member ID:</td>
+                                              <td><?php echo $row[MemberID]; ?></td>
+                                              </tr>
+                                              <tr><td>Family ID:</td>
+                                              <td><?php echo $row[FamilyID]; ?></td>
+                                              </tr>
+                                              <?php if (isset($_SESSION['logon']) && ($seclvl === 20)) { ?>
+                                                  <tr><td>Login:</td>
+                                                  <td><?php echo $row[UserName]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Password:</td>
+                                                  <td><?php echo $row[Password]; ?></td>
+                                                  </tr>
+                                                  <?php
+                                              }
+                                          }
+                                          ?>
 
-                        <tr><td>Last Name:</td>
-                        <td><?php echo $row[LastName]; ?></td>
-                        </tr>
-                        <tr><td>First Name:</td>
-                        <td><?php echo $row[FirstName]; ?></td>
-                        </tr>
-                        <tr><td>Chinese Name:</td>
-                        <td><?php echo $row[ChineseName]; ?></td>
-                        </tr>
-                        <?php if (isset($_SESSION['logon'])) { ?>
-                            <tr><td>Home Phone:</td>
-                            <td><?php echo $row[HomePhone]; ?></td>
-                            </tr>
-                            
-                           <?php if($seclvl == 20) { ?>
-                          <tr><td>Login:</td>
-                                <td><?php echo $row[UserName]; ?></td>
-                                </tr>
-                                <tr><td>Password:</td>
-                                <td><?php echo $row[Password]; ?></td>
-                                </tr>
-                         
-                        <?php }
-                            
-                            if ($seclvl <= 25 || $seclvl == 35 || $seclvl == 40 || $seclvl == 55) { ?>
-                                <tr><td>Email:</td>
-                                <td><?php echo $row[Email]; ?></td>
-                                </tr>
-                                <tr><td>Office Phone:</td>
-                                <td><?php echo $row[OfficePhone]; ?></td>
-                                </tr>
-                                <tr><td>Cell Phone:</td>
-                                <td><?php echo $row[CellPhone]; ?></td>
-                                </tr>
-                                <tr><td>Street:</td>
-                                <td><?php echo $row[HomeAddress]; ?></td>
-                                </tr>
-                                <tr><td>City:</td>
-                                <td><?php echo $row[HomeCity]; ?></td>
-                                </tr>
-                                <tr><td>State:</td>
-                                <td><?php echo $row[HomeState]; ?></td>
-                                </tr>
-                                <tr><td>Zip:</td>
-                                <td><?php echo $row[HomeZip]; ?></td>
-                                </tr>
-                                <tr><td>Profession:</td>
-                                <td><?php echo $row[Profession]; ?></td>
-                                </tr>
+                                          <tr><td>Last Name:</td>
+                                          <td><?php echo $row[LastName]; ?></td>
+                                          </tr>
+                                          <tr><td>First Name:</td>
+                                          <td><?php echo $row[FirstName]; ?></td>
+                                          </tr>
+                                          <tr><td>Chinese Name:</td>
+                                          <td><?php echo $row[ChineseName]; ?></td>
+                                          </tr>
+                                          <?php if (isset($_SESSION['logon'])) { ?>
+                                              <tr><td>Home Phone:</td>
+                                              <td><?php echo $row[HomePhone]; ?></td>
+                                              </tr>
+                                              <?php if ($seclvl <= 25 || $seclvl == 35 || $seclvl == 40 || $seclvl == 55) { ?>
+                                                  <tr><td>Email:</td>
+                                                  <td><?php echo $row[Email]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Office Phone:</td>
+                                                  <td><?php echo $row[OfficePhone]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Cell Phone:</td>
+                                                  <td><?php echo $row[CellPhone]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Street:</td>
+                                                  <td><?php echo $row[HomeAddress]; ?></td>
+                                                  </tr>
+                                                  <tr><td>City:</td>
+                                                  <td><?php echo $row[HomeCity]; ?></td>
+                                                  </tr>
+                                                  <tr><td>State:</td>
+                                                  <td><?php echo $row[HomeState]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Zip:</td>
+                                                  <td><?php echo $row[HomeZip]; ?></td>
+                                                  </tr>
+                                                  <tr><td>Profession:</td>
+                                                  <td><?php echo $row[Profession]; ?></td>
+                                                  </tr>
 
-                                <?php
-                            }
-                        }
-                                  ?>
-                          </table>  
-                     <?php }  //end $rc=1
+                                                  <?php
+                                              }
+                                          }
+                                          ?>
+                                          </table>  
+                                      <?php }  //end $rc=1
 
              if ($rc > 1) {   ?>
                    <h3>Member Records</h3>
@@ -225,16 +222,13 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                     ?>
                     </table>
         
-      <div class='container'> 
-            <a href="MemberLookupByID.php?
-            <?php if ($familyID != '') { ?>
-                  fid=<?php echo $familyID; ?>">Current Family ID=<?php echo $familyID; ?> 
-            <?php } else if ($memberID != '') { ?> 
-                  memid=<?php echo $memberID; ?>">Details of Member ID='<?php echo $memberID; ?>' 
-            <?php } ?></a> || &nbsp;&nbsp;<a href="MemberLookupByIDForm.php">Lookup By ID</a>&nbsp;
-                         ||&nbsp;<a href='MemberLookupForm.php'>Look up By Name</a>
-      </div>
-          <br/>
+        <a href="MemberLookupByID.php?
+    <?php if ($familyID != '') { ?>
+            fid=<?php echo $familyID; ?>">Current Family ID=<?php echo $familyID; ?> 
+    <?php } else if ($memberID != '') { ?> 
+            memid=<?php echo $memberID; ?>">Details of Member ID='<?php echo $memberID; ?>' 
+    <?php } ?></a> || &nbsp;&nbsp;<a href="MemberLookupByIDForm.php">Lookup By ID</a>&nbsp;
+                   ||&nbsp;<a href='MemberLookupForm.php'>Look up By Name</a>
          </div>
     </div>
 <?php include("../common/site-footer1.php"); ?>
