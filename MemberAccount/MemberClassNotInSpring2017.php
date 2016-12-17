@@ -124,12 +124,6 @@ include("../common/CommonParam/params.php");
                                     }
                                 }
                                 if ($classExists === false) {
-//                                    $row["LastName"] = $item1['LastName'];
-//                                    $row["FirstName"] = $item1['FirstName'];
-//                                    $row["MemberID"] = $item1['MemberID'];
-//                                    $row["FamilyID"] = $items1["FamilyID"];
-//                                    $row["GradeOrSubject"] = $item1['GradeOrSubject'];
-//                                    $row["Email"] = $item1['Email'];
                                     $notReg4Spring[] = $item1;   //include canceled class 
                                     //      echo " Not found ".$ctNotReg."  " . $item1['GradeOrSubject'] . 'for SID   ' . $item1['StudentMemberID'] . '   ' . $item1['FirstName'] . ',' . $item1['LastName'] . '<br>';
                                     // $ctNotReg += 1;
