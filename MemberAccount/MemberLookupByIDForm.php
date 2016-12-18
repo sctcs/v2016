@@ -18,7 +18,7 @@ session_start();
     <div class="wrapper">
        
     <?php if ($_GET["error"] == 1) { ?>
-        <p class="red-color">Can not have both fields empty.</p>
+<!--        <p class="red-color">Can not have both fields empty.</p>-->
     <?php } ?>
 
     <?php if ($_GET["error"] == 2) { ?>
