@@ -16,7 +16,6 @@ if (!isset($_SESSION['membertype'])) {
 }
 ?>
 <?php
-
 include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 ?>
@@ -127,26 +126,38 @@ include("../common/CommonParam/params.php");
                 foreach ($classNotInSpring as $k3 => $v3) {
                     if (is_array($v3)) {
                         foreach ($v3 as $v4) {
-                            $message = "<p> Dear " . $v4['FirstName'] . ", " . $v4['LastName'] . " " . "  MemberID: " . $v4['MemberID'] . " FamilyID: " . $v4['FamilyID'] . "</p>";
-                            $message.= "<p>Our system shows that your did not register for the same class  '" . $v4['GradeOrSubject'] . "' that you have registered for the Fall semester.</p>";
-                            $message.= "<p> If you are still interested in taking the class '" . $v4['GradeOrSubject'] . "' for the Spring, please email us at " . "<a href='mailto:support@ynhchineseschool.org'>IT Support</a>" . "</p>";
+                            $message = "<p>" . "Attention:  MemberID: " . $v4['MemberID'] . ", " . " FamilyID: " . $v4['FamilyID'] . "</p>";
+                            $message .= "<p> Dear " . $v4['FirstName'] . "  " . $v4['LastName'] . ", </p>";
+                            $message.= "<p>Our system shows that you should be registering for the same class  '" . $v4['GradeOrSubject'] . "' that you have registered for the Fall semester.</p>";
+                            $message.= "<p> If you are still interested in taking the class '" . $v4['GradeOrSubject'] . "' in Spring semester, please email " . "<a href='mailto:support@ynhchineseschool.org'>IT Support</a>" . "</p>";
+                            $message.="<p>Thank you very much for your suppport!</p>";
+                            $message.="<p>=======================</p>";
+                            $message.="<p>Best Regards,</p>";;
+                            $message.="<p>Southern Connecticut Chinese School Administration</p>";
+                            $message.="<p><a href='mailto:support@ynhchineseschool.org'>support@ynhchineseschool.org</a></p>";
 
                             $to = "<a href='mailto:$v4[Email]'>" . $v4['Email'] . "</a>";
-                            $subject = "Regarding memberID '" . $v4['MemberID'] . "' registered for the fall, did not register the same class in Spring: " . $v4['GradeOrSubject'];
-                            $from = "<a href='mailto:registration@ynhhineseschool.org'>registration@ynhchineseschool.org</a>";
+                            $subject = "Spring registration: " . $v4['GradeOrSubject'];
+                            $from = "<a href='mailto:registration@ynhchineseschool.org'>registration@ynhchineseschool.org</a>";
                             $headers = "From: $from\r\n" . "Bcc: $bcc\r\n";
+
+                            $headers = "From: $from\r\n" .
+                                    'Reply-To: support@ynhchineseschool.org' . "\r\n" .
+                                    'X-Mailer: PHP/' . phpversion();
 
                             echo "<br>From: " . $from . "<br>";
                             echo "To: " . $to . "<br>";
                             echo "Subject: " . $subject . "<br>";
                             echo "<p>" . $message . "</p>";
-
-
-                            //   mail($to, $subject, $message, $headers);
+                            if ($_SERVER["SERVER_NAME"] != "localhost") {
+                                mail($to, $subject, $message, $headers);
+                            } else {
+                                
+                            }
                         }
                     }
                 }
-            } 
+            }
             ?>
 
         </div>
