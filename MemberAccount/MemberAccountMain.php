@@ -216,8 +216,9 @@ include("../common/CommonParam/params.php");
                     <p class="text-center"><a href="../Activity/ActivityListForMember.php">Register Activity</a>
                         <br><a href="SchoolPolicyDocument.php">School Policies and Programs</a>
                         <br><a href="EventCalendar.php">School Event Calendar</a>
-                        <br><a href="../Activity/Election/2016/SCCSElectionMay2016.php">SCCS Election May 2016</a>
+                        <br><a href="../Activity/Election/2016/SCCSElectionMay2016.php">School Election May 2016</a>
                         <br><a href="../Activity/Election/2016/SCCSElectionSep2016.php">Election of Board Director September 2016</a>
+                        <br><a href="../Finance/AnnualInternalAudit.php">School Financial Documents - Internal Audits</a>
                     </p>
                     <br>
                 <?php } ?>
