@@ -40,8 +40,7 @@ include("../common/CommonParam/params.php");
             echo "<p class='alert alert-success text-center'>You are now logged in as <span style='color: red;'>" . $secdesc . "</span></span>. ";
             if (count($_SESSION['MemberTypes']) > 1) {
                 echo " If you want to change to another role, click <a href=\"chooseRole.php\">here</a></p>";
-            }        
-                
+            }   
          }
         ?>
         <p class="text-center lead" style="color: white; font-weight: 500;">Allowed Functions</p>
@@ -76,7 +75,7 @@ include("../common/CommonParam/params.php");
 
         <?php if ($seclvl == 45 || $seclvl == 55) { ?>
             <div class="col-md-12 accessFrame"><!--Payment Management-->
-                <h2 class="text-center">Accounting</h2>
+                <h3 class="text-center">Accounting</h3>
                 <p class="text-center"><a href="../accounting/index.php">Payment Management</a>
                     <br /><a href="FeePaymentVoucher_byadmin.php?fid=2" target=_blank>Print Payment Voucher of a Family</a>
                     <br /><a href="../Registration/Registration_and_Refund_Policies.php" target="_blank">Registration and Refund Policies</a>
@@ -88,7 +87,7 @@ include("../common/CommonParam/params.php");
 
         <?php if ($seclvl == 50) { ?>
             <div class="col-md-12 accessFrame"> <!--parent-->
-                <h2 class="text-center">Parents Access</h2>
+                <h3 class="text-center">Parents Access</h3>
                 <p class="text-center"><a href="MyProfile.php?whose=spouse">Spouse Profile</a>
                     <br><a href="FamilyChildList.php">Student List or Add a Student</a>
                     <br /><a href="EmergencyContactParentEdit.php">Emergency Contact Information</a>
