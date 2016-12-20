@@ -7,24 +7,25 @@ if (!isset($_SESSION['logon'])) {
     echo ( 'you need to <a href="../MemberAccount/MemberLoginForm.php">login</a>' );
     exit();
 }
-//if(! isset($_SESSION[membertype]) ||  $_SESSION[membertype] >= 25)
-//{
-//echo ( 'you need to log in as a school admin' ) ;
-// exit();
-//}
+if(! isset($_SESSION[membertype]) ||  $_SESSION[membertype] >= 25)
+{
+echo ( 'you need to log in as a school admin' ) ;
+ exit();
+}
 
 include("../common/DB/DataStore.php");
 
 //mysql_select_db($dbName, $conn);
-$SQLteacher = "select * from tblTeacher where MemberID = $_POST[MID]";
+$SQLteacher = "select count(*) cnt from tblTeacher where MemberID=$_POST[MID]";
+//echo $SQLteacher;
 $result = mysqli_query($conn, $SQLteacher);
+$RSA0=mysqli_fetch_array($result);
 
-if (!result) {
+if (! isset($result) || $RSA0[cnt] < 1) {
     $SQLstring = "insert into tblTeacher (MemberID,CurrentTeacher) values(" . $_POST[MID] . ", 'Yes')";
 
 //echo $SQLstring;
     $RS1 = mysqli_query($conn, $SQLstring);
-//$RSA1=mysqli_fetch_array($RS1);
     echo "<p class='alert alert-success'>New teacher was succcessfully added.</p>";
 } else {
     echo "<p class='alert alert-danger'>This teacher already exists.</p>";
