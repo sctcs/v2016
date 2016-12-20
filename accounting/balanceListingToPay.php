@@ -52,6 +52,7 @@ left join
 ) FamilyPayment
 on FReceivable.FamilyID=FamilyPayment.FamilyID";
 
+//$SQLstring .= " where PayableAmount > PaymentAMount            ";
 
 if ($_GET[sortBy] == "name") {
     //$SQLstring .= " order by tblm.LastName,tblm.FirstName";
@@ -62,6 +63,8 @@ if ($_GET[sortBy] == "name") {
 if ($DEBUG) {
     echo $SQLstring;
 }
+
+//echo $SQLstring;
 $RS1 = mysqli_query($conn, $SQLstring);
 ?>
 <html>
@@ -156,6 +159,7 @@ var elemArray = document.mainform.elements;
                     $i = 0;
                     $totalBalance = 0;
                     while ($RSA1 = mysqli_fetch_array($RS1)) {
+                if ( $RSA1[Balance] > 0 ) {
                       if (($_GET[registered_only] == "Yes" && $registered[$RSA1[FamilyID]] == "yes") || 
                           ($_GET[registered_only] == "Unr" && !isset($registered[$RSA1[FamilyID]])) || 
                           ($_GET[registered_only] != "Yes" && $_GET[registered_only] != "Unr")) {
@@ -195,7 +199,7 @@ var elemArray = document.mainform.elements;
                             $i++;
                             $totalBalance += $RSA1[Balance];
                         }
-                    }
+                    }}
 //                  setlocale(LC_MONETARY, 'en_US');
 //                  echo "<p style=''color: Green;' class='center lead'>";
 //                  echo ($_GET['registered_only'] == "Yes" ? "Registered families " : "All families ");
@@ -210,7 +214,13 @@ Subject: <input type="text" name="msgsubj" size="80" value="Please pay your SCCS
 Content:<br> <textarea rows="10" cols="80" name="msgbody">
 Dear SCCS Parent or Student,
 
-Our school system shows that you still have unpaid balance. Please login to your account to check if there is any error. If there is no error, please make a payment at your earliest convenience. If you have any questions, pleae contact support@ynhchineseschool.org or come to school office at A107 for further assistance.
+Our school system shows that you still have unpaid balance. Please login to your account to check if there is any error. If there is no error, please make a payment at your earliest convenience and mail it along with your payment voucher to: 
+
+Southern Connecticut Chinese School
+P.O. Box 8296
+New Haven, CT 06530 
+
+If you have any questions, please contact support@ynhchineseschool.org or come to school office at A107 for further assistance.
 
 Best Regards,
 Min Li
