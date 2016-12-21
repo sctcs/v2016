@@ -31,5 +31,12 @@ You are free to copy and share this code but please do not remove this credit no
 //]]>
 </script>
 
+<a href="../AnnualInternalAudit.php">Internal Audits</a>
+<a href="SCCSInternalAudit2014-page-005.php">Prev Page</a>
+<a href="SCCSInternalAudit2014-page-007.php">Next Page</a>
 
 <img src="P006.JPG">
+
+<a href="SCCSInternalAudit2014-page-005.php">Prev Page</a>
+<a href="SCCSInternalAudit2014-page-007.php">Next Page</a>
+<a href="../AnnualInternalAudit.php">Internal Audits</a>
