@@ -293,19 +293,19 @@ $qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid 
 $result = mysqli_query(GetDBConnection(),$qstr) or die ("failed to query exisinting membership record" . $qstr);
 $row = mysqli_fetch_array($result) or die ("failed to read row");
 if ( $row[cnt] < 1 ) {
-$updatecmd="set sql_big_selects=1; "."insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+$updatecmd=                          "insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
 select 1 IncomeCategory, m.MemberID, m.FamilyID, 'Membership', 0, 0, ".
 $MEMBERSHIP_FEE ." Amount, 'Membership fee ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
-from tblMember m , viewClassStudents v where m.PrimaryContact='Yes' and m.FamilyID=v.FamilyID and v.Status='OK' and v.CurrentClass='Yes'  and m.FamilyID ='". $fid ."'   limit 1";
+from tblMember m  where m.PrimaryContact='Yes' and m.FamilyID ='". $fid ."'   limit 1";
 	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family membership fee <br>Debug info: $updatecmd <br>\n");
  }
 }
 // registration fee
 
-$updatecmd="set sql_big_selects=1; insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+$updatecmd="                       insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
 select 14 IncomeCategory, m.MemberID, m.FamilyID, 'Registration', 0, 0, ".
 $REG_REG_FEE_DOLLAR ." Amount, 'Registration fee ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
-from tblMember m , viewClassStudents v where m.PrimaryContact='Yes' and m.FamilyID=v.FamilyID and v.Status='OK' and v.CurrentClass='Yes'  and m.FamilyID ='". $fid ."'   limit 1";
+from tblMember m  where m.PrimaryContact='Yes' and  m.FamilyID ='". $fid ."'   limit 1";
 
 //echo "$updatecmd<br><br>";
 $qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid ."' and i.Description='Registration fee ". $SchoolYear. "' ";
