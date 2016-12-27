@@ -70,8 +70,7 @@ $RS1 = mysqli_query($conn, $SQLstring);
 
 $rc = 0;
 while ($row1 = mysqli_fetch_array($RS1)) {
-    $mid = $row1[MemberID];
-    //  $lname = $row1[LastName];
+   // $mid = $row1[MemberID];
     $rc = $rc + 1;
     $rows[$rc] = $row1;
 }
@@ -94,7 +93,7 @@ while ($row1 = mysqli_fetch_array($RS1)) {
             <table border="1" class="table table-striped">
                 <?php if (isset($_SESSION['logon']) && ( $seclvl <= 25 || $seclvl === 35 || $seclvl === 40 || $seclvl === 55)) {
                     ?>
-                    <p class="text-center"><a href="MemberLookupByID.php?fid=<?php echo $row[FamilyID] . "\">" . "More Members in FamilyID#='" . $row[FamilyID] . "' && LastName='" . $row[LastName] . "'</a>"; ?><?php $row[LastName] . " " . $row[FamilyID]; ?></p>
+                    <p><a href="MemberLookupByID.php?fid=<?php echo $row[FamilyID] . "\">" . "More Members in FamilyID#='" . $row[FamilyID] . "' && LastName='" . $row[LastName] . "'</a>"; ?><?php $row[LastName] . " " . $row[FamilyID]; ?></p>
                                               <tr><td>Member ID:</td>
                                               <td><?php echo $row[MemberID]; ?></td>
                                               </tr>
@@ -161,20 +160,25 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                                           </table>  
                                       <?php }  //end $rc=1
 
-             if ($rc > 1) {   ?>
+             if ($rc > 1) {   ?>       
                    <h3>Member Records</h3>
                    <table border="1" class="table table-striped">
-                        <tr><th>Member List</th><th>English Name</th><th>Chinese Name</th><th>Member ID</th><th>Primary Contact</th></tr>
+                        <tr><th>English Name</th><th>Chinese Name</th><th>Member ID</th><th>Primary Contact</th>
+                            <th>Edit Member</th>
+                        </tr>
                         <?php
                         // var_dump($rows);
 
                         for ($i = 1; $i <= $rc; $i++) {
                             ?>
-                            <tr><td><?php echo $i; ?>.&nbsp</td><td>
-                                    <a href="MemberLookupByID.php?memid=<?php echo $rows[$i][MemberID] . "\">" . $rows[$i][LastName] . ", " . $rows[$i][FirstName] . "</a></td><td>"; ?><?php echo $rows[$i][ChineseName] . "</td><td> " . $rows[$i][MemberID] . "</td><td>" . $rows[$i][PrimaryContact] . "</td>"; ?></td>
-                                    <?php
-                                    if ($rows[$i][PrimaryContact] == "Yes") {
-                                        echo "<h4>Family ID#: " . $rows[$i][FamilyID] . "</h4>";
+                            <tr>
+                                  <td><a href="MemberLookupByID.php?memid=<?php echo $rows[$i][MemberID] . "\">" . $rows[$i][LastName] . ", " . $rows[$i][FirstName] . "</a></td><td>"; ?><?php echo $rows[$i][ChineseName] . "</td><td> " . $rows[$i][MemberID] . "</td><td>" . $rows[$i][PrimaryContact] . "</td>"; ?>
+                             
+                                         <td><a href="EditMemberInfo.php?memid=<?php echo $rows[$i][MemberID]."\">"."Edit"."</a></td>";?> 
+                                    
+                               <?php 
+                                    if ($rows[$i][PrimaryContact] === "Yes") {
+                                        echo "<p>Family ID#: " . $rows[$i][FamilyID] . "</p>";
                          }
                  }   ?>
                     </table>
