@@ -39,12 +39,20 @@ p.bigfont {font-size: 1.2rem; }
 /*.header {padding: 10px 0; margin-left: 22%;}*/
 .formwrapper {width: 100%; margin: 20px; padding: 20px;}
 .formwrapper form {width: 80%; margin: 0 auto;}
-.formwrapper form legend {font-size: 1.5rem; font-weight: 800; margin-left: 20%;}
+/*.formwrapper form legend {font-size: 1.5rem; font-weight: 800; margin-left: 20%;}*/
+legend {border-bottom: none; }
+
 .formwrapper form fieldset {border: 1px solid darkgreen; 
                             border-radius: 2px; 
                             margin:0; width: 80%; padding-left: 5%; 
                             background: #dddddd;}
-form input {margin-bottom: 15px; height: 30px; width: 180px;}
+input[type="text"]:disabled{background-color:#ebebeb; color: white;}
+
+
+form input:text{margin-bottom: 15px; height: 30px; width: 180px;}
+form input[type=number] { width: 180px;}
+form input[type=checkbox], input[type=radio] {width:35px;}
+form input[type=submit], input[type=button] {width: 180px;}
 form input.phone {width: 50px;}
 form input.actionbutton {width: 120px; height: 40px; font-size:1.2rem; font-weight: 500; margin-left: 20px;}
 form input.addressfield {width: 350px;}
