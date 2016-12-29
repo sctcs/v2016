@@ -174,7 +174,7 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                             ?>
                             <tr>
                                   <td><a href="MemberLookupByID.php?memid=<?php echo $rows[$i][MemberID] . "\">" . $rows[$i][LastName] . ", " . $rows[$i][FirstName] . "</a></td><td>"; ?><?php echo $rows[$i][ChineseName] . "</td><td> " . $rows[$i][MemberID] . "</td><td>" . $rows[$i][PrimaryContact] . "</td>"; ?>
-                              <?php if(isset($_SESSION['logon']) && ($seclvl == 20 ||$seclvl ==40)) {   ;?>
+                              <?php if(isset($_SESSION['logon']) && ($seclvl == 20 ||$seclvl == 40)) {   ?>
                                   <td><a href="EditMemberInfo.php?memid=<?php echo $rows[$i][MemberID]."\">"."Edit"."</a></td>";?> 
                               <?php } ?>
                                <?php 
