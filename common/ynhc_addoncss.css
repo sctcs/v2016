@@ -46,7 +46,7 @@ legend {border-bottom: none; }
                             border-radius: 2px; 
                             margin:0; width: 80%; padding-left: 5%; 
                             background: #dddddd;}
-input[type="text"]:disabled{background-color:#ebebeb; color: white;}
+input[type="text"]:disabled{background-color:#adadad; color: white;}
 
 
 form input:text{margin-bottom: 15px; height: 30px; width: 180px;}
