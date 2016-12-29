@@ -5,11 +5,13 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 }
 session_start();
 
-//
-//if(!isset($_SESSION['logon'])|| (isset($_SESSION['logon']) && ($seclvl != 20 || $seclvl != 40))) {
-//    echo "You are not authorized to modify member's profile";
-//    exit();
-//}
+$seclvl = $_SESSION['membertype'];
+
+if ($seclvl != 20 && $seclvl != 40)
+{
+    echo "Not authorized to update";
+    exit();
+}
 
 $mid = $_POST["mid"];
 //echo "member id: ". $mid;
