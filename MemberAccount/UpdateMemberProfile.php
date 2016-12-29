@@ -5,13 +5,6 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 }
 session_start();
 
-if (!isset($_SESSION['logon']) || $seclvl > 25 && $seclvl != 40) 
- {  
-    echo ("You cannot update member") ;
-    exit();
- }
-
-
 $mid = $_POST["mid"];
 //echo "member id: ". $mid;
 

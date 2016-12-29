@@ -164,7 +164,8 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                    <h3>Member Records</h3>
                    <table border="1" class="table table-striped">
                         <tr><th>English Name</th><th>Chinese Name</th><th>Member ID</th><th>Primary Contact</th>
-                            <th>Edit Member</th>
+                            <?php  if(isset($_SESSION['logon']) && ($seclvl == 20 || $seclvl ==40 ))  {echo '<th>Edit Member</th>'; }?>                   
+                            
                         </tr>
                         <?php
                         // var_dump($rows);
@@ -173,9 +174,9 @@ while ($row1 = mysqli_fetch_array($RS1)) {
                             ?>
                             <tr>
                                   <td><a href="MemberLookupByID.php?memid=<?php echo $rows[$i][MemberID] . "\">" . $rows[$i][LastName] . ", " . $rows[$i][FirstName] . "</a></td><td>"; ?><?php echo $rows[$i][ChineseName] . "</td><td> " . $rows[$i][MemberID] . "</td><td>" . $rows[$i][PrimaryContact] . "</td>"; ?>
-                             
-                                         <td><a href="EditMemberInfo.php?memid=<?php echo $rows[$i][MemberID]."\">"."Edit"."</a></td>";?> 
-                                    
+                              <?php if(isset($_SESSION['logon']) && ($seclvl == 20 ||$seclvl ==40)) {   ;?>
+                                  <td><a href="EditMemberInfo.php?memid=<?php echo $rows[$i][MemberID]."\">"."Edit"."</a></td>";?> 
+                              <?php } ?>
                                <?php 
                                     if ($rows[$i][PrimaryContact] === "Yes") {
                                         echo "<p>Family ID#: " . $rows[$i][FamilyID] . "</p>";
