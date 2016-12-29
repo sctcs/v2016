@@ -5,6 +5,12 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 }
 session_start();
 
+//
+//if(!isset($_SESSION['logon'])|| (isset($_SESSION['logon']) && ($seclvl != 20 || $seclvl != 40))) {
+//    echo "You are not authorized to modify member's profile";
+//    exit();
+//}
+
 $mid = $_POST["mid"];
 //echo "member id: ". $mid;
 
@@ -74,8 +80,6 @@ $MemberUpdateDate=date("Y/m/d");
 
 
  ////////  update a record in member table ////////////////////
-
-
 
  $SQLstring = "update tblMember set ChineseName='". $ChineseName. "', Gender='". $gender
            . "', HomePhone='". $home_phone ."', Email='". $email  . "', CellPhone='". $cell_phone ."', HomeAddress='". $address
