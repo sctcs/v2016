@@ -5,15 +5,8 @@ session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
 
 session_start();
 
-
 include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
-
- if (!isset($_SESSION['logon']) || $seclvl > 25 && $seclvl != 40) 
- {  
-    echo ("You are not authorized to modify member") ;
-    exit();
- }
  
 $memid =$_GET['memid'];
 
@@ -68,13 +61,14 @@ $RSA1 = mysqli_fetch_array($RS1);
             ?>
 
             <div class="page formwrapper">
-       
                 <form name="MemberProfileEdit" action="UpdateMemberProfile.php" method="post" onsubmit="return Validate(this);">
                  <fieldset>
                     <legend>Update Member Profile</legend>
                     
                     <input type="hidden" name="mid" value="<?php echo $RSA1[MemberID]; ?>" />
                   
+                    <fieldset>
+                        <div>&nbsp;</div>
                     <div class="form-group">
                         <label for="MemberID">Member ID: </label>
                         <input type="text" name="MemberID" disabled="disabled" value=<?php echo $RSA1[MemberID]; ?> /><br>
@@ -84,13 +78,14 @@ $RSA1 = mysqli_fetch_array($RS1);
                     </div>
                     
                     <div class="form-group">
-                         <label for="PCFristName">First Name: <span class="red-color">*</span></label>
+                         <label for="PCFristName">First Name: </label>
                          <input type = "text" size = "28" name = "PCFristName" disabled = "disabled" value = "<?php echo $RSA1[FirstName]; ?>"><br>
                       
-                            <label for = "PCLastName">Last Name: <span class = "red-color">*</span></label>
-                            <input type = "text" size = "28" name = "PCLastName" disabled = "disabled" value = "<?php echo $RSA1[LastName]; ?>"><br>
+                         <label for = "PCLastName">Last Name: </label>
+                         <input type = "text" size = "28" name = "PCLastName" disabled = "disabled" value = "<?php echo $RSA1[LastName]; ?>"><br>
                      </div>
-                    
+                    </fieldset>
+                    <div>&nbsp;</div>
                      <div class="form-group">
                                 <label for = "PCChineseName">Chinese Name: <span class = "red-color"></span></label>
                                 <input type = "text" size = "28" name = "PCChineseName" value = "<?php echo $RSA1[ChineseName]; ?>"><br>
