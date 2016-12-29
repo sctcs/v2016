@@ -5,6 +5,14 @@ session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
 
 session_start();
 
+$seclvl = $_SESSION['membertype'];
+//echo $seclvl. " =seclvl";
+if ($seclvl != 20 && $seclvl != 40)
+{
+    echo "Access denied. "; 
+    exit();
+}
+
 include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
  
