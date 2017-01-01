@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -22,7 +17,7 @@ and open the template in the editor.
                 </div>
                 <div class="col-sm-8 body-col">
                     <h3 class="text-center">Important Clarifications (2014 南康中文学校郑重声明)</h3>
-                    <?php include "announcements/Clarifications.html"; ?>
+                    <?php include "htmlFiles/announcements/Clarifications.html"; ?>
                 </div>
             </div>
         </div>

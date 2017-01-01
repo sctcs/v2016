@@ -174,7 +174,7 @@ function displayme(which)
 								<td bgcolor="#000000">
 									<table CLASS="page" bgcolor="#FFFFFF" border="0" width="100%">
 
-										<form name="NewMember" action="UpdateEmergencyContactParentEdit.php" method="post" onSubmit="return Validate(this);">
+										<form name="NewMember" action="UpdateEmergencyContact.php" method="post" onSubmit="return Validate(this);">
 
                                         <input type="hidden" name="updtmemberid" value="<?php echo $RSA1[MemberID];?>">
                                         <input type="hidden" name="whose" value="<?php echo $_GET[whose];?>">
