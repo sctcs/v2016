@@ -40,7 +40,8 @@ include("../common/CommonParam/params.php");
             echo "<p class='alert alert-success text-center'>You are now logged in as <span style='color: red;'>" . $secdesc . "</span></span>. ";
             if (count($_SESSION['MemberTypes']) > 1) {
                 echo " If you want to change to another role, click <a href=\"chooseRole.php\">here</a></p>";
-            }   
+            }        
+                
          }
         ?>
         <p class="text-center lead" style="color: white; font-weight: 500;">Allowed Functions</p>
@@ -148,7 +149,9 @@ include("../common/CommonParam/params.php");
             <div class="col-md-12 accessFrame"><h3 class="text-center">Database Administrator</h3>
                 <p class="text-center"><a href="assignMemberRoles.php">Assign Member Roles</a>
                     <br /><a href="../accounting/index.php">Payment Management</a>
-                    <br /><a href="ManageSafetyPatrol.php" target="_blank">Manage Safety Patrol Schedule</a></p>
+                    <br /><a href="ManageSafetyPatrol.php" target="_blank">Manage Safety Patrol Schedule</a>
+                    <br /><a href="ValidateMemberEmailListForm.php" target="_blank">Validate Member Email List</a>
+                    <br /><a href="ValidateTeacherEmailListForm.php" target="_blank">Validate Teacher Email List</a></p>
             </div>
         <?php } ?>
 
