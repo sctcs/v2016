@@ -40,6 +40,15 @@ include("../common/CommonParam/params.php");
 //database connection
 include("../common/DB/DataStore.php");
 
+//Neil- 20170130
+function delete_receivable($studentid, $classid, $conn) 
+{
+    $sql = "delete from tblReceivable where MemberID = ". $studentid ." and ClassID = ". $classid ." limit 1";
+    echo "<br>".$sql;
+        if ( !mysqli_query($conn,$sql) ) { die('Error: ' . mysqli_error($conn)) ; }
+}
+
+
 function class_registered($classid, $studentid, $conn)
 {
     $sql = "select Status from tblClassRegistration where StudentMemberID = ". $studentid ." and ClassID = ". $classid ." limit 1";
@@ -71,10 +80,12 @@ if( $langbtassign == "Re-Assign Chinese Class Fall"  && $_POST['lastClassLangFal
         echo $langSQL;
      } else if ( $langlastclassid != 0 && $langhdclassid == 0 ){
 		$langinsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$langlastclassid." and StudentMemberID=".$langckstudentid." and Year='".$CurrentYear."'";
+                delete_receivable($langckstudentid, $langlastclassid, $conn); //Neil- 20170130
 		//$langSQL = "update tblStudent set PreferredClassLevel = '' where MemberID=".$langckstudentid;
 		echo $langSQL;
      } else if ( $langlastclassid != 0 && $langhdclassid != 0 ) {
 	    $langinsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$langlastclassid." and StudentMemberID=".$langckstudentid." ";
+                delete_receivable($langckstudentid, $langlastclassid, $conn); //Neil- 20170130
         echo "Query:$langinsertQuery";
         if ( !mysqli_query($conn,$langinsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -119,12 +130,14 @@ if( $extrabtassign1 == "Re-Assign Enrichment Class 0 Fall" && $_POST['currentCla
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '' where MemberID=".$extrackstudentid;
         echo $extra1SQL;
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid1." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid1;
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '".$extrahdclassid1."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -169,12 +182,14 @@ if( $extrabtassign1 == "Re-Assign Enrichment Class 1 Fall" && $_POST['currentCla
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '' where MemberID=".$extrackstudentid;
         echo $extra1SQL;
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid1." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid1;
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '".$extrahdclassid1."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -221,12 +236,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 2 Fall" && $_POST['currentCl
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid."  AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -273,12 +290,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 3 Fall" && $_POST['currentCl
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid."  AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -325,12 +344,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 4 Fall" && $_POST['currentCl
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid."  AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -374,10 +395,12 @@ if( $langbtassign == "Re-Assign Chinese Class Spring"  && $_POST['lastClassLangS
         echo $langSQL;
 	} else if ( $langlastclassid != 0 && $langhdclassid == 0 ){
 		$langinsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$langlastclassid." and StudentMemberID=".$langckstudentid." ";
+                delete_receivable($langckstudentid, $langlastclassid, $conn); //Neil- 20170130
 		//$langSQL = "update tblStudent set PreferredClassLevel = '' where MemberID=".$langckstudentid;
 		echo $langSQL;
 	}else if ( $langlastclassid != 0 && $langhdclassid != 0 ) {
 	    $langinsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$langlastclassid." and StudentMemberID=".$langckstudentid." ";
+                delete_receivable($langckstudentid, $langlastclassid, $conn); //Neil- 20170130
         echo "Query:$langinsertQuery";
         if ( !mysqli_query($conn,$langinsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -422,12 +445,14 @@ if( $extrabtassign1 == "Re-Assign Enrichment Class 0 Spring" && $_POST['currentC
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '' where MemberID=".$extrackstudentid;
         echo $extra1SQL;
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid1." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid1;
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '".$extrahdclassid1."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -472,12 +497,14 @@ if( $extrabtassign1 == "Re-Assign Enrichment Class 1 Spring" && $_POST['currentC
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '' where MemberID=".$extrackstudentid;
         echo $extra1SQL;
 	} else if($extralastclassid1 != 0 && $extrahdclassid1 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid1." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid1;
 		//$extra1SQL = "update tblStudent set PreferredExtraClass1 = '".$extrahdclassid1."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid1." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid1, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -524,12 +551,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 2 Spring" && $_POST['current
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -576,12 +605,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 3 Spring" && $_POST['current
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
@@ -628,12 +659,14 @@ if ( $extrabtassign2 == "Re-Assign Enrichment Class 4 Spring" && $_POST['current
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 == 0){
 		//$extrainsertQuery = "delete from tblClassRegistration where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'";
 		$extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '' where MemberID=".$extrackstudentid;
         echo $extra2SQL;
 	} else if($extralastclassid2 != 0 && $extrahdclassid2 != 0){
 		//$extrainsertQuery = "update tblClassRegistration set ClassID=".$extrahdclassid2." , Memo='updated by ".$_SESSION[memberid]."',DateTimeRegistered=now() Where StudentMemberID=".$extrackstudentid." and Year='".$CurrentYear."'AND ClassID=".$extralastclassid2;
 		//$extra2SQL = "update tblStudent set PreferredExtraClass2 = '".$extrahdclassid2."' where MemberID=".$extrackstudentid;
 	    $extrainsertQuery = "update tblClassRegistration set Status='Dropped', DateTimeRegistered=now() , Memo='changed by ". $_SESSION[memberid] ."' where ClassID=".$extralastclassid2." and StudentMemberID=".$extrackstudentid." ";
+                delete_receivable($extrackstudentid, $extralastclassid2, $conn); //Neil- 20170130
         echo "Query:$extrainsertQuery";
         if ( !mysqli_query($conn,$extrainsertQuery) ) { die('Error: ' . mysqli_error($conn)) ; }
 
