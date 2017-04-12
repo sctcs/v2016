@@ -405,7 +405,10 @@ function ViewFamilyAccount($ViewFamilyID)
                         $running_balance -= $row['Amount'];
 		?>
 			<tr>
-		        <td align="right" > <?php echo $row[ID]."<br>";  showViewlink($row['ID']); //showeditlink($row['ID']);?></td>
+		        <td align="right" > <?php echo $row[ID]."<br>";  showViewlink($row['ID']); ?>
+<?php                        showeditlink($row['ID']); ?>
+                          <a href="deletePayment.php?FamilyID=<?php echo $row['FamilyID'];?>&PaymentID=<?php echo $row['ID'];?>&Confirmed=No">Delete</a>
+</td>
 			<td align="left" ><?php  echo date( 'Y-m-d H:i',strtotime($row['DateTime'] ));?></td>
 			<td align="left" ><?php  if ( $row['PaymentDate'] != "0000-00-00" ) { echo $row['PaymentDate'];} else { echo "&nbsp;"; } ?></td>
 			<td align="left" ><?php echo $row['FamilyID'];?></td>
@@ -420,7 +423,9 @@ function ViewFamilyAccount($ViewFamilyID)
 		<?php
 	       }
 		?>
-	<TR><td  colspan=5>&nbsp;</td>
+	<TR><td  colspan=5>&nbsp;
+                          <a href="index.php?view=PaymentViewAdd&FamilyID=<?php echo $ViewFamilyID   ;?>&mainmenu=off">Make another Payment</a>
+</td>
 	<td>Balance: </td><td colspan=2 align="right"><?php echo $TotalAmount ?></td>
 	</tr>
 	<?php
