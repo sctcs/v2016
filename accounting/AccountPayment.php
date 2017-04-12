@@ -355,7 +355,7 @@ function PaymentViewEdit()
 		OpenTable();
 	?>
 	<form action="<?php  echo $_SERVER['PHP_SELF'] ?>" method="post">
-	<input type="hidden" name="op" value="EditPayment">
+	<input type="hidden" name="op" value="PaymentDoEdit">
 	<input type="hidden" name="PaymentID" value="<?php  echo $PaymentID;?>">
 	<TR><th align="right">Family ID</th>
 	<td><input type=text name="FamilyID" value="<?php  echo $FamilyID;?>"></td></tr>
@@ -381,7 +381,7 @@ function PaymentViewEdit()
 	<TR><th align="right">Amount</th>
 	<td><input type=text name="Amount" value="<?php  echo $Amount;?>"></td></tr>
 	<TR><th align="right">Received/Postmark Date</th>
-	<td><input type=text name="PaymentDate" value="<?php  echo $PayTotal;?>"> (yyyy-mm-dd)</td></tr>
+	<td><input type=text name="PaymentDate" value="<?php  echo $PaymentDate;?>"> (yyyy-mm-dd)</td></tr>
 
 	<TR><th align="right">PaymentNote</th>
 	<td><input type=text name="PaymentNote" value="<?php  echo $PaymentNote;?>"></td></tr>
@@ -426,10 +426,12 @@ $CollectorID=$row['MemberID'];
  $query = "insert into  `tblPayment`(`FamilyID`,`Date`,PaymentDate, `PaymentType` , `PaymentMethod` , `PaymentIdentifier` , `PayerInfo` , `Amount`,`PaymentNote` , `CollectorID` , `PaymentStatus` ) "
           ."values ('$FamilyID',now(),'$PaymentDate',	'$PaymentType','$PaymentMethod',	'$PaymentIdentifier',	'$PayerInfo',	'$Amount',	'$PaymentNote',	'$CollectorID',	'$PaymentStatus')";
 	$result = mysqli_query(GetDBConnection(),$query) or die ("ERROR inserting into table<br>Debug info: make sure entered values are valid and correct <br><A HREF=\"javascript:javascript:history.go(-1)\">Back</A>\n");
+        
+        echo "<br><br><a href=\"index.php?view=ViewFamilyAccount&FamilyID=$FamilyID&familyid=$FamilyID&mainmenu=off\">Continue</a>";
+
 //	$PaymentID=mysql_insert_id(GetDBConnection());
 //	print "<h2>Payment Entry Result</h2><hr>";
-	print "<br>Payment Entry was successfully added. <br>                          <br>";
-        print "<a href=\"index.php?view=ViewFamilyAccount&familyid=". $FamilyID ."&mainmenu=off\">Account Summary</a>";
+//	print "<br>Payment Entry was successfully added. <br>Paymebt ID: ".$PaymentID."<br>";
 	// $query = "insert into  `tblReceivablePayRecord`(`DateTime`,`ReceivableID` , `PaymentID`) select  now(),	IncomeID, $PaymentID from tblIncome where IncomeID in (".$Receivables.")";
 	// $result = mysqli_query(GetDBConnection(),$query) or die ("died while inserting to table<br>Debug info: $query");
 	// print "Payment Entry Applied to Account.<br>";
@@ -456,11 +458,14 @@ function PaymentDoEdit()
 	$CollectorID=$_POST['CollectorID'];
 	$PaymentStatus=$_POST['PaymentStatus'];
 
- $query = "UPDATE `tblPayment` SET `FamilyID`=`$FamilyID`,`Date` = NOW(),PaymentDate='$PaymentDate',`PaymentType`='$PaymentType' , `PaymentMethod`='$PaymentMethod' , `PaymentIdentifier` ='$PaymentIdentifier', `PayerInfo` ='$PayerInfo', `Amount` = '$Amount' ,`PaymentNote` ='$PaymentNote',`CollectorID`='$CollectorID',`PaymentStatus`='$PaymentStatus' WHERE `tblPayment`.`PaymentID` =$PaymentID LIMIT 1 ";
+ $query = "UPDATE `tblPayment` SET `FamilyID`='$FamilyID',`Date` = NOW(),PaymentDate='$PaymentDate',`PaymentType`='$PaymentType' , `PaymentMethod`='$PaymentMethod' , `PaymentIdentifier` ='$PaymentIdentifier', `PayerInfo` ='$PayerInfo', `Amount` = '$Amount' ,`PaymentNote` ='$PaymentNote',`CollectorID`='$CollectorID',`PaymentStatus`='$PaymentStatus' WHERE `tblPayment`.`PaymentID` =$PaymentID LIMIT 1 ";
 
-	$result = mysqli_query(GetDBConnection(),$query) or die ("died while inserting to table<br>Debug info: $query");
-	$msg = "Entry was successfully Edited.";
-	return $msg;
+	$result = mysqli_query(GetDBConnection(),$query) or die ("died while updating table<br>Debug info: $query");
+//msg = "Entry was successfully Edited.";
+//eturn $msg;
+
+//  header('Location: index.php?view=ViewFamilyAccount&familyid='. $FamilyID .'&mainmenu=off');
+echo "<br><br><a href=\"index.php?view=ViewFamilyAccount&FamilyID=$FamilyID&familyid=$FamilyID&mainmenu=off\">Continue</a>";
 }
 
 function validatePaymentDate($date)
