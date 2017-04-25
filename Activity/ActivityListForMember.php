@@ -103,7 +103,7 @@ include("../common/DB/DataStore.php");
 
 												<!--<input type="submit" value=" Register " onClick="sendme(<?php echo $i;?>);">-->
 
-											<a href="ActivityTransferReg.php?atid=<?php echo $RSA1[ActivityID];?>">Register/Edit</a>
+<a href="ActivityTransferReg.php?atid=<?php echo $RSA1[ActivityID];?>&ActivityName=<?php echo $RSA1[ActivityName];?>">Register/Edit</a>
 <br><br>
 											<a href="ActivityRegView.php?<?php echo "SID$i=".$RSA1[ActivityID];?>&Container=<?php echo $i; ?>">View Participants</a>
 											</td>

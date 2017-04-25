@@ -40,7 +40,7 @@ $SQLstring = "INSERT INTO tblActivity (ActivityName,Activity,DateAndTime,Locatio
 
 if (!mysqli_query($conn,$SQLstring))
   {
-  die('Error: ' . mysqli_error($conn));
+  die('Error: ' . mysqli_error($conn). 'SQL string: '.$SQLstring);
   }
 
 ////  create session variable memberid //////////////

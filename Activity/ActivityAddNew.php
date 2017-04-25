@@ -78,9 +78,9 @@ if( ! isset($_SESSION['memberid']))
 										<tr>
 											<td width="80%" align="Right">Active Activity<font color="#FF0000">*</font></td>
 											<td align="left">
-												<input type="radio" name="Active" Value="Yes" Checked>Yes
+												<input type="radio" name="Active" Value="Y" Checked>Yes
 												&nbsp;
-												<input type="radio" name="Active" Value="No">No
+												<input type="radio" name="Active" Value="N">No
 											</td>
 										</tr>
 

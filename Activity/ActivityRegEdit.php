@@ -50,13 +50,6 @@ $atid=$_GET[atid];
 								<td align="center"><font><b>&nbsp</b></font></td>
 							</tr>
 
-							<tr>
-								<td align="center"><font><b>Edit Activity Registration<br></b></font></td>
-							</tr>
-
-							<tr>
-								<td align="center"><font><b>&nbsp</b></font></td>
-							</tr>
 
 							<?php
 								$sid=$atid;
@@ -70,6 +63,12 @@ $atid=$_GET[atid];
 								<td bgcolor="#000000">
 									<table CLASS="page" bgcolor="#FFFFFF" border="0" width="100%">
 										<form name="ActivityRegUpdateOne" action="ActivityRegUpdateOne.php" method="post" onSubmit="return Validate(this);">
+
+<tr>
+                                                                <td align="right"><font><b>Edit Registration for Activity: <br></b></font></td>
+                                                                <td align="left"><?php echo $_GET[ActivityName]; ?></td>
+                                                        </tr>
+<tr><td>&nbsp;</td><td></td></tr>
 
 										<tr>
 											<td width="80%" align="Right">Number of Adults<font color="#FF0000">*</font></td>
@@ -85,7 +84,7 @@ $atid=$_GET[atid];
 											<td valign=top><TEXTAREA name="ThingsToBring" cols=30 rows=5><?php echo $RSA1[ThingsToBring];?> </TEXTAREA> </td>
 										</tr>
 
-											<td width="80%" align="Right">Suggestions<font color="#FF0000">*</font></td>
+											<td width="80%" align="Right">Suggestions and Help<font color="#FF0000">*</font></td>
 											<td valign=top><TEXTAREA name="Suggestion" cols=30 rows=5><?php echo $RSA1[Suggestion];?></TEXTAREA> </td>
 										</tr>
 
