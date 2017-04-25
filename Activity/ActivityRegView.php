@@ -125,7 +125,7 @@ $SID=$_POST[$sid];
 											<td><font color="#FFFFFF">Number of Adults</font></td>
 											<td><font color="#FFFFFF">Number of Children</font></td>
 											<td><font color="#FFFFFF">Things to Bring</font></td>
-											<td><font color="#FFFFFF">Suggestion</font></td>
+											<td><font color="#FFFFFF">Suggestion and Help</font></td>
 
 										</tr>
 

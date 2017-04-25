@@ -19,16 +19,18 @@ $atid=$_GET[atid];
 
 
 ?>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Add More Activity Registration</title>
 <meta name="keywords" content="New Haven Chinese School, Yale New Haven Chinese School , Connecticut Chinese School, Chinese School">
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> -->
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
 <link href="../common/ynhc.css" rel="stylesheet" type="text/css">
 <script language="javascript" src="../common/JS/MainValidate.js"></script>
 </head>
 <body>
+
+
 <table width="780" background="" bgcolor="" border="0" align="center">
 	<tr>
 		<td>
@@ -46,18 +48,14 @@ $atid=$_GET[atid];
 							</tr>
 
 							<tr>
-								<td align="center"><font><b>Register One Activity<br></b></font></td>
-							</tr>
-
-							<tr>
-								<td align="center"><font><b>&nbsp</b></font></td>
-							</tr>
-
-							<tr>
 								<td bgcolor="#000000">
 									<table CLASS="page" bgcolor="#FFFFFF" border="0" width="100%">
 										<form name="ActivityRegAddOne" action="ActivityRegAddOne.php" method="post" onSubmit="return Validate(this);">
-
+							<tr>
+								<td align="right"><font><b>Register for Activity: <br></b></font></td>
+								<td align="left"><?php echo $_GET[ActivityName]; ?></td>
+							</tr>
+<tr><td>&nbsp;</td><td></td></tr>
 										<tr>
 											<td width="80%" align="Right">Number of Adults<font color="#FF0000">*</font></td>
 											<td><input type="text" size="58" name="NumberOfAdult"></td>
@@ -72,7 +70,7 @@ $atid=$_GET[atid];
 											<td valign=top><TEXTAREA name="ThingsToBring" cols=30 rows=5></TEXTAREA> </td>
 										</tr>
 
-											<td width="80%" align="Right">Suggestions<font color="#FF0000">*</font></td>
+											<td width="80%" align="Right">Suggestions and Help<font color="#FF0000">*</font></td>
 											<td valign=top><TEXTAREA name="Suggestion" cols=30 rows=5></TEXTAREA> </td>
 										</tr>
 
