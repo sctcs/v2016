@@ -7,7 +7,7 @@ session_start();
 
 $seclvl = $_SESSION['membertype'];
 
-if ($seclvl != 20 && $seclvl != 40)
+if ($seclvl != 10 && $seclvl != 20 && $seclvl != 40 && $seclvl != 55)
 {
     echo "Not authorized to update";
     exit();
