@@ -7,7 +7,7 @@ session_start();
 
 $seclvl = $_SESSION['membertype'];
 //echo $seclvl. " =seclvl";
-if ($seclvl != 20 && $seclvl != 40)
+if ($seclvl != 10 && $seclvl != 20 && $seclvl != 40 && $seclvl != 55)
 {
     echo "Access denied. "; 
     exit();
