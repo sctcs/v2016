@@ -68,22 +68,26 @@ function PaymentViewListAll()
 	session_start();
         $SessionUserName=$_SESSION['logon'];
 
-	$payment_beg_date="2010-07-01";
+	$payment_beg_date="2016-07-01";
     if ( isset($_GET[beg_date]) && strlen($_GET[beg_date]) == 10 ) {
         $payment_beg_date=$_GET[beg_date];
     }
 
-    $payment_end_date="2011-07-01";
+    $payment_end_date="2017-07-01";
 	    if ( isset($_GET[end_date]) && strlen($_GET[end_date]) == 10 ) {
 	        $payment_end_date=$_GET[end_date];
     }
-        print "<center><hr><h3>All Payment Collected <br>between $payment_beg_date and $payment_end_date <br>";
+        print "<center><hr>All Payment Collected <br>between $payment_beg_date and $payment_end_date<br> ";
         if (strlen ($_GET[cid]) > 0 ) {
            print " by collector ".$_GET[cid];
         } else {
            print "by all collectors";
         }
-        print "</h3><hr>";
+        print "</center>";
+
+        $csvfile="sccs-payments-" . date("Ymd-his", time()) .".csv";
+        print "<a href=\"./temp/" . $csvfile . "\" download target=\"_blank\">Download as CSV</a><br>";
+
     //    print "<br>Your information:";
     //    print "<br>session user: $SessionUserName";
     //    print "<br>MemberID: $CollectorID<hr>";
@@ -97,6 +101,11 @@ function PaymentViewListAll()
 	//echo $query;
 	$result = mysqli_query(GetDBConnection(),$query) or Die ("Failed to query $query ");
 	$TotalAmount=0;
+	$CashTotalAmount=0;
+	$CheckTotalAmount=0;
+
+$myfile = fopen("./temp/$csvfile", "w") or die("Unable to open file!");
+fwrite($myfile, "ID,Receive Date,Payer,Family,Type,Check No,Amount,Method,Note,Collector\n");
 		?>
 		<table border=1>
 		<tr>
@@ -114,9 +123,15 @@ function PaymentViewListAll()
             <th align="left" >Collector</th>
 			</tr>
 		<?php
+
 		while($row = mysqli_fetch_array($result))
 		{
 			$TotalAmount= $TotalAmount + $row['Amount'];
+     if ( $row['PaymentMethod'] == "Check" ) {
+	$CheckTotalAmount= $CheckTotalAmount + $row['Amount'];
+     } else {
+	$CashTotalAmount= $CashTotalAmount + $row['Amount'];
+     }
 		?>
 			<tr>
 			<td>&nbsp;<?php  showViewlink($row['PaymentID']);?></td>
@@ -133,13 +148,30 @@ function PaymentViewListAll()
             <td align="left" ><?php  echo $row['CollectorID'];?></td>
 			</tr>
 <?php
+fwrite($myfile, 
+$row['PaymentID'] .",".
+$row['PaymentDate'] .",".
+$row['PayerInfo'] .",".
+$row['FamilyID'] .",".
+$row['PaymentType'] .",".
+$row['PaymentIdentifier'] .",".
+$row['Amount'] .",".
+$row['PaymentMethod'] .",".
+$row['PaymentNote'] .",".
+$row['CollectorID'] . "\n"
+);
        }
+fwrite($myfile, "Cash,".$CashTotalAmount . ",Check," . $CheckTotalAmount .",Total," . $TotalAmount ."\n");
+fclose($myfile);
 ?>
-			<tr>
+<!--tr>
 			<th colspan=7 align=right>Total&nbsp;&nbsp;</th>
 			<td>&nbsp;<?php  echo $TotalAmount; ?></td>
-			</tr>
-	</table></center>
+			</tr> -->
+	</table>
+&nbsp;Cash: $<?php  echo $CashTotalAmount; ?> <br>
+Check: $<?php  echo $CheckTotalAmount; ?> <br>
+&nbsp;Total: $<?php  echo $TotalAmount; ?>
 <?php
 }
 
