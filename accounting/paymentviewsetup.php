@@ -16,7 +16,7 @@ if ( isset($_GET[begdate]) && strlen($_GET[begdate]) == 10 ){
    print $_GET[enddate];
    echo "<br><br>";
    //header("Location: index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$_GET[begdate]."&end_date=".$_GET[enddate]);
-   echo "<a href=\"index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$_GET[begdate]."&end_date=".$_GET[enddate]."\">Continue</a>";
+   echo "<a href=\"index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$_GET[begdate]."&end_date=".$_GET[enddate]."&mainmenu=off\">Continue</a>";
    exit();
 }
 ?>
@@ -25,8 +25,8 @@ if ( isset($_GET[begdate]) && strlen($_GET[begdate]) == 10 ){
 
 <form action="paymentviewsetup.php">
 <input type=hidden name=cid value="<?php echo $_GET[cid]; ?>" >
-Between <input type=text name="begdate" value="2008-07-01">
-and <input type=text name="enddate" value="2009-07-01">
+Between <input type=text name="begdate" value="2016-07-01">
+and <input type=text name="enddate" value="2017-07-01">
 <input type="submit" value="Go">
 </form>
 

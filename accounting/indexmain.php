@@ -52,6 +52,10 @@ $msg="";
                 break;
 
                 case 'PaymentViewListAll':
+if ($_REQUEST['mainmenu']=='off')
+{
+  print "<a href=\"index.php\">Payment Management</a>";
+}
                         PaymentViewListAll();
                 break;
 
