@@ -43,7 +43,7 @@ if ($loginID=="" || $userPW=="")
 
 //// 2. get login info  ////
 
-$SQLstring = "SELECT tblMember.MemberID,tblMember.Email,tblMember.FamilyID,tblMemberType.MemberTypeID,tblMemberType.MemberType,tblMemberType.SecurityLevel,tblLogin.LoginID FROM tblMember,tblLogin,tblMemberType WHERE tblMember.MemberID=tblLogin.MemberID and tblLogin.MemberTypeID=tblMemberType.MemberTypeID and tblMember.UserName='".$loginID. "' and tblMember.Password='".$userPW."'";
+$SQLstring = "SELECT tblMember.MemberID,Firstname,Lastname,tblMember.Email,tblMember.FamilyID,tblMemberType.MemberTypeID,tblMemberType.MemberType,tblMemberType.SecurityLevel,tblLogin.LoginID FROM tblMember,tblLogin,tblMemberType WHERE tblMember.MemberID=tblLogin.MemberID and tblLogin.MemberTypeID=tblMemberType.MemberTypeID and tblMember.UserName='".$loginID. "' and tblMember.Password='".$userPW."'";
 //echo "see: ".$SQLstring;
 $RS1=mysqli_query($conn,$SQLstring);
 $rc=0;
@@ -57,6 +57,8 @@ while ($row=mysqli_fetch_array($RS1)) {
   $membertype=$row[MemberType];
   $seclevel=$row[SecurityLevel];
   $loginid=$row[LoginID];
+  $firstname=$row[Firstname];
+  $lastname=$row[Lastname];
   $membertypeid=$row[MemberTypeID];
   if ($membertype =="Former Member") {
      $former_member=1;
@@ -106,6 +108,8 @@ $_SESSION['logon']=$loginID;
 $_SESSION['useremail']=$useremail;
 $_SESSION['MemberTypes']=$membertypes;
 $_SESSION['memberid']=$memberid;
+$_SESSION['firstname']=$firstname;
+$_SESSION['lastname']=$lastname;
 
 
 if ($rc > 1)
