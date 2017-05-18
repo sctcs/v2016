@@ -160,6 +160,7 @@ include("../common/CommonParam/params.php");
                 <h3 class="text-center">Classes and Files</h3>
                 <?php if ($seclvl <= 25 || $seclvl == 40 || $seclvl == 55) { ?>
                     <p class="text-center"><a href="../Files/Documents/Payment_Request.pdf" target="_blank">Payment Request Form</a>
+                       
                     <?php } ?>
                     <?php if ($seclvl < 25 || $seclvl == 55 || $seclvl == 40 || $seclvl == 12) { ?>
 
@@ -180,9 +181,13 @@ include("../common/CommonParam/params.php");
                 <?php } ?>
 
                 <?php if ($seclvl <= 20 || $seclvl == 35 || $seclvl == 40) { ?>
-                    <p class="text-center"><a href="../Files/filesList4Dir.php?directory=Logo">Logo Files</a></p>
+                    <p class="text-center"><a href="../Files/filesList4Dir.php?directory=Logo">Logo Files</a>
+                    <br/><a href="../Files/Documents/Donation_form_2016_10.pdf" target="_blank">Donation Receipt</a></p>
                 <?php } ?>
 
+                <?php if ($seclvl == 10 || $seclvl == 11 || $seclvl == 12) { ?>
+                    <p class="text-center"><a href="./SendEmailToMembers.php">Send an Email to Members</a></p>
+                <?php } ?>
                 <?php if ($seclvl == 10 || $seclvl == 11 || $seclvl == 20) { ?>
                     <p class="text-center"><a href="../public/announceForm.php">Make an Announcement</a></p>
                 <?php } ?>
@@ -215,6 +220,7 @@ include("../common/CommonParam/params.php");
                     <p class="text-center"><a href="../Curriculum/Curriculum.php">Curriculum</a></p>
                 <?php } if ($_SESSION['logon'] != '') { ?>
 
+                    <p class="text-center"><a href="../Files/Documents/Incident_Report.pdf">Incident Report Form</a>
                     <p class="text-center"><a href="../Activity/ActivityListForMember.php">Register Activity</a>
                         <br><a href="SchoolPolicyDocument.php">School Policies and Programs</a>
                         <br><a href="EventCalendar.php">School Event Calendar</a>
