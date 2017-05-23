@@ -21,18 +21,34 @@ function AccountingMenu()
 
 
 <h3> Payment Management</h3>
-<hr>
-<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=SearchReceivable">Receivable Lookup and Pay </a><br>
+<br>
+<table>
+<tr valign=top>
+<td>Receivables/Charges/Fees</td>
+<td>
+<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=UpdateReceivable">Create or Update Receivables</a> (This action takes a while to complete)<br>
+<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=SearchReceivable">Receivable Lookup and Pay </a><br><br>
+</td>
+</tr>
+<tr valign=top>
+<td>Payments</td>
+<td>
+<a href="enterPaymentBatchIDForm.php">Enter Payment Batch</a><br>
 <a href="paymentviewsetup.php?cid=<?php echo $CollectorID; ?>">View&nbsp;Payments&nbsp;you collected</a><br>
 <a href="paymentviewsetup.php">View&nbsp;all Payments&nbsp;collected</a><br><br>
-
+</td>
+</tr>
+<tr valign=top>
+<td>Balances</td>
+<td>
 <a href="balancelisting.php">View&nbsp;Balances&nbsp;of all Families</a><br>
 <a href="balanceListingToPay.php?registered_only=Yes">Send Payment Reminder Notice</a><br>
-<a href="creditSelectionListing.php">Credit and Payment Selection</a><br><br>
-
+<a href="creditSelectionListing.php">Credit and Payment Selection</a><br>
 <a href="balanceHistory.php">Balance&nbsp;History of all Families</a><br>
+</td>
+</tr>
+</table>
 
-<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=UpdateReceivable">Create or Update Receivables</a> (This action takes a while to complete)<br>
 
 
 <?php
