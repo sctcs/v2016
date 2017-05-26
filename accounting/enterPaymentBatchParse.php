@@ -27,19 +27,26 @@ if(  $seclvl !=10 && $seclvl !=20 && $seclvl !=45 && $seclvl !=55  )  // treasur
         }
 ?>
 
-<p>Family IDs entered: </p>
+<p>
+Family IDs entered: 
 <?php
   $familyids = $_POST[familyids];
   echo $familyids;
+echo "</p>";
 
 include("../common/DB/DataStore.php");
 
-$SQLstring = "SELECT distinct FamilyID FROM tblMember where FamilyID in (" . $familyids . ")";
+$SQLstring = "SELECT distinct FamilyID,FirstName,LastName,HomeAddress,HomeCity,HomeState,HomeZip
+                FROM tblMember where FamilyID in (" . $familyids . ") and PrimaryContact='Yes'";
 //echo $SQLstring;
     echo "<br>";
 $RS1=mysqli_query($conn,$SQLstring);
   $rc=0;
 
+echo "<br>";
+echo "Valid FamilyIDs:";
+echo "<table border=1>";
+echo "<tr><th>FamilyID</th><th>Name and Address</th></tr>";
  while ($row=mysqli_fetch_array($RS1)) 
  {
   $fid=$row[FamilyID];
@@ -49,7 +56,13 @@ $RS1=mysqli_query($conn,$SQLstring);
 //if (strpos($familyids,$fid) !==false ) 
 //{
     $rc = $rc + 1;
-    echo $fid . " is valid";
+//  echo $fid . " is valid";
+    echo "<tr><td>".$fid."</td><td>".$row[FirstName]." "
+                                    .$row[LastName].", "
+                                    .$row[HomeAddress].", "
+                                    .$row[HomeCity].", "
+                                    .$row[HomeState]." "
+                                    .$row[HomeZip]."</td></tr> ";
 //  echo "<br>";
        if ($rc ==1) 
        { 
@@ -63,6 +76,8 @@ $RS1=mysqli_query($conn,$SQLstring);
 //  echo $fid . " is invalid";
 //}
  }
+echo "</table>";
+echo "<p>Note: Please verify name and address against the check received.</p>";
 
 echo "<br><br>";
   $fids = explode(",", $familyids);
