@@ -56,6 +56,35 @@ while ( list( $field, $value ) = each( $_POST )) {
 ?>
 
 <?php
+
+function mail_notice($fid,$useremail,$fname,$lname,$amount,$check)
+{
+
+//echo "Payment notice has been sent to ".$useremail."<br><br>";
+$message = "Dear ".$fname." ".$lname.",
+
+Your recent payment of \$$amount (FID $fid check #$check) has been received, thank you. It has been recorded and is ready for you to review. If you think this is an error or you find anything incorrect, please let us know by replying this email as soon as possible.
+
+Best Regards,
+Min Li
+SCCS Financial Manager
+";
+
+//echo $message;
+
+$to      = $useremail;
+$subject = 'Your payment to SCCS for fees and/or tuition has been recevied';
+
+$headers = 'From: finance@ynhchineseschool.org' . "\r\n" .
+'Reply-To: finance@ynhchineseschool.org' . "\r\n" .
+'X-Mailer: PHP/' . phpversion() . "\r\n";
+$headers .= 'Bcc: finance@ynhchineseschool.org' . "\r\n";
+
+mail($to, $subject, $message, $headers);
+
+}
+
+
   $familyids = $_POST[valid_fids];
 //  echo $familyids;
   $fids = explode(",", $familyids);
@@ -113,6 +142,19 @@ if ($debug) {
   include("../common/DB/DataStore.php");
 
   mysqli_query($conn,$payments) or die ("died while inserting to table<br>Debug info: $payments");
+
+  # send email notice to payers
+  #
+  $SQLstring = "select FamilyID, FirstName, LastName, Email from tblMember where PrimaryContact='Yes' and FamilyID in ($valid_fids) ";
+//echo $SQLstring;
+  echo "<br>";
+  $RS1=mysqli_query($conn,$SQLstring) or die ("died while querying db <br> Debug info: $SQLstring");
+  while ($row=mysqli_fetch_array($RS1))
+  {
+     $fid = $row[FamilyID];
+     echo "<BR>mailing to ...... " . $fid .", " .$row[Email] .", " .$row[FirstName] ." ".$row[LastName] .", ". $_POST["Amount".$fid] .", ".$_POST["PaymentIdentifier".$fid];
+     mail_notice($fid,$row[Email],$row[FirstName],$row[LastName],$_POST["Amount".$fid],$_POST["PaymentIdentifier".$fid]) ;
+  }
 
   mysqli_close($conn);
 }

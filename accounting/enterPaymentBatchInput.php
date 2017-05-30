@@ -108,6 +108,7 @@ if(  $seclvl !=10 && $seclvl !=20 && $seclvl !=45 && $seclvl !=55  )  // treasur
 <BR><BR>
     <input type="submit" value="Save Payments">
 </form>
+<button onclick="goBack()">Go Back & Edit</button>
 
 </body>
 </html>
