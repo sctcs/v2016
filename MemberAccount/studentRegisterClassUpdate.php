@@ -23,6 +23,7 @@ include_once("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 include("./syncFallSpringEnrichment.php");
 
+$DEBUG=0;
 
 //syncTerms($_POST[updtmemberid], $_POST['FallPreferredExtraClass1'], $period="1", $term="Fall", $conn, $NextYear);
 //syncTerms($_POST[updtmemberid], $_POST['FallPreferredExtraClass2'], $period="2", $term="Fall", $conn, $NextYear);
@@ -284,7 +285,7 @@ $MemberUpdateDate=date("Y/m/d");
         }
            if ($DEBUG) { echo "<br>update Lang: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update language Error: ' . mysqli_error($conn));
            }
 
         }
@@ -304,7 +305,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo "<br>insert/update Lang: ".$sql2."<br>"; }
        if (!mysqli_query($conn,$sql2))    {
-	  		         die('Error: ' . mysqli_error($conn));
+	  		         die('insert language Error: ' . mysqli_error($conn));
        }
       }
     if ( isset($openclassids[2]) && $openclassids[2] != '') {
@@ -321,7 +322,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo "<br>insert/update Lang: ".$sql2."<br>";}
        if (!mysqli_query($conn,$sql2))    {
-	  		         die('Error: ' . mysqli_error($conn));
+	  		         die('drop language Error: ' . mysqli_error($conn));
        }
       }
 
@@ -378,7 +379,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass0Old];
            if ($DEBUG) { echo "update extra0: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra0 Error: ' . mysqli_error($conn));
            }
 
 
@@ -396,7 +397,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo " update/insert Extra0: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra0 Error: ' . mysqli_error($conn));
        }
 
 
@@ -414,7 +415,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass0Old];
            if ($DEBUG) {echo "<br>update extra0: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra0 fall Error: ' . mysqli_error($conn));
            }
    }
 
@@ -465,7 +466,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass1Old];
            if ($DEBUG) { echo "update extra1: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra1 Error: ' . mysqli_error($conn));
            }
 
 
@@ -483,7 +484,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo " update/insert Extra1: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra1 Error: ' . mysqli_error($conn));
        }
 
 
@@ -501,7 +502,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass1Old];
            if ($DEBUG) {echo "<br>update extra1: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra1 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -550,7 +551,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set status = '". $status."',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass2Old];
            if ($DEBUG) {echo "<br>update extra2: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra2 Error: ' . mysqli_error($conn));
            }
 
 
@@ -571,7 +572,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
         if ($DEBUG) {echo "<br>update/insert Extra2: ".$sql4."<br>";}
         if (!mysqli_query($conn,$sql4)) {
-	    	 die('Error: ' . mysqli_error($conn));
+	    	 die('insert extra2 Error: ' . mysqli_error($conn));
         }
        // end else
 
@@ -591,7 +592,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status='Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass2Old];
            //echo "delete extra2: ".$sql2."<br>";
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra2 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -637,17 +638,17 @@ $MemberUpdateDate=date("Y/m/d");
               $status = "Taken";
            }
 
-        // update current extra 1
+        // update current extra 3
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass3Old];
            if ($DEBUG) {echo "<br>update extra3: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra3 Error: ' . mysqli_error($conn));
            }
 
 
       }
 
-       // new extra 1 registration
+       // new extra 3 registration
 
        // there is open seats
         // check if the class was dropped before
@@ -663,7 +664,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) {echo "<br> update/insert Extra3: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra3 Error: ' . mysqli_error($conn));
        }
        // end else
 
@@ -681,7 +682,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass3Old];
            if ($DEBUG) {echo "<br>update extra3: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra3 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -731,7 +732,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = '". $status."',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass4Old];
            if ($DEBUG) {echo "<br>update extra4: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra4 Error: ' . mysqli_error($conn));
            }
 
 
@@ -752,7 +753,7 @@ $MemberUpdateDate=date("Y/m/d");
         }
         if ($DEBUG) {echo "<br>update/insert Extra2: ".$sql4."<br>";}
         if (!mysqli_query($conn,$sql4)) {
-	    	 die('Error: ' . mysqli_error($conn));
+	    	 die('insert extra4 Error: ' . mysqli_error($conn));
         }
        // end else
 
@@ -772,7 +773,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status='Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[FallPreferredExtraClass4Old];
            if ($DEBUG) {echo "<br>update extra4: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra4 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -826,7 +827,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass0Old];
            if ($DEBUG) { echo "update extra0: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra0 Error: ' . mysqli_error($conn));
            }
 
 
@@ -844,7 +845,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo " update/insert Extra0: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra0 Error: ' . mysqli_error($conn));
        }
 
 
@@ -862,7 +863,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass0Old];
            if ($DEBUG) {echo "<br>update extra0: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra0 spring  Error: ' . mysqli_error($conn));
            }
    }
 
@@ -913,7 +914,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass1Old];
            if ($DEBUG) { echo "update extra1: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra1 Error: ' . mysqli_error($conn));
            }
 
 
@@ -931,7 +932,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) { echo " update/insert Extra1: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra1 Error: ' . mysqli_error($conn));
        }
 
 
@@ -949,7 +950,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass1Old];
            if ($DEBUG) {echo "<br>update extra1: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra1 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -998,7 +999,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set status = '". $status."',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass2Old];
            if ($DEBUG) {echo "<br>update extra2: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra2 Error: ' . mysqli_error($conn));
            }
 
 
@@ -1019,7 +1020,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
         if ($DEBUG) {echo "<br>update/insert Extra2: ".$sql4."<br>";}
         if (!mysqli_query($conn,$sql4)) {
-	    	 die('Error: ' . mysqli_error($conn));
+	    	 die('insert extra2 Error: ' . mysqli_error($conn));
         }
        // end else
 
@@ -1039,7 +1040,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status='Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass2Old];
        //    echo "delete extra2: ".$sql2."<br>";
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra2 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -1084,11 +1085,11 @@ $MemberUpdateDate=date("Y/m/d");
               $status = "Taken";
            }
 
-        // update current extra 1
+        // update current extra 3
            $sql2 = "update tblClassRegistration set Status = '" .$status. "',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass3Old];
            if ($DEBUG) {echo "<br>update extra3: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra3 Error: ' . mysqli_error($conn));
            }
 
 
@@ -1110,7 +1111,7 @@ $MemberUpdateDate=date("Y/m/d");
        }
        if ($DEBUG) {echo "<br> update/insert Extra3: ".$sql3."<br>";}
        if (!mysqli_query($conn,$sql3))    {
-	  	  		         die('Error: ' . mysqli_error($conn));
+	  	  		         die('insert extra3 Error: ' . mysqli_error($conn));
        }
        // end else
 
@@ -1128,7 +1129,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status = 'Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass3Old];
            if ($DEBUG) {echo "<br>update extra3: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra3 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -1173,11 +1174,11 @@ $MemberUpdateDate=date("Y/m/d");
               $status = "Taken";
            }
 
-        // update current extra 2
+        // update current extra 4
            $sql2 = "update tblClassRegistration set Status = '". $status."',DateTimeRegistered=now() where StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass4Old];
            if ($DEBUG) {echo "<br>update extra4: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('update extra4 Error: ' . mysqli_error($conn));
            }
 
 
@@ -1198,7 +1199,7 @@ $MemberUpdateDate=date("Y/m/d");
         }
         if ($DEBUG) {echo "<br>update/insert Extra2: ".$sql4."<br>";}
         if (!mysqli_query($conn,$sql4)) {
-	    	 die('Error: ' . mysqli_error($conn));
+	    	 die('insert extra4 Error: ' . mysqli_error($conn));
         }
        // end else
 
@@ -1218,7 +1219,7 @@ $MemberUpdateDate=date("Y/m/d");
            $sql2 = "update tblClassRegistration set Status='Dropped',DateTimeRegistered=now() where  StudentMemberID = " . $_POST['updtmemberid'] . " AND ClassID=".$_POST[SpringPreferredExtraClass4Old];
            if ($DEBUG) {echo "<br>update extra4: ".$sql2."<br>";}
 		   if (!mysqli_query($conn,$sql2))    {
-		      die('Error: ' . mysqli_error($conn));
+		      die('drop extra4 Error: ' . mysqli_error($conn));
            }
    }
 
@@ -1296,7 +1297,7 @@ $MemberUpdateDate=date("Y/m/d");
       $sql="update tblMember set Registered='yes' where MemberID=".$_POST['updtmemberid'];
       //echo $sql;
       if (!mysqli_query($conn,$sql))      {
-	  	            die('Error: ' . mysqli_error($conn));
+	  	            die('set registered Error: ' . mysqli_error($conn));
       }
    }
 
@@ -1312,12 +1313,15 @@ $MemberUpdateDate=date("Y/m/d");
    echo "no class registration change to be made";
  }
 
-
+// ALTER TABLE `tblClassRegistration` ADD UNIQUE(`StudentMemberID`,`ClassID`);
+//
+// make sure class table CurrentClass Yes is not yes
+//
 echo "<center><br><br>";
-echo "Class Registration updated successfully  ";
-//echo "<br><a href=\"studentRegisterClass.php?stuid=".$_POST['updtmemberid']."\">Register Classes</a>";
-//echo "                                         <br><a href=\"studentClassesRegistered.php?stuid=".$_POST['updtmemberid']."\">View Classes Registered</a>";
-//echo "<br>or  <br><a href=\"FeePaymentVoucher.php\">Print Payment Voucher</a>";
+echo "Class Registration updated successfully  <br><br>";
+echo "<br><a href=\"studentRegisterClass.php?stuid=".$_POST['updtmemberid']."\">Back to Class Registration </a>";
+echo "                                         <br><a href=\"studentClassesRegistered.php?stuid=".$_POST['updtmemberid']."\">View Classes Registered</a>";
+echo "<br>or  <br><a href=\"FeePaymentVoucher.php\">Print Payment Voucher</a>";
 echo "<br>  <br><a href=\"MemberAccountMain.php\">My Account</a>";
 echo "</center>";
 
