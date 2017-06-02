@@ -398,6 +398,58 @@ $sql_pec1 = "SELECT distinct ClassID, GradeOrSubject, ClassNumber, Period, Seats
 <tr><td colspan=2> [2]      <?php echo "$CurrentTerm $CurrentYear"; ?> Enrichment Classes (<font color=red>Do NOT pick enrichment programs that conflict with Chinese classes</font>):</td></tr>
 
 										<tr>
+											<td width="20%" align="center"> Enrichment 0 (<?php echo $PERIOD0; ?>):</td>
+											<td nowrap>
+
+											<select name="FallPreferredExtraClass0">
+
+											<?php
+$sql_pec0 = "SELECT * from tblClass WHERE Period = '0' and IsLanguage='No' and CurrentClass='Yes' and Term='".$CurrentTerm."' and Year='".$CurrentYear."' order by GradeOrSubject";
+											     $rs_pec0=mysqli_query($conn,$sql_pec0);
+
+                                                 $sql7 = "SELECT tblClass.ClassID, tblClass.GradeOrSubject,tblClass.ClassNumber,tblClass.Seats
+                                                            FROM tblClassRegistration,tblClass
+                                                           WHERE tblClass.ClassID=tblClassRegistration.ClassID AND tblClass.Period='0' and IsLanguage='No' "
+                                                       . " AND tblClass.CurrentClass='Yes' AND tblClass.Term='Fall' AND tblClassRegistration.Status != 'Dropped'"
+                                                       . " AND tblClassRegistration.StudentMemberID=".$_GET[stuid];
+                                                 //echo $sql7."<br>";
+
+		                                         $rs7=mysqli_query($conn,$sql7);
+		                                         $rw7=mysqli_fetch_array($rs7);
+
+
+						                     ?>
+
+											<?php if ( !isset($rw7['ClassID']) || $rw7['ClassID'] == "" ) { ?>
+											  <option value="" SELECTED>NO (will not take any)</option>
+											<?php } else { ?>
+											  <option value="">NO (will not take any)</option>
+											<?php } ?>
+									<?php while ( $rw_pec0=mysqli_fetch_array($rs_pec0) ) {
+									        $classid = $rw_pec0[ClassID];
+									        $grade   = $rw_pec0[GradeOrSubject];
+									        $class   = $rw_pec0[ClassNumber];
+									        $openseats = $rw_pec0[Seats] - $seats_taken[$classid];
+									        //if ( $openseats > 0 ) {
+									     ?>
+											<?php if ( isset($rw7['ClassID']) && $rw7['ClassID'] == $classid ) { ?>
+											  <option value="<?php echo $classid; ?>" SELECTED><?php echo "[$classid] $grade (seats available ". ($openseats) . ")"; ?></option>
+											<?php } else { ?>
+											  <option value="<?php echo $classid; ?>"><?php echo "[$classid] $grade (seats available ". ($openseats) . ")"; ?></option>
+											<?php }
+											//}
+									     } ?>
+
+											 </select>
+											 <input type="hidden" name="FallPreferredExtraClass0Old" value="<?php echo $rw7['ClassID'];?>">
+											 <?php if ( $rw7[GradeOrSubject] != "" ) { ?>
+<!--
+											   <br>(currently registered for <b><?php echo $rw7[GradeOrSubject].".".$rw7[ClassNumber] ; //echo $sql7; ?></b>)
+-->
+                                             <?php } ?>
+											</td>
+										</tr>
+										<tr>
 											<td width="20%" align="center"> Enrichment 1 (<?php echo $PERIOD1; ?>):</td>
 											<td nowrap>
 
@@ -619,6 +671,60 @@ $sql_pec1 = "SELECT * from tblClass WHERE Period = '4' and IsLanguage='No' and C
 //################################################################################################################################# END FALL ENRICHMENT.
 -->
 <tr><td colspan=2> [3]      <?php echo "$NextTerm $NextYear"; ?> Enrichment Classes (<font color=red>Do NOT pick enrichment programs that conflict with Chinese classes</font>):</td></tr>
+										<tr>
+											<td width="30%" align="center"> Enrichment 0 (<?php echo $PERIOD0; ?>):</td>
+											<td nowrap>
+
+											<select name="SpringPreferredExtraClass0">
+
+											<?php
+
+$sql_pec0 = "SELECT * from tblClass WHERE Period = '0' and IsLanguage='No' and CurrentClass='Yes' and Term='".$NextTerm."' and Year='".$NextYear."' order by GradeOrSubject";
+											     $rs_pec0=mysqli_query($conn,$sql_pec0);
+
+                                                 $sql7 = "SELECT tblClass.ClassID, tblClass.GradeOrSubject,tblClass.ClassNumber,tblClass.Seats
+                                                            FROM tblClassRegistration,tblClass
+                                                           WHERE tblClass.ClassID=tblClassRegistration.ClassID AND tblClass.Period='0' and IsLanguage='No' "
+                                                       . " AND tblClass.CurrentClass='Yes' AND tblClass.Term='Spring' AND tblClassRegistration.Status != 'Dropped'"
+                                                       . " AND tblClassRegistration.StudentMemberID=".$_GET[stuid];
+                                                 //echo $sql7."<br>";
+
+		                                         $rs7=mysqli_query($conn,$sql7);
+		                                         $rw7=mysqli_fetch_array($rs7);
+
+
+
+						                     ?>
+
+											<?php if ( !isset($rw7['ClassID']) || $rw7['ClassID'] == "" ) { ?>
+											  <option value="" SELECTED>NO (will not take any)</option>
+											<?php } else { ?>
+											  <option value="">NO (will not take any)</option>
+											<?php } ?>
+									<?php while ( $rw_pec0=mysqli_fetch_array($rs_pec0) ) {
+									        $classid = $rw_pec0[ClassID];
+									        $grade   = $rw_pec0[GradeOrSubject];
+									        $class   = $rw_pec0[ClassNumber];
+									        $openseats = $rw_pec0[Seats] - $seats_taken[$classid];
+									        //if ( $openseats > 0 ) {
+									     ?>
+											<?php if ( isset($rw7['ClassID']) && $rw7['ClassID'] == $classid ) { ?>
+											  <option value="<?php echo $classid; ?>" SELECTED><?php echo "[$classid] $grade (seats available ". ($openseats) . ")"; ?></option>
+											<?php } else { ?>
+											  <option value="<?php echo $classid; ?>"><?php echo "[$classid] $grade (seats available ". ($openseats) . ")"; ?></option>
+											<?php }
+										//	}
+									     } ?>
+
+											 </select>
+											 <input type="hidden" name="SpringPreferredExtraClass0Old" value="<?php echo $rw7['ClassID'];?>">
+											 <?php if ( $rw7[GradeOrSubject] != "" ) { ?>
+<!--
+											   <br>(currently registered for <b><?php echo $rw7[GradeOrSubject].".".$rw7[ClassNumber] ; //echo $sql7; ?></b>)
+-->
+                                             <?php } ?>
+											</td>
+										</tr>
 										<tr>
 											<td width="30%" align="center"> Enrichment 1 (<?php echo $PERIOD1; ?>):</td>
 											<td nowrap>
