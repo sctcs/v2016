@@ -306,7 +306,7 @@ $MemberUpdateDate=date("Y/m/d");
        if ($DEBUG) { echo "<br>insert/update Lang: ".$sql2."<br>"; }
        if (!mysqli_query($conn,$sql2))    {
 	  		         die('insert language Error: ' . mysqli_error($conn));
-       }
+       } 
       }
     if ( isset($openclassids[2]) && $openclassids[2] != '') {
         // check if the class was dropped before
@@ -1304,7 +1304,7 @@ $MemberUpdateDate=date("Y/m/d");
    // update tblReceivable?
    if ( $AUTO_RECEIVABLE == "Yes" ) {
       require_once("../accounting/Tools.php");
-      UpdateIncomeInfo($_SESSION['family_id']);
+      UpdateIncomeInfo2014($_SESSION['family_id']);
    }
 
  } // done with registration updates

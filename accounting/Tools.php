@@ -2,6 +2,8 @@
 include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 
+$DEBUG=0;
+
 function getdbconnection()
 {
 	$dbName="";
@@ -59,7 +61,7 @@ function CloseTable()
 }
 
 
-function UpdateIncomeInfo($familyid)
+function UpdateIncomeInfo_not_inuse($familyid)
 {
  include("../common/CommonParam/params.php");
 
@@ -280,6 +282,18 @@ $updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `Receiv
 //echo "$updatecmd<br><BR>";
 $result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for New class registration<br>Debug info: $updatecmd <br>\n");
 
+// delete receivables for dropped classes
+$updatecmd=" DELETE 
+from tblReceivable 
+where ReceivableType='ClassFee' and DateTime>'". $PAST_BALANCE_DATE ."' and FamilyID=$fid 
+and ClassRegistrationID in 
+(select cr.ClassRegistrationID from tblClassRegistration cr where  cr.Status ='Dropped') ";
+
+// only allowed before the first school date
+if ( $AUTO_RECEIVABLE4DROP == "Yes" && date('Y-m-d') < "$REG_REG_DEADLINE" ) {
+  if ($DEBUG) {    echo "$updatecmd<br><BR>";}
+  	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for dropped class registration<br>Debug info: $updatecmd <br>\n");
+}
 
 // membership fee.
 /*

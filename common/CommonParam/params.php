@@ -28,7 +28,7 @@ $SCHOOLNAME_ABR="SCCS";
 
 $EARLY_REG_DEADLINE = "2016-08-31";
 $EARLY_REG_FEE = "$0";
-$REG_REG_DEADLINE   = "2016-09-18";
+$REG_REG_DEADLINE   = "2017-09-18";
 $REG_REG_FEE = "$20";
 $REG_REG_FEE_DOLLAR = "20";
 $LATE_REG_DEADLINE  = "2016-09-25";
@@ -60,8 +60,8 @@ $SPPERIOD3 = "3:30-5:10pm";
 
 $PAST_BALANCE_DATE="2016-06-31"; // used in various places to limit receivables or payments before or after this day
 
-$AUTO_RECEIVABLE="No";  // used in registration module to call accounting/Tools.php UpdateIncomeInfo(familyid) with FamilyID
-$AUTO_RECEIVABLE4DROP="No"; // used in accounting/Tools.php UpdateIncomeInfo() to add credit for dropped class
+$AUTO_RECEIVABLE="Yes";  // used in registration module to call accounting/Tools.php UpdateIncomeInfo2014(familyid) with FamilyID
+$AUTO_RECEIVABLE4DROP="Yes"; // used in accounting/Tools.php UpdateIncomeInfo2014() to add credit for dropped class
 
 $SCHOOL_PAY_ADDRESS_WEB="
 	$SCHOOLNAME<br>
