@@ -6,15 +6,18 @@ session_start();
 
 
 include("../common/DB/DataStore.php");
+include("../common/CommonParam/params.php");
 
+$DEBUG=0;
 
 $membertypeid=$_POST[MemberTypeID];
+$PCYear=$_POST[PCYear]; // value=primary
 $ParentPC=$_POST[ParentPC]; // value=primary
 $ParentSP=$_POST[ParentSP]; // value=both
 //$Students=$_POST[Students]; // value=student
 $Teachers=$_POST[Teachers]; // value=teachers
 $Admins=$_POST[Admins];     // value=admins
-$Alumni=$_POST[Alumni];     // value=alumni
+$NewMembers=$_POST[NewMembers];     // value=newmembers
 $Subject=$_POST[Subject];
 $Message=$_POST[Message];
 $Preview=$_POST[Preview];
@@ -39,7 +42,7 @@ function goBack() {
 </head>
 <?php 
   echo "<a href=\"MemberAccountMain.php\">My Account</a>";
-if (isset($Preview)) 
+if (isset($Preview) || $DEBUG ) 
 {
 echo $membertypeid."<BR>";
 echo $From."<BR>";
@@ -47,7 +50,7 @@ echo $ParentPC."<BR>";
 echo $ParentSP."<BR>";
 //echo $Students."<BR>";
 echo $Teachers."<BR>";
-echo $Admins."<BR>";
+echo $NewMembers."<BR>";
 echo $Alumni."<BR>";
 echo $Subject."<BR>";
 echo $Message ."<BR>";
@@ -57,68 +60,102 @@ echo "<BR>";
 }
 
 $SQLstring="";
-if ( !isset($Alumni) && ( $ParentPC == "primary" || $ParentSP == "both" ))
+if (  $ParentPC == "primary" || $ParentSP == "both" )
 {
 $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
 WHERE Email is not null ";
   $SQLstring .= " and tblMember.FamilyID  in (select a.FamilyID from tblMember a, tblClassRegistration b ,tblClass c
-                  where a.MemberID=b.StudentMemberID and b.ClassID=c.ClassID and c.CurrentClass='Yes' and b.Status='OK' )";
+                  where a.MemberID=b.StudentMemberID and b.ClassID=c.ClassID ";
+  if ( $PCYear =="C-year" ) 
+  {
+      $SQLstring .= "and c.CurrentClass='Yes' and b.Status='OK' )";
+  } else if ( $PCYear =="L-year" )
+  {
+      $SQLstring .= "and c.CurrentClass!='Yes' and b.Status in ('Taken','OK') and ((c.Year='".$LastYear."' and c.Term='Fall') or (c.Year='".$CurrentYear."' and c.Term='Spring') )  )";
+  } else if ( $PCYear =="2-year" )
+  {
+      $SQLstring .= "and c.CurrentClass!='Yes' and b.Status in ('Taken','OK') and ((c.Year='".$LastYear2."' and c.Term='Fall') or (c.Year='".$LastYear."' and c.Term='Spring') )  )";
+  } else if ( $PCYear =="3-year" )
+  {
+      $SQLstring .= "and c.CurrentClass!='Yes' and b.Status in ('Taken','OK') and ((c.Year='".$LastYear3."' and c.Term='Fall') or (c.Year='".$LastYear2."' and c.Term='Spring') )  )";
+  }
 
   if ( $ParentPC == "primary" && $ParentSP != "both" ) {
       $SQLstring .=" and tblMember.PrimaryContact='Yes' ";
   }
 }
 
-if (isset($Alumni))
-{
-$SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
- FROM tblMember
-WHERE Email is not null ";
-}
-
 if ($SQLstring != "" )
 {
-if (isset($Preview)) 
-{
+ if (isset($Preview)) 
+ {
    echo "Parents: <BR>";
+ }
+ if ($DEBUG) {echo $SQLstring;}
+ echo "<BR>";
+ $RS1=mysqli_query($conn,$SQLstring);
+ while ($row=mysqli_fetch_array($RS1) ) 
+ {
+   $emails[$row[Email]]=1;
+  if (isset($Preview)) 
+  {
+    echo $row[Email];
+    echo "<BR>";
+  }
+ }
 }
-//echo $SQLstring;
-echo "<BR>";
-$RS1=mysqli_query($conn,$SQLstring);
-while ($row=mysqli_fetch_array($RS1) ) {
-  $emails[$row[Email]]=1;
-if (isset($Preview)) 
+
+echo "<br>";
+if ( isset($NewMembers) ) 
 {
-  echo $row[Email];
-  echo "<BR>";
-}
-}
-}
-
-
-$SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
+ $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
-WHERE Email is not null ";
+ WHERE Email is not null and MostRecentUpdateDate >= '".$CurrentYear."-05-01'";
+ if (isset($Preview)) 
+ {
+   echo "New Members: <BR>";
+ }
+ if ($DEBUG) {echo $SQLstring;}
+ echo "<BR>";
+ $RS1=mysqli_query($conn,$SQLstring);
+ while ($row=mysqli_fetch_array($RS1) ) 
+ {
+   $emails[$row[Email]]=1;
+  if (isset($Preview)) 
+  {
+    echo $row[Email];
+    echo "<BR>";
+  }
+ }
+}
+
+
+echo "<br>";
+
 if ( $Teachers == "teachers" )
 {
+ $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
+ FROM tblMember
+ WHERE Email is not null ";
   $SQLstring .= " and tblMember.MemberID in (select distinct MemberID from tblTeacher where CurrentTeacher='Yes')";
 
-if (isset($Preview)) 
-{
-echo "<BR><BR>Teachers:<BR>";
-}
-//echo $SQLstring;
-echo "<BR>";
-$RS1=mysqli_query($conn,$SQLstring);
-while ($row=mysqli_fetch_array($RS1) ) {
+ if (isset($Preview)) 
+ {
+  echo "<BR><BR>Teachers:<BR>";
+ }
+ if ($DEBUG) {echo $SQLstring;}
+ echo "<BR>";
+ $RS1=mysqli_query($conn,$SQLstring);
+ while ($row=mysqli_fetch_array($RS1) ) 
+ {
   $emails[$row[Email]]=1;
-if (isset($Preview)) 
-{
-  echo $row[Email];
-  echo "<BR>";
-}
-}
+  if (isset($Preview)) 
+  {
+    echo $row[Email];
+    echo "<BR>";
+  }
+ }
 }
 
 if ( $Admins == "admins" )
@@ -135,11 +172,14 @@ if (isset($Preview))
 if ( isset($emails))
 {
    echo "<BR>";
-//foreach(array_keys($emails) as $email)
-//{
-//   echo $email;
-//   echo "<BR>";
-//}
+ if (isset($Preview)) 
+ {
+  foreach(array_keys($emails) as $email)
+  {
+     echo $email;
+     echo "<BR>";
+  }
+ }
 } else {
    echo "No email address found";
    echo "<BR>";
