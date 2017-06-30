@@ -23,6 +23,7 @@ $firstname = $_SESSION['firstname'];
  $lastname = $_SESSION['lastname'];
 
 include("../common/DB/DataStore.php");
+include("../common/CommonParam/params.php");
 
 ?>
 
@@ -106,14 +107,22 @@ if ( $seclvl == 10 )
 
 		<td><input type="checkbox" name="ParentPC" value="primary" checked>Primary Contact Parents<BR>
 		    <input type="checkbox" name="ParentSP" value="both">Second Parents<BR>
-<!--		    <input type="checkbox" name="Students" value="student">Students</td> -->
+Limit to those took classes within: 
+<SELECT name="PCYear" >
+  <option  value="C-year" SELECTED>Current School Year </option> <!-- current schoo year -->
+  <option  value="L-year">Last School Year </option> <!-- Last school year -->
+  <option  value="2-year">Before Last School Year </option> <!-- two school year -->
+  <option  value="3-year">3 School Years </option> <!-- three school years ago -->
+</select>
+<BR>
+    		    <input type="checkbox" name="NewMembers" value="newmembers">New Members after <?php echo $CurrentYear; ?>-05-01</td> 
 										</tr>
 
 										<tr>
 		<td width="50%" align="Right" valign="Top"> </td>
 		<td><input type="checkbox"  name="Teachers" value="teachers">Teachers<BR>
 		    <input type="checkbox"  name="Admins" value="admins">School Administrators<BR>
-		    <input type="checkbox"  name="Alumni" value="alumni">Alumni (all former members)<BR>
+<!--		    <input type="checkbox"  name="Alumni" value="alumni">Alumni (all former members)<BR> -->
 											</td>
 										</tr>
 
