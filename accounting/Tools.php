@@ -354,7 +354,12 @@ and not exists (select MemberID from tblReceivable i where i.
 MemberID=m.MemberID  and i.Description='Safety Patrol Deposit ".$SchoolYear."' )";
 }
 //echo "$updatecmd<br><br>";
-//	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family patrol deposit <br>Debug info: $updatecmd <br>\n");
+$qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid ."' and i.Description='Safety Patrol Deposit ". $SchoolYear. "' ";
+$result = mysqli_query(GetDBConnection(),$qstr) or die ("failed to query exisinting membership record" . $qstr);
+$row = mysqli_fetch_array($result) or die ("failed to read row");
+if ( $row[cnt] < 1 ) {
+	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family patrol deposit <br>Debug info: $updatecmd <br>\n");
+}
 
 }
 
