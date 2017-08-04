@@ -10,14 +10,21 @@ include("../common/CommonParam/params.php");
 
 $DEBUG=0;
 
+
 $membertypeid=$_POST[MemberTypeID];
 $PCYear=$_POST[PCYear]; // value=primary
 $ParentPC=$_POST[ParentPC]; // value=primary
 $ParentSP=$_POST[ParentSP]; // value=both
-//$Students=$_POST[Students]; // value=student
+                    //$Students=$_POST[Students]; // value=student
 $Teachers=$_POST[Teachers]; // value=teachers
+ 
+
+
+
+
 $Admins=$_POST[Admins];     // value=admins
 $NewMembers=$_POST[NewMembers];     // value=newmembers
+$Cc=$_POST[Cc];
 $Subject=$_POST[Subject];
 $Message=$_POST[Message];
 $Preview=$_POST[Preview];
@@ -44,19 +51,21 @@ function goBack() {
   echo "<a href=\"MemberAccountMain.php\">My Account</a>";
 if (isset($Preview) || $DEBUG ) 
 {
-echo $membertypeid."<BR>";
-echo $From."<BR>";
-echo $ParentPC."<BR>";
-echo $ParentSP."<BR>";
-//echo $Students."<BR>";
-echo $Teachers."<BR>";
-echo $NewMembers."<BR>";
-echo $Alumni."<BR>";
-echo $Subject."<BR>";
-echo $Message ."<BR>";
-echo $Preview ."<BR>";
-echo $Send ."<BR>";
-echo "<BR>";
+echo $membertypeid."<br>";
+echo $From."<br>";
+echo $ParentPC."<br>";
+echo $ParentSP."<br>";
+//echo $Students."<br>";
+echo $Teachers."<br>";
+echo $NewMembers."<br>";
+echo $Alumni."<br>";
+echo $Cc."<br>";
+echo $Subject."<br>";
+echo $Message ."<br>";
+echo "\<pre>".$Preview."\</pre>";
+echo "<br/>";
+echo $Send ."<br>";
+echo "<br>";
 }
 
 $SQLstring="";
@@ -90,10 +99,10 @@ if ($SQLstring != "" )
 {
  if (isset($Preview)) 
  {
-   echo "Parents: <BR>";
+   echo "Parents: <br>";
  }
  if ($DEBUG) {echo $SQLstring;}
- echo "<BR>";
+ echo "<br>";
  $RS1=mysqli_query($conn,$SQLstring);
  while ($row=mysqli_fetch_array($RS1) ) 
  {
@@ -101,7 +110,7 @@ if ($SQLstring != "" )
   if (isset($Preview)) 
   {
     echo $row[Email];
-    echo "<BR>";
+    echo "<br>";
   }
  }
 }
@@ -114,10 +123,10 @@ if ( isset($NewMembers) )
  WHERE Email is not null and MostRecentUpdateDate >= '".$CurrentYear."-05-01'";
  if (isset($Preview)) 
  {
-   echo "New Members: <BR>";
+   echo "New Members: <br>";
  }
  if ($DEBUG) {echo $SQLstring;}
- echo "<BR>";
+ echo "<br>";
  $RS1=mysqli_query($conn,$SQLstring);
  while ($row=mysqli_fetch_array($RS1) ) 
  {
@@ -125,7 +134,7 @@ if ( isset($NewMembers) )
   if (isset($Preview)) 
   {
     echo $row[Email];
-    echo "<BR>";
+    echo "<br>";
   }
  }
 }
@@ -142,10 +151,10 @@ if ( $Teachers == "teachers" )
 
  if (isset($Preview)) 
  {
-  echo "<BR><BR>Teachers:<BR>";
+  echo "<br><br>Teachers:<br>";
  }
  if ($DEBUG) {echo $SQLstring;}
- echo "<BR>";
+ echo "<br>";
  $RS1=mysqli_query($conn,$SQLstring);
  while ($row=mysqli_fetch_array($RS1) ) 
  {
@@ -153,7 +162,7 @@ if ( $Teachers == "teachers" )
   if (isset($Preview)) 
   {
     echo $row[Email];
-    echo "<BR>";
+    echo "<br>";
   }
  }
 }
@@ -161,48 +170,62 @@ if ( $Teachers == "teachers" )
 if ( $Admins == "admins" )
 {
   $emails["adminteam@ynhchineseschool.org"]=1;
+  
 if (isset($Preview)) 
 {
-  echo "<BR><BR>Admins:<BR>";
+  echo "<br><br>Admins:<br>";
   echo "adminteam@ynhchineseschool.org";
-  echo "<BR>";
+  echo "<br>";
 }
+}
+
+if ( isset($Cc) )
+{
+  if (strpos($Cc, ',') !== false) {
+    $Ccs = explode(",",$Cc);
+    for($x = 0; $x < count($Ccs); $x++) {
+        $emails[ $Ccs[$x] ] = 1;
+    }
+  } else {
+    $emails[$Cc]=1;
+  }
 }
 
 if ( isset($emails))
 {
-   echo "<BR>";
+   echo "<br>";
  if (isset($Preview)) 
  {
   foreach(array_keys($emails) as $email)
   {
      echo $email;
-     echo "<BR>";
+     echo "<br>";
   }
  }
 } else {
    echo "No email address found";
-   echo "<BR>";
-   echo "<BR>";
+   echo "<br>";
+   echo "<br>";
 }
 
 
-if (isset($Send) && isset($emails))
+if (isset($Send) && isset($emails)  )
 {
-  echo "Sending ......<BR>";
-  foreach(array_keys($emails) as $email)
-  {
-     echo $email . "<BR>";
-     $to      = $email;
+  echo "Sending ......<br>";
      $headers = 'From: '. $_SESSION['firstname'] .' '.$_SESSION['lastname'] .'<'.$From . ">\r\n" .
 		'Reply-To: ' . $From                     . "\r\n" .
 		'X-Mailer: PHP/' . phpversion();
+  foreach(array_keys($emails) as $email)
+  {
+     echo $email . "<br>";
+     $to      = $email;
 
      mail($to, $Subject, $Message, $headers);
 
      sleep(2);
-  } 
-  echo "Done.<BR>";
+  }
+//   mail($Cc, $Subject, $Message, $headers);
+  echo "Done.<br>";
 } else {
  if (isset($Preview)) {
 ?>
