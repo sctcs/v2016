@@ -127,6 +127,10 @@ Limit to those took classes within:
 										</tr>
 
 										<tr>
+<td width="50%" align="Right" valign="Top">Cc: </td>
+		<td><input type="text" name="Cc" value="" size=60>
+										</tr>
+										<tr>
 											<td align="center" colspan="2">&nbsp;</td>
 										</tr>
 
