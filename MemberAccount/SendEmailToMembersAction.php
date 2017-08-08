@@ -24,7 +24,6 @@ $Teachers=$_POST[Teachers]; // value=teachers
 
 $Admins=$_POST[Admins];     // value=admins
 $NewMembers=$_POST[NewMembers];     // value=newmembers
-$Cc=$_POST[Cc];
 $Subject=$_POST[Subject];
 $Message=$_POST[Message];
 $Preview=$_POST[Preview];
@@ -59,7 +58,6 @@ echo $ParentSP."<br>";
 echo $Teachers."<br>";
 echo $NewMembers."<br>";
 echo $Alumni."<br>";
-echo $Cc."<br>";
 echo $Subject."<br>";
 echo $Message ."<br>";
 echo "\<pre>".$Preview."\</pre>";
@@ -73,7 +71,7 @@ if (  $ParentPC == "primary" || $ParentSP == "both" )
 {
 $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
-WHERE Email is not null ";
+WHERE Email is not null and ReceiveSchoolEmail='Y' ";
   $SQLstring .= " and tblMember.FamilyID  in (select a.FamilyID from tblMember a, tblClassRegistration b ,tblClass c
                   where a.MemberID=b.StudentMemberID and b.ClassID=c.ClassID ";
   if ( $PCYear =="C-year" ) 
@@ -179,18 +177,6 @@ if (isset($Preview))
 }
 }
 
-if ( isset($Cc) )
-{
-  if (strpos($Cc, ',') !== false) {
-    $Ccs = explode(",",$Cc);
-    for($x = 0; $x < count($Ccs); $x++) {
-        $emails[ $Ccs[$x] ] = 1;
-    }
-  } else {
-    $emails[$Cc]=1;
-  }
-}
-
 if ( isset($emails))
 {
    echo "<br>";
@@ -209,22 +195,21 @@ if ( isset($emails))
 }
 
 
-if (isset($Send) && isset($emails)  )
+if (isset($Send) && isset($emails))
 {
   echo "Sending ......<br>";
-     $headers = 'From: '. $_SESSION['firstname'] .' '.$_SESSION['lastname'] .'<'.$From . ">\r\n" .
-		'Reply-To: ' . $From                     . "\r\n" .
-		'X-Mailer: PHP/' . phpversion();
   foreach(array_keys($emails) as $email)
   {
      echo $email . "<br>";
      $to      = $email;
+     $headers = 'From: '. $_SESSION['firstname'] .' '.$_SESSION['lastname'] .'<'.$From . ">\r\n" .
+		'Reply-To: ' . $From                     . "\r\n" .
+		'X-Mailer: PHP/' . phpversion();
 
      mail($to, $Subject, $Message, $headers);
 
      sleep(2);
-  }
-//   mail($Cc, $Subject, $Message, $headers);
+  } 
   echo "Done.<br>";
 } else {
  if (isset($Preview)) {
