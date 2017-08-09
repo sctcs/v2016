@@ -32,8 +32,8 @@ include("../common/CommonParam/params.php");
       <li><a href="ViewAllSafetyPatrol.php" target="_blank">View All Safety Patrol Schedule</a>
       <li><a href="AssignSafetyPatrol_form.php" target="_blank">Assign Safety Patrol for a Day</a>
       <li><a href="SafetyPatrolForm.php" target="_blank">Assign Safety Patrol to a Family</a>
-      <li><a href="SchoolSafetyPatrol_email.php?date=2011-09-18&period=1" target="_blank">Safety Patrol Emails (change the date and period in URL)</a>
-      <li><a href="SchoolSafetyPatrolSigninSheet.php?date=2011-09-18" target="_blank">Safety Patrol Sign-in Sheet (change the date in URL)</a>
+      <li><a href="SchoolSafetyPatrol_email.php?date=2017-09-11&period=1" target="_blank">Safety Patrol Emails (change the date and period in URL)</a>
+      <li><a href="SchoolSafetyPatrolSigninSheet.php?date=2017-09-11" target="_blank">Safety Patrol Sign-in Sheet (change the date in URL)</a>
       <li><a href="ServedSafetyPatrol_form.php" target="_blank">Update Safety Patrol for a Served Day</a>
    </td>
  </tr>

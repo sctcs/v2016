@@ -23,36 +23,19 @@ $fids=$_POST[fids];
 
 ?>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>Safety Patrol Form</title>
-<meta http-equiv="Content-type" content="text/html; charset=gb2312" />
-<link href="../common/ynhc.css" rel="stylesheet" type="text/css">
-</head>
 
-<body>
-<table width="780" background="" bgcolor="" border="0" align="center">
-	<tr>
-		<td>
-		<?php include("../common/site-header1.php"); ?>
-		</td>
-	</tr>
-	<tr >
-		<td width="98%" >
-
-			<?php
+<?php
 
  $SQLstring = "update tblSafetyPatrol set ServedDate='". $sdate . "', Status='Served' where FamilyID in (". $fids . ") and ScheduledDate='". $sdate . "'";
-//echo $SQLstring;
+
    mysqli_query($conn,$SQLstring);
 
 
 
 ?>
-</table>
-</body>
-</html>
 
 <?php
     mysqli_close($conn);
+
  ?>
+  <a href="ManageSafetyPatrol.php">Continue</a>
