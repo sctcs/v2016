@@ -44,9 +44,6 @@ $RS1=mysqli_query($conn,$SQLstring);
   $rc=0;
 
 echo "<br>";
-echo "Valid FamilyIDs:";
-echo "<table border=1>";
-echo "<tr><th>FamilyID</th><th>Name and Address</th></tr>";
  while ($row=mysqli_fetch_array($RS1)) 
  {
   $fid=$row[FamilyID];
@@ -57,29 +54,24 @@ echo "<tr><th>FamilyID</th><th>Name and Address</th></tr>";
 //{
     $rc = $rc + 1;
 //  echo $fid . " is valid";
-    echo "<tr><td>".$fid."</td><td>".$row[FirstName]." "
+    $info[$fid] =  $row[FirstName]." "
                                     .$row[LastName].", "
                                     .$row[HomeAddress].", "
                                     .$row[HomeCity].", "
                                     .$row[HomeState]." "
-                                    .$row[HomeZip]."</td></tr> ";
+                                    .$row[HomeZip];
 //  echo "<br>";
-       if ($rc ==1) 
-       { 
-         $valid_fids =  $fid ;
-       } else {
-         $valid_fids .= "," . $fid ;
-       }
 
     $valid[$fid]=1;
 //} else {
 //  echo $fid . " is invalid";
 //}
  }
-echo "</table>";
 echo "<p>Note: Please verify name and address against the check received.</p>";
 
-echo "<br><br>";
+
+echo "<table border=1>";
+echo "<tr><th>FamilyID</th><th>Name and Address</th></tr>";
   $fids = explode(",", $familyids);
   $count = 0; 
     
@@ -90,11 +82,20 @@ echo "<br><br>";
             $count++; 
         if ( !isset($valid[$value]))
         {
-          echo "<font color=red>".$value . "</font> is invalid";
+          echo "<font color=red>".$value . "</font> is invalid<br>";
+        } else {
+          echo $value ." is valid<br>";
+    echo "<tr><td>".$value."</td><td>".$info[$value]. "</td></tr> ";
+       if ($count ==1) 
+       { 
+         $valid_fids =  $value ;
+       } else {
+         $valid_fids .= "," . $value ;
+       }
         }
-//      echo $value ."<br>";
      }
     } 
+echo "</table>";
   
   echo "<br>";
   echo "<br>";
