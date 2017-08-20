@@ -58,6 +58,13 @@ if ($_REQUEST['mainmenu']=='off')
 }
                         PaymentViewListAll();
                 break;
+                case 'PaymentViewListAllExt':
+if ($_REQUEST['mainmenu']=='off')
+{
+  print "<a href=\"index.php\">Payment Management</a>";
+}
+                        PaymentViewListAllExt();
+                break;
 
 
                 case 'ReceivableViewEdit':
