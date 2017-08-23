@@ -54,7 +54,7 @@ include("../common/CommonParam/params.php");
 		</td>
 	</tr>
 	<tr >
-		<td width="98%" bgcolor="#993333">
+		<td width="98%" bgcolor="#993333"> 
 			<table height="360" width="100%" border="0" bgcolor="white">
 				<tr>
 					<td width="1%" align="center" valign="top">
@@ -69,7 +69,7 @@ include("../common/CommonParam/params.php");
 					<?php
 
 						$SQLstring = "select sp.FamilyID,sp.Year,sp.Term,sp.ChildClass,sp.Period,sp.ScheduledDate,sp.ServedDate,sp.Status   from tblSafetyPatrol sp, tblMember m  "
-						            ."where sp.FamilyID=m.FamilyID  and m.PrimaryContact='Yes' ";
+						            ."where sp.FamilyID=m.FamilyID  and m.PrimaryContact='Yes' and sp.Year>2014 ";
                                       if ( $date != "" ) {
          					$SQLstring .= " and sp.ScheduledDate='". $date ."' ";
  					}
@@ -85,6 +85,7 @@ include("../common/CommonParam/params.php");
 					?>
 					<td align="center" valign="top">
 						<table width="100%">
+					<tr><td align="left" ><a href="ManageSafetyPatrol.php">Manage Safety Patrol</a></td></tr>
 							<tr>
 								<td align="center"><BR>Safety Patrol Schedule</td>
 							</tr>
@@ -100,7 +101,7 @@ if ($date != "" ) {
    echo $date;
         echo "<a href=\"ViewAllSafetyPatrol.php\">All Dates</a>";
 } else {
-   $sqlstr="select distinct Year, Term, ScheduledDate from tblSafetyPatrol order by Year, Term, ScheduledDate";
+   $sqlstr="select distinct Year, Term, ScheduledDate from tblSafetyPatrol where Year>2014 order by Year, Term, ScheduledDate";
    $rs=mysqli_query($conn,$sqlstr);
    ?>
    <table  CLASS="page" cellpadding=1 cellspacing=1  border="1" width="100%">

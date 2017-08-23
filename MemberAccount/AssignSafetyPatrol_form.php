@@ -89,7 +89,7 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
 </table> <br><br><br>
 <input type="submit" value="View Output">
 <input type="submit"   name="save" value="Save">
-<input type="button"   onClick="window.location.href='AssignSafetyPatrol_form.php'" value="Cancel">
+<input type="button"   onClick="window.location.href='ManageSafetyPatrol.php'" value="Cancel">
 </form>
 </td>
 </tr>

@@ -48,9 +48,9 @@ $sdate=$_POST[sdate];
 select distinct v.FamilyID, c.Year,c.Term, concat_ws('-', v.GradeOrSubject,v.ClassNumber) as ChildClass, c.Period,'".$sdate . "' as ScheduledDate
 from viewClassStudents v, tblClass c
 where v.ClassID=c.ClassID
-and c.IsLanguage='Yes'
+
 and c.CurrentClass='Yes'
-and c.Period='" . $period . "'
+and c.Period in ('" . $period . "','". ($period + 1)."')  
 and c.Term='" . $term . "'
 and c.Year='" . $year . "'
 and v.FamilyID not in
@@ -61,8 +61,8 @@ and p.Year='". $year . "'
 and v.FamilyID not in
 (SELECT distinct m.FamilyID FROM `tblClass` c,tblMember m where c.TeacherMemberID=m.MemberID and c.CurrentClass='Yes'
 )
-and v.FamilyID not in (64,67,54,195,1092)
-order by v.FamilyID
+and v.FamilyID not in (785,1600,1891,2401,2067,37,54,210)
+
 limit " . $nf ;
 //echo $SQLstring;
      $RS1=mysqli_query($conn,$SQLstring);
