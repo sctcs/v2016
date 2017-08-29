@@ -34,6 +34,12 @@ $term=$_GET[term];
 </head>
 
 <body>
+ <?php
+    $SQLstring="SELECT Date from tblCalendar where (Year='" . $CurrentYear ."' and Term='". $CurrentTerm . "') or (Year='". $NextYear ."' and Term='". $NextTerm ."')";  
+//  echo $SQLstring;
+    $RS1=mysqli_query($conn,$SQLstring) ;
+?>
+
 <table width="780" background="" bgcolor="" border="0" align="center">
 	<tr>
 		<td>
@@ -82,7 +88,15 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
         <option value="Spring">Spring</option> 
 	<?php }  ?>
         </td></tr>
-  <tr><td align=right>Scheduled Date: </td><td><input type="text" name="sdate" value="<?php echo $sdate; ?>"> (YYYY-MM-DD) </td></tr>
+<!--  <tr><td align=right>Scheduled Date: </td><td><input type="text" name="sdate" value="<?php echo $sdate; ?>"> (YYYY-MM-DD) </td></tr> -->
+  <tr><td align=right>Scheduled Date: </td><td>
+          <SELECT            name="sdate" > 
+  <?php 
+    while($RSA1=mysqli_fetch_array($RS1)) {
+       echo "   <OPTION value='".$RSA1[Date] . "'>". $RSA1[Date] . "</OPTION>";
+    } ?>
+          </SELECT>
+     </td></tr> 
   <tr><td align=right>Period: </td><td><input type="text" name="period" value="<?php echo $pd; ?>"> (1 or 3)  </td></tr>
   <tr><td align=right>Number of Families: </td><td><input type="text" name="nf" value="<?php echo $nf; ?>">  </td></tr>
 							
