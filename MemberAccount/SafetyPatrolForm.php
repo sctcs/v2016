@@ -31,7 +31,7 @@ if ( $mon > 6) {
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Safety Patrol Form</title>
+<title>title>ssign Safety Patrol to a Family</title>
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
 <link href="../common/ynhc.css" rel="stylesheet" type="text/css">
 </head>
@@ -63,8 +63,9 @@ $spid = $_GET[spid];
 
 			?>
 				<table width="100%">
+<tr><td align="left" ><a href="ManageSafetyPatrol.php">Manage Safety Patrol</a></td></tr>
 					<tr>
-						<td align="center"><BR>Safety Patrol Schedule</td>
+						<td align="center">Assign Safety Patrol to a Family</td>
 					</tr>
 
 

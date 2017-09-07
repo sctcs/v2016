@@ -70,7 +70,7 @@ limit " . $nf ;
 ?>
 <table width="100%">
 <tr>
-<td align="center"><BR>Assign Safety Patrol  for a Day</td>
+<td align="center"><BR>Assign Safety Patrol for a Day</td>
 </tr>
 
 <tr>
@@ -136,7 +136,7 @@ for ($i=1; $i <= count($rs); ++$i) {
 </tr>
 <tr>
 <td align="center">&nbsp;
-<a href="AssignSafetyPatrol_form.php?sdate=<?php echo $sdate; ?>&nf=<?php echo $nf;?>&pd=<?php echo $period;?>&term=<?php echo $term;?>">OK</a>
+<a href="AssignSafetyPatrol_form.php?sdate=<?php echo $sdate; ?>&nf=<?php echo $nf;?>&pd=<?php echo $period;?>&term=<?php echo $term;?>&year=<?php echo $year;?>">OK</a>
 </td>
 </tr>
 </table>

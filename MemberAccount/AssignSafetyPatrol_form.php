@@ -15,7 +15,6 @@ include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 
 $today = getdate();
-$year = $today[year];
 $mon = $today[mon];
 //if ( $mon > 6) {
 //	$term = "Fall";
@@ -23,7 +22,11 @@ $mon = $today[mon];
 //	$term = "Spring";
 //}
 $term=$_GET[term];
-
+$year=$_GET[year];
+if (!isset($year) || $year =="") 
+{
+    $year = $today[year];
+}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,6 +67,8 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
 }
 ?>
 <table width="100%">
+<tr><td align="left" ><a href="ManageSafetyPatrol.php">Manage Safety Patrol</a></td></tr>
+
 <tr>
 <td align="center"><BR>Assign Safety Patrol  for a Day</td>
 </tr>
@@ -93,7 +98,11 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
           <SELECT            name="sdate" > 
   <?php 
     while($RSA1=mysqli_fetch_array($RS1)) {
+      if ($sdate != "" && $sdate == $RSA1[Date] ) {
+       echo "   <OPTION value='".$RSA1[Date] . "' SELECTED>". $RSA1[Date] . "</OPTION>";
+      } else {
        echo "   <OPTION value='".$RSA1[Date] . "'>". $RSA1[Date] . "</OPTION>";
+      }
     } ?>
           </SELECT>
      </td></tr> 

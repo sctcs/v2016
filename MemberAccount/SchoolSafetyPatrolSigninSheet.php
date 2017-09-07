@@ -31,13 +31,14 @@ include("../common/CommonParam/params.php");
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>All Safety Patrol Schedule</title>
+<title>Safety Patrol Sign-in Sheet</title>
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
 <link href="../common/ynhc.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+<a href="ManageSafetyPatrol.php">Manage Safety Patrol</a>
 
 <?php
 
