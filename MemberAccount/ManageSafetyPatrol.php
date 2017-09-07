@@ -25,6 +25,7 @@ include("../common/CommonParam/params.php");
 </head>
 
 <body>
+<a href="MemberAccountMain.php">My Account</a>
 
  <?php
     $SQLstring="SELECT Date from tblCalendar where (Year='" . $CurrentYear ."' and Term='". $CurrentTerm . "') or (Year='". $NextYear ."' and Term='". $NextTerm ."')";  
