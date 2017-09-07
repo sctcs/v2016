@@ -95,15 +95,34 @@ include("../common/CommonParam/params.php");
                                 <BR>
                                 <input type="checkbox" name="NewMembers" value="newmembers">New Members after <?php echo $CurrentYear; ?>-05-01</td> 
                         </tr>
-
                         <tr>
                             <td width="10%" align="Right" valign="Top"> </td>
-                            <td><input type="checkbox"  name="Teachers" value="teachers">Teachers<BR>
-                                <input type="checkbox"  name="Admins" value="admins">School Administrators<BR>
-            <!--		<input type="checkbox"  name="Alumni" value="alumni">Alumni (all former members)<BR> -->
+                            <td><input type="checkbox"  name="Teachers" value="teachers">Teachers<br>
+                                <input type="checkbox"  name="Admins" value="admins">School Administrators<br>
+                                <input type="checkbox" name="Principal" value="principal">School Principal<br>
+
+<!--		<input type="checkbox"  name="Alumni" value="alumni">Alumni (all former members)<BR> -->
                             </td>
                         </tr>
 
+                        <tr>
+                            <td align="center" colspan="2">&nbsp;</td>
+                        </tr>
+                        
+                         <tr>
+                            <td width="10%" align="Right" valign="Top">CC: &nbsp;</td>
+                            <td>
+<!--                                <input type="text" name="cc" size="60">-->
+                            <input type="email" multiple value="" name="cc" size="60">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%" align="Right" valign="Top">BCC: </td>
+                            <td> 
+<!--                           <input type="email" multiple pattern="" name="bcc" size="60">-->
+                            <input type="email" multiple value="" name="bcc" size="60">
+                            </td>
+                        </tr>
                         <tr>
                             <td align="center" colspan="2">&nbsp;</td>
                         </tr>
