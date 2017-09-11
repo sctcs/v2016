@@ -283,10 +283,10 @@ $rw12=mysqli_fetch_array($rs12) ;
 $reg4currentyear=$rw12[Reg];
 
 										    echo "<tr><td colspan=4 align=\"right\">$SchoolYear Family Membership Fee </td><td align=center>$". $fmemberfee ."</td></tr>";
-									//	    echo "<tr><td colspan=4 align=\"right\">$SchoolYear Parent-Duty Deposit (Refundable)</td><td align=center>$". $PARENT_DUTY_FEE ."</td></tr>";
+										    echo "<tr><td colspan=4 align=\"right\">$SchoolYear Parent-Duty Deposit (Refundable)</td><td align=center>$". $PARENT_DUTY_FEE ."</td></tr>";
 									//	    if ( $rw9[Balance] >= 0  ) {
 										      echo "<tr><td colspan=4 align=\"right\">Outstanding Balance of past terms <br><a href=\"../accounting/familyAccountSummary.php?date=".$PAST_BALANCE_DATE."\">see Account Detail</a></td><td align=center>$". $rw9[Balance]  ."</td></tr>";
-										      $total_due = ($totalfee + $fmemberfee + $rw9[Balance] + $PARENT_DUTY_FEE );
+		      $total_due = ($totalfee + $fmemberfee + $reg4currentyear + $rw9[Balance] + $PARENT_DUTY_FEE );
 									//	    } else {
 									//	      $total_due = ($totalfee + $fmemberfee  +                $PARENT_DUTY_FEE ); // not to apply credit automatically
 									//	    }
@@ -298,13 +298,19 @@ $reg4currentyear=$rw12[Reg];
 											<tr><td align=\"right\">before or on <b>".$REG_REG_DEADLINE."</b>: </td><td> $REG_REG_FEE </td></tr>
 											<tr><td align=\"right\"> after <b>".$REG_REG_DEADLINE."</b>: </td><td> $LATE_REG_FEE </td></tr>
 											</table>
-</td><td>reg fee:<br>$". ($reg4currentyear + 0.0) . "</td></tr>";
+</td><td>reg fee:<br>$";
+if ($reg4currentyear > 0) { echo $reg4currentyear; }
+echo                            "</td></tr>";
+
 //</td><td>reg fee:<br>".$EARLY_REG_FEE . " or " .$REG_REG_FEE . " or " . $LATE_REG_FEE ."</td></tr>";
 
-echo "<tr><td colspan=4 align=\"right\">Total Due: </td><td align=center>$". ($total_due + $reg4currentyear) ."  </td></tr>";
+echo "<tr><td colspan=4 align=\"right\">Total Due ";
+if ($reg4currentyear == 0) { echo "<b>(This does not include the registration fee)</b>"; }
+
+echo ": </td><td align=center>$". ($total_due                   ) ."  </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Discount or Credit : </td><td align=center>$". ($disc4currentyear + 0.0) ."  </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Paid since ".$PAST_BALANCE_DATE." : </td><td align=center>$". ($paid4currentyear + 0.0) ."  </td></tr>";
-echo "<tr><td colspan=4 align=\"right\">Current Due: </td><td align=center>$". ($total_due + $disc4currentyear -  $paid4currentyear+ $reg4currentyear) ." " ." </td></tr>";
+echo "<tr><td colspan=4 align=\"right\">Current Due: </td><td align=center>$". ($total_due + $disc4currentyear -  $paid4currentyear                  ) ." " ." </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td align=center>$" ."&nbsp;&nbsp;&nbsp;&nbsp; </td></tr>";
 
 
@@ -354,7 +360,8 @@ echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td 
 							  //}
 
 //                                echo " You can pay the total due in one payment or two payments. If in two payments, the first payment (due date $FIRST_PAYMENT_DUEDATE) should at least include all annual fees (membership and textbook), parent-duty deposit, and class tuition of Fall term. The second payment (due date $SECOND_PAYMENT_DUEDATE) should be for the class tuition of Spring term.<br><br>";
-								echo " Make check payable to <b>". $SCHOOLNAME ."</b>.";
+							echo "<p style='font-color: red; font-size: 130%;'>SCCS will not accept cash. We will ONLY accept checks!</b></p>"	;
+                                                        echo " Make check payable to <b>". $SCHOOLNAME ."</b>.";
 								echo " Mark on the check your family ID (".$_SESSION[family_id].") and student names. You can pay by one of the following methods:";
 
 							  // if ( $childcount > 1) {
@@ -365,14 +372,14 @@ echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td 
 
 							    <br><br>Method 1 (preferred): mail this payment voucher and a check to: <br><br>
                                 <b> <?php echo $SCHOOL_PAY_ADDRESS_WEB; ?><br> </b>
-								<br><br>Method 2: bring this payment voucher and check/cash to school office on the first school day in Fall.
+								<br><br>Method 2: bring this payment voucher and check to school office on the first school day in Fall.
 
 
 
 								<!-- <br><br>
 								Your payment has to be received by <?php echo $LATE_REG_DEADLINE; ?> to avoid the late registration fee of $20 or by <?php echo $REG_REG_DEADLINE; ?> to avoid the regular registration fee of $10.
 								-->
-
+<br><br> Contact <a href="finance@ynhchineseschool.org">finance@ynhchineseschool.org</a> for any question regarding your payment.
 								<br><br>
 								Thank you for your support.
 								<br><br>

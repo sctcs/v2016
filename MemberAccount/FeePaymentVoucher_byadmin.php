@@ -10,7 +10,12 @@ if ( $seclvl > 20 && $seclvl !=55 )
   exit();
 }
 
-$familyid = $_GET[fid];
+$familyid = $_GET['fid'];
+
+$mid = $_SESSION['memberid'];
+$mtype =$_SESSION['membertype'];
+
+//echo "session mid= ".$mid. "<br> fid =". $familyid. "<br> membertype=".$mtype."<br>";
 if(isset($familyid))
 {  }
 else
@@ -25,6 +30,7 @@ include("../common/CommonParam/params.php");
 
 // signed the waiver as a parent
 if ( $_SESSION['membertype'] == 50 ) {
+//echo $_SESSION['memberid']. "= session memberid ". $_SESSION['familyid']. " = session familyid";
 
 	$SQLstring = "select MB.*   from tblMember MB  "
 				."where   MB.MemberID=".$_SESSION['memberid'];
@@ -38,6 +44,8 @@ if ( $_SESSION['membertype'] == 50 ) {
   //} else {
     header( 'Location: ParentsWaiver.php' );
   }
+} elseif ($_SESSION['membertype'] < 21) {
+    $SQLstring = "SELECT MB.* FROM tblMember MB WHERE MB.FamilyID=".$familyid;
 }
 
 ?>
@@ -46,7 +54,7 @@ if ( $_SESSION['membertype'] == 50 ) {
 <head>
 <title>Fee Payment Voucher</title>
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
-<link href="../common/ynhc.css" rel="stylesheet" type="text/css">
+<link href="../common/ynhc.css" rel="stylesheet" type="text/css"/>
 
 <script language="JavaScript">
 
@@ -60,7 +68,7 @@ if ( $_SESSION['membertype'] == 50 ) {
 </head>
 
 <body>
-<table width="780" background="" bgcolor="" border="0" align="center">
+<table width="780" border="0" align="center">
 	<tr>
 		<td align="right">
 		<a href="JavaScript:window.print();">Print</a>
@@ -73,100 +81,100 @@ if ( $_SESSION['membertype'] == 50 ) {
 		</td>
 	</tr>
 	<tr >
-		<td width="98%" bgcolor="">
-			<table height="360" width="100%" border="0" bgcolor="white">
-				<tr>
-					<td width="1%" align="center" valign="top">
-						<table width="100%">
+<td width="98%" bgcolor="">
+        <table width="100%" border="0" bgcolor="white">
+                <tr>
+                        <td width="1%" align="center" valign="top">
+                                <table width="100%">
 
-							<tr><td><?php //include("../common/site-header4Profilefolder.php"); ?></td></tr>
-						</table>
-
-
-					</td>
-
-					<?php
+                                        <tr><td><?php //include("../common/site-header4Profilefolder.php"); ?></td></tr>
+                                </table>
 
 
-						$SQLstring = "select DISTINCT MB.*   from tblMember MB INNER JOIN tblLogin Login ON MB.MemberID = Login.MemberID  "
-						            ."where   MB.FamilyID=".$familyid;
-						//echo "see: ".$SQLstring;
-						$RS1=mysqli_query($conn,$SQLstring);
-						//$RSA1=mysqli_fetch_array($RS1);
+                        </td>
 
-						$SQLpc = "select *   from tblMember  where tblMember.FamilyID=".$familyid." and PrimaryContact='Yes'";
-						$RS2=mysqli_query($conn,$SQLpc);
-						$RSA2=mysqli_fetch_array($RS2);
-
-					?>
-					<td align="center" valign="top">
-						<table width="100%">
-                            <tr>
-									<td align="left"><?php echo date("m/d/Y"); ?></td>
-							</tr>
-							<tr>
-								<td align="center">Payment Voucher</td>
-							</tr>
+<?php
 
 
-							<tr>
-								<td align="left">
-								<?php echo $RSA2[FirstName]." ".$RSA2[LastName]."<br>";
-								      echo $RSA2[HomeAddress]."<br>";
-								      echo $RSA2[HomeCity].", ".$RSA2[HomeState]." ".$RSA2[HomeZip]."<br>";
-								      echo "<b>Family ID: ". $familyid. "</b>";
-								?>
-								<br><br>Dear Parent, <br><br>You have registered the following class(es):</td>
-							</tr>
-							<tr>
-								<td>
-									<table  CLASS="page" cellpadding=1 cellspacing=1  border="1" width="100%">
+        $SQLstring = "select DISTINCT MB.*   from tblMember MB INNER JOIN tblLogin Login ON MB.MemberID = Login.MemberID  "
+                    ."where   MB.FamilyID=".$familyid;
+        //echo "see: ".$SQLstring;
+        $RS1=mysqli_query($conn,$SQLstring);
+        //$RSA1=mysqli_fetch_array($RS1);
 
-										<tr align=center>
-											<td>ID</td>
-											<td>Name</td>
-											<td>Classes Registered<br>for <?php echo $SchoolYear; ?></td>
-                                            <td>Book fee</td>
-											<td>Subtotal</td>
+        $SQLpc = "select *   from tblMember  where tblMember.FamilyID=".$familyid." and PrimaryContact='Yes'";
+        $RS2=mysqli_query($conn,$SQLpc);
+        $RSA2=mysqli_fetch_array($RS2);
+
+?>
+                        <td align="center" valign="top">
+                                <table width="100%">
+            <tr>
+                                                        <td align="left"><?php echo date("m/d/Y"); ?></td>
+                                        </tr>
+                                        <tr>
+                                                <td align="center">Payment Voucher</td>
+                                        </tr>
 
 
-										</tr>
-										<form action="EditStudentInfo.php" method="post">
-										<?php
-										    $totalfee=0;
-											$childcount=0;
-											$hasoldstudent=0;
-										while($RSA1=mysqli_fetch_array($RS1))
-										{
-										   //$oldstudent=0;
+                                        <tr>
+                                                <td align="left">
+                                                <?php echo $RSA2[FirstName]." ".$RSA2[LastName]."<br>";
+                                                      echo $RSA2[HomeAddress]."<br>";
+                                                      echo $RSA2[HomeCity].", ".$RSA2[HomeState]." ".$RSA2[HomeZip]."<br>";
+                                                      echo "<b>Family ID: ". $familyid. "</b>";
+                                                ?>
+                                                <br/><br/>Dear Parent, <br/><br/>You have registered the following class(es):</td>
+                                        </tr>
+                                        <tr>
+                                                <td>
+                                                        <table  CLASS="page" cellpadding=1 cellspacing=1  border="1" width="100%">
 
-										?>
-										<tr align=center>
-											<td><?php echo $RSA1[MemberID];?></td>
-											<td align="left"><?php echo $RSA1[LastName].", ".$RSA1[FirstName];?></td>
-											<td align=left nowrap>
-											<?php // class registration
-											   $sql5 = "SELECT tblClass.ClassID, tblClass.GradeOrSubject, tblClass.ClassNumber, tblClass.ClassFee,tblClass.Term, tblClass.Classroom,tblClass.Period,tblClass.IsLanguage 
-											              FROM tblClassRegistration,tblClass
-											             WHERE tblClassRegistration.StudentMemberID = '". $RSA1[MemberID] ."' AND tblClass.CurrentClass='Yes' AND tblClassRegistration.Status != 'Dropped'"
-											                  . " AND tblClass.ClassID=tblClassRegistration.ClassID ORDER BY tblClass.Term,tblClass.GradeOrSubject, tblClass.ClassNumber";
-											          //echo $sql5;
+                                                                <tr align=center>
+                                                                        <td>ID</td>
+                                                                        <td>Name</td>
+                                                                        <td>Classes Registered<br>for <?php echo $SchoolYear; ?></td>
+                            <td>Book fee</td>
+                                                                        <td>Subtotal</td>
 
-                                               // old student?
-											   $sql6 = "SELECT count(*) as  count
-											              FROM tblClassRegistration,tblClass
-											             WHERE tblClassRegistration.StudentMemberID = '". $RSA1[MemberID] ."' AND tblClass.Year='" .$LastYear. "' AND tblClass.Term ='". $LastTerm."'"
-											                  . " AND tblClass.ClassID=tblClassRegistration.ClassID ORDER BY tblClass.GradeOrSubject, tblClass.ClassNumber";
-											          //echo $sql6;
-											          $rs6=mysqli_query($conn,$sql6);
-													  $rw6=mysqli_fetch_array($rs6) ;
-													  //$oldstudent=$rw6[count];
 
-											          $fee = 0;
-											          $feetxtbk = 0;
+                                                                </tr>
+                                                                <form action="EditStudentInfo.php" method="post">
+                                                                <?php
+                                                                    $totalfee=0;
+                                                                        $childcount=0;
+                                                                        $hasoldstudent=0;
+                                                                while($RSA1=mysqli_fetch_array($RS1))
+                                                                {
+                                                                   //$oldstudent=0;
 
-													  $rs5=mysqli_query($conn,$sql5);
-													  while ( $rw5=mysqli_fetch_array($rs5) ) {
+                                                                ?>
+                                                                <tr align=center>
+                                                                        <td><?php echo $RSA1[MemberID];?></td>
+                                                                        <td align="left"><?php echo $RSA1[LastName].", ".$RSA1[FirstName];?></td>
+                                                                        <td align=left nowrap>
+                                                                        <?php // class registration
+                                                                           $sql5 = "SELECT tblClass.ClassID, tblClass.GradeOrSubject, tblClass.ClassNumber, tblClass.ClassFee,tblClass.Term, tblClass.Classroom,tblClass.Period,tblClass.IsLanguage 
+                                                                                      FROM tblClassRegistration,tblClass
+                                                                                     WHERE tblClassRegistration.StudentMemberID = '". $RSA1[MemberID] ."' AND tblClass.CurrentClass='Yes' AND tblClassRegistration.Status != 'Dropped'"
+                                                                                          . " AND tblClass.ClassID=tblClassRegistration.ClassID ORDER BY tblClass.Term,tblClass.GradeOrSubject, tblClass.ClassNumber";
+                                                                                  //echo $sql5;
+
+                               // old student?
+                                                                           $sql6 = "SELECT count(*) as  count
+                                                                                      FROM tblClassRegistration,tblClass
+                                                                                     WHERE tblClassRegistration.StudentMemberID = '". $RSA1[MemberID] ."' AND tblClass.Year='" .$LastYear. "' AND tblClass.Term ='". $LastTerm."'"
+                                                                                          . " AND tblClass.ClassID=tblClassRegistration.ClassID ORDER BY tblClass.GradeOrSubject, tblClass.ClassNumber";
+                                                                                  //echo $sql6;
+                                                                                  $rs6=mysqli_query($conn,$sql6);
+                                                                                          $rw6=mysqli_fetch_array($rs6) ;
+                                                                                          //$oldstudent=$rw6[count];
+
+                                                                                  $fee = 0;
+                                                                                  $feetxtbk = 0;
+
+                                                                                          $rs5=mysqli_query($conn,$sql5);
+                                                                                          while ( $rw5=mysqli_fetch_array($rs5) ) {
 													     echo "[".$rw5[ClassID]."]".$rw5[GradeOrSubject].".".$rw5[ClassNumber ]." (";
 
 if ($rw5[IsLanguage] == 'Yes' || strpos($rw5[GradeOrSubject],"two periods") != false )
@@ -258,8 +266,8 @@ echo $period;
 										      $fmemberfee = 0; // old family
 										  }
 
-                                        // balance from last year
-                                        $sql9 = "select charge.FamilyID,Receivable,Payment, Receivable-Payment Balance  from
+ // balance from last year
+  $sql9 = "select charge.FamilyID,Receivable,Payment, Receivable-Payment Balance  from
 (select  FamilyID, sum(Amount) Receivable from tblReceivable where DateTime < '".$PAST_BALANCE_DATE."' group by FamilyID) charge
 left join
 (select  sum(Amount) Payment, FamilyID from tblPayment where Date < '".$PAST_BALANCE_DATE."' group by FamilyID) pay
@@ -287,26 +295,32 @@ $rs12=mysqli_query($conn,$sql12);
 $rw12=mysqli_fetch_array($rs12) ;
 $reg4currentyear=$rw12[Reg];
 
-										    echo "<tr><td colspan=4 align=\"right\">$SchoolYear Family Membership Fee </td><td align=center>$". $fmemberfee ."</td></tr>";
-									//	    echo "<tr><td colspan=4 align=\"right\">$SchoolYear Parent-Duty Deposit (Refundable)</td><td align=center>$". $PARENT_DUTY_FEE ."</td></tr>";
-									//	    if ( $rw9[Balance] >= 0  ) {
-										      echo "<tr><td colspan=4 align=\"right\">Outstanding Balance of past terms <br><a href=\"../accounting/familyAccountSummary.php?date=".$PAST_BALANCE_DATE."\">see Account Detail</a></td><td align=center>$".($rw9[Balance] + 0.0)  ."</td></tr>";
-										      $total_due = ($totalfee + $fmemberfee + $rw9[Balance] + $PARENT_DUTY_FEE );
-									//	    } else {
-									//	      $total_due = ($totalfee + $fmemberfee  +                $PARENT_DUTY_FEE ); // not to apply credit automatically
-									//	    }
+echo "<tr><td colspan=4 align=\"right\">$SchoolYear Family Membership Fee </td><td align=center>$". $fmemberfee ."</td></tr>";
+echo "<tr><td colspan=4 align=\"right\">$SchoolYear Parent-Duty Deposit (Refundable)</td><td align=center>$". $PARENT_DUTY_FEE ."</td></tr>";
+//	    if ( $rw9[Balance] >= 0  ) {
+  echo "<tr><td colspan=4 align=\"right\">Outstanding Balance of past terms <br><a href=\"../accounting/familyAccountSummary.php?fid=".$familyid."&date=".$PAST_BALANCE_DATE."\">see Account Detail</a></td><td align=center>$".($rw9[Balance] + 0.0)  ."</td></tr>";
+  $total_due = ($totalfee + $fmemberfee + $rw9[Balance] + $PARENT_DUTY_FEE );
+//	    } else {
+//	      $total_due = ($totalfee + $fmemberfee  +                $PARENT_DUTY_FEE ); // not to apply credit automatically
+//	    }
 
 //								    echo "<tr><td colspan=4 align=\"left\">Registration Fee (payment received date is postmark day if by mail): <table><tr><td align=\"right\">pay before or on ".$EARLY_REG_DEADLINE.": </td><td> $EARLY_REG_FEE </td></tr><tr><td align=\"right\">after ".$EARLY_REG_DEADLINE." and before or on ".$REG_REG_DEADLINE.": </td><td> $REG_REG_FEE </td></tr><tr><td align=\"right\"> after ".$REG_REG_DEADLINE.": </td><td> $LATE_REG_FEE </td></tr></table></td><td>&nbsp;reg. fee</td></tr>";
-										    echo "<tr><td colspan=4 align=\"left\">Registration Fee (payment received date is by postmark date if by mail): 
-											<table>
-											<tr><td align=\"right\">pay before or on <b>".$EARLY_REG_DEADLINE."</b>: </td><td> $EARLY_REG_FEE </td></tr>
-											<tr><td align=\"right\">before or on <b>".$REG_REG_DEADLINE."</b>: </td><td> $REG_REG_FEE </td></tr>
-											<tr><td align=\"right\"> after <b>".$REG_REG_DEADLINE."</b>: </td><td> $LATE_REG_FEE </td></tr>
-											</table>
-</td><td>reg fee:<br>$". ($reg4currentyear + 0.0) . "</td></tr>";
+echo "<tr><td colspan=4 align=\"left\">Registration Fee (payment received date is by postmark date if by mail): 
+    <table>
+    <tr><td align=\"right\">pay before or on <b>".$EARLY_REG_DEADLINE."</b>: </td><td> $EARLY_REG_FEE </td></tr>
+    <tr><td align=\"right\">before or on <b>".$REG_REG_DEADLINE."</b>: </td><td> $REG_REG_FEE </td></tr>
+    <tr><td align=\"right\"> after <b>".$REG_REG_DEADLINE."</b>: </td><td> $LATE_REG_FEE </td></tr>
+    </table> 
+    
+    
+   </td><td>reg fee:<br>$". ($reg4currentyear + 0.0) . "</td></tr>";
+                                                                                    
+                                                                                   
 //</td><td>reg fee:<br>".$EARLY_REG_FEE . " or " .$REG_REG_FEE . " or " . $LATE_REG_FEE ."</td></tr>";
 
-echo "<tr><td colspan=4 align=\"right\">Total Due: </td><td align=center>$". ($total_due + $reg4currentyear) ."  </td></tr>";
+echo "<tr><td colspan=4 align=\"right\">Total Due ";
+if ($reg4currentyear == 0 ) { echo "<b>(This does not include the registration fee)</b>";}
+echo ": </td><td align=center>$". ($total_due + $reg4currentyear) ."  </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Discount or Credit : </td><td align=center>$". ($disc4currentyear + 0.0) ."  </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Paid since ".$PAST_BALANCE_DATE." : </td><td align=center>$". ($paid4currentyear + 0.0) ."  </td></tr>";
 echo "<tr><td colspan=4 align=\"right\">Current Due: </td><td align=center>$". ($total_due + $disc4currentyear -  $paid4currentyear+ $reg4currentyear) ." " ." </td></tr>";
@@ -314,10 +328,6 @@ echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td 
 
 
 										  ?>
-
-
-
-
 
 										<input type="hidden" name="Container">
 										</form>
@@ -359,7 +369,8 @@ echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td 
 							  //}
 
 //                                echo " You can pay the total due in one payment or two payments. If in two payments, the first payment (due date $FIRST_PAYMENT_DUEDATE) should at least include all annual fees (membership and textbook), parent-duty deposit, and class tuition of Fall term. The second payment (due date $SECOND_PAYMENT_DUEDATE) should be for the class tuition of Spring term.<br><br>";
-								echo " Make check payable to <b>". $SCHOOLNAME ."</b>.";
+							echo "<p style='color: red; font-size: 130%;'><b>SCCS will not accept cash. We ONLY accept checks!</b></p>";	
+                                                        echo " Make check payable to <b>". $SCHOOLNAME ."</b>.";
 								echo " Mark on the check your family ID (". $familyid .") and student names. You can pay by one of the following methods:";
 
 							  // if ( $childcount > 1) {
@@ -370,14 +381,14 @@ echo "<tr><td colspan=4 align=\"right\">Actual amount in this payment: </td><td 
 
 							    <br><br>Method 1 (preferred): mail this payment voucher and a check to: <br><br>
                                 <b> <?php echo $SCHOOL_PAY_ADDRESS_WEB; ?><br> </b>
-								<br><br>Method 2: bring this payment voucher and check/cash to school office on the first school day in Fall.
+								<br>Method 2: bring this payment voucher and check to school office on the first school day in Fall.
 
 
 
 								<!-- <br><br>
 								Your payment has to be received by <?php echo $LATE_REG_DEADLINE; ?> to avoid the late registration fee of $20 or by <?php echo $REG_REG_DEADLINE; ?> to avoid the regular registration fee of $10.
 								-->
-
+<br><br>Contact <a href="mailto:finance@ynhchineseschool.org">finance@ynhchineseschool.org</a> for any question regarding your payment.
 								<br><br>
 								Thank you for your support.
 								<br><br>
