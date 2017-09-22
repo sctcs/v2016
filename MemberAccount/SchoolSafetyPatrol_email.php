@@ -101,8 +101,9 @@ Please try your best not to change the assignment as we need enough
 parents to cover the whole building.
 
 For the school and our
-children's safety, please review the Safety Patrol Guide carefully. When you are on
-duty, make sure to get yourself familiar with the nearest emergency exits.
+children's safety, please review the Safety Patrol Guidelines
+http://www.ynhchineseschool.org/prod_v08/MemberAccount/SafetyPatrolGuidelines.pdf carefully. 
+When you are on duty, make sure to get yourself familiar with the nearest emergency exits.
 In case of fire emergency or drill, direct and help teachers, students and
 parents to evacuate the building quickly to a designated safe place (front
 parking lot, 300 ft away from our building).

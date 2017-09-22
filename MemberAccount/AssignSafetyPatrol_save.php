@@ -61,7 +61,7 @@ and p.Year='". $year . "'
 and v.FamilyID not in
 (SELECT distinct m.FamilyID FROM `tblClass` c,tblMember m where c.TeacherMemberID=m.MemberID and c.CurrentClass='Yes'
 )
-and v.FamilyID not in (785,1600,1891,2401,2067,37,54,210)
+and v.FamilyID not in (785,1600,1891,2401,2067,37,54,210,2281)
 
 limit " . $nf ;
 //echo $SQLstring;
