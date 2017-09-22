@@ -24,18 +24,18 @@ if ( isset($_GET[selection]) && $_GET[selection] !="" ) {
    $sel     = "RP";
 }
 
-	$SQLstring = " SELECT CreditChoice FROM `tblFamily` WHERE `FamilyID`=".$fid;
+	$SQLstring = " SELECT CreditChoice FROM `tblRefundRequest` WHERE Process != 'Yes' and `FamilyID`=".$fid;
 
 	$RS1=mysqli_query($conn,$SQLstring);
 	$RSA1=mysqli_fetch_array($RS1);
         $current_sel=  $RSA1[CreditChoice];
 
         if ( ! isset($current_sel) ) {
-	   $SQLstring = " insert into tblFamily(FamilyID,CreditChoice) values(".$fid .", '". $sel . "')";
-   	   $RS1=mysqli_query($conn,$SQLstring) or die ("died while insert into tblFamily <br>Debug info: $SQLstring <br>\n");
+	   $SQLstring = " insert into tblRefundRequest(FamilyID,CreditChoice) values(".$fid .", '". $sel . "')";
+   	   $RS1=mysqli_query($conn,$SQLstring) or die ("died while insert into tblRefundRequest <br>Debug info: $SQLstring <br>\n");
 
         } if ( $current_sel != $sel ) {
-           $SQLstring = " update tblFamily set CreditChoice='". $sel ."', Date=now() WHERE `FamilyID`=".$fid;
+           $SQLstring = " update tblRefundRequest set CreditChoice='". $sel ."', Date=now() WHERE `FamilyID`=".$fid;
            $RS1=mysqli_query($conn,$SQLstring) or die ("died while deleting receivable <br>Debug info: $SQLstring <br>\n");
            if ( ! $RS1 ) {
              exit();
