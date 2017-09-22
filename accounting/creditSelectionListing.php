@@ -22,14 +22,13 @@ include("../common/CommonParam/params.php");
 <br>
 
 <?php 
-//$SQLstring = "SELECT FamilyID, CreditChoice,Process FROM tblFamily where Process is null or Process !='Yes' ";
 
 if ( isset($_GET[show]) && $_GET[show] == "all" ) {
   echo "<a href=\"creditSelectionListing.php?show=unprocessed\">Show unprocessed families only</a>";
-  $SQLstring = "SELECT *                              FROM tblFamily                                          ";
+  $SQLstring = "SELECT *  FROM tblRefundRequest                                   ";
 } else {
   echo "<a href=\"creditSelectionListing.php?show=all\">Show all families</a>";
-  $SQLstring = "SELECT *                              FROM tblFamily where Process is null or Process !='Yes' ";
+  $SQLstring = "SELECT *  FROM tblRefundRequest where Process is null or Process !='Yes' ";
 }
 //echo $SQLstring;
 	$RS1=mysqli_query($conn,$SQLstring) or die("Error run query " .$SQLstring );
@@ -41,6 +40,7 @@ if ( isset($_GET[show]) && $_GET[show] == "all" ) {
 <br>
 <table border=1>
 <tr>
+<th>RequestID</th>
 <th>FamilyID</th>
 <th>Credit Choice</th>
 <th>Payment Choice</th>
@@ -51,9 +51,8 @@ if ( isset($_GET[show]) && $_GET[show] == "all" ) {
 </tr>
 <?php 
   while ($RSA1=mysqli_fetch_array($RS1) ) {
-     echo "<tr><td>";
-           echo        $RSA1[FamilyID ];
-           echo "</td><td>";
+     echo "<tr><td>"; echo        $RSA1[RequestID ]; echo "</td>";
+     echo "    <td>"; echo        $RSA1[FamilyID ]; echo "</td><td>";
         if ( isset($RSA1[CreditChoice]) && $RSA1[CreditChoice] =="D" )
         {
            echo "<a href=\"familyDonationReceipt.php?FamilyID=" .$RSA1[FamilyID] ."\" target=blank>" . $RSA1[CreditChoice] . "</a>";
@@ -76,7 +75,7 @@ if ( isset($_GET[show]) && $_GET[show] == "all" ) {
          if (isset($RSA1[Process]) && $RSA1[Process] =="Yes" ) {
            echo        $RSA1[Process];
          } else {
-           echo "<a href=\"creditRequestProcess.php?done=yes&FamilyID=" . $RSA1[FamilyID] ."\">set as processed</a>";
+           echo "<a href=\"creditRequestProcess.php?done=yes&RequestID=" . $RSA1[RequestID] ."&FamilyID=" . $RSA1[FamilyID] ."\">set as processed</a>";
          }
            echo "</td><td>&nbsp;";
            echo        $RSA1[ProcessDate];

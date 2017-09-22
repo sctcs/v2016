@@ -27,7 +27,8 @@ function AccountingMenu()
 <td>Receivables/Charges/Fees</td>
 <td>
 <a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=UpdateReceivable">Create or Update Receivables</a> (This action takes a while to complete)<br>
-<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=SearchReceivable">Receivable Lookup and Pay </a><br><br>
+<a href="<?php  echo $_SERVER['PHP_SELF'] ?>?view=SearchReceivable">Receivable Lookup and Pay </a><br>
+<a href="receivablesOfDroppedClasses.php">Receivables for Dropped Classes</a><br><br>
 </td>
 </tr>
 <tr valign=top>
