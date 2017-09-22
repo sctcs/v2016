@@ -268,7 +268,8 @@ $query="SELECT distinct m.FamilyID from tblMember m, tblClassRegistration r, tbl
         where m.MemberID=r.StudentMemberID and r.ClassID=c.ClassID and c.CurrentClass='Yes' and r.Status='OK'". $sqlmod1;  
 	$resultfids = mysqli_query(GetDBConnection(),$query) or Die  ("<br>Failed to query  $query<br>\n");
 //echo "$query<br><br>";
-	while($row = mysqli_fetch_array($resultfids))
+
+while($row = mysqli_fetch_array($resultfids))
 {
 		$fid=$row['FamilyID'];
 		//echo "$fid<br><br>";
@@ -306,14 +307,16 @@ from tblMember m , viewClassStudents v where m.PrimaryContact='Yes' and m.Family
 $qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid ."' and i.Description='Membership fee ". $SchoolYear. "' ";
 $result = mysqli_query(GetDBConnection(),$qstr) or die ("failed to query exisinting membership record" . $qstr);
 $row = mysqli_fetch_array($result) or die ("failed to read row");
-if ( $row[cnt] < 1 ) {
-$updatecmd=                          "insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+if ( $row[cnt] < 1 ) 
+{
+  $updatecmd=                          "insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
 select 1 IncomeCategory, m.MemberID, m.FamilyID, 'Membership', 0, 0, ".
 $MEMBERSHIP_FEE ." Amount, 'Membership fee ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
 from tblMember m  where m.PrimaryContact='Yes' and m.FamilyID ='". $fid ."'   limit 1";
-	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family membership fee <br>Debug info: $updatecmd <br>\n");
- }
+
+  $result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family membership fee <br>Debug info: $updatecmd <br>\n");
 }
+ 
 // registration fee
 
 $updatecmd="                       insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
@@ -325,42 +328,51 @@ from tblMember m  where m.PrimaryContact='Yes' and  m.FamilyID ='". $fid ."'   l
 $qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid ."' and i.Description='Registration fee ". $SchoolYear. "' ";
 $result = mysqli_query(GetDBConnection(),$qstr) or die ("failed to query exisinting membership record" . $qstr);
 $row = mysqli_fetch_array($result) or die ("failed to read row");
-if ( $row[cnt] < 1 ) {
-	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family registration fee <br>Debug info: $updatecmd <br>\n");
+if ( $row[cnt] < 1 ) 
+{
+  $result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family registration fee <br>Debug info: $updatecmd <br>\n");
 }
 
 // safety patrol deposit (20140919 Neil: disabled)
-$updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`,  `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
-    select 15 IncomeCategory,MemberID,FamilyID, 'PatrolDeposit',  0, 0,
-$PARENT_DUTY_FEE Amount,    'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
-from tblMember
-where PrimaryContact='Yes' and FamilyID in
-(select m.FamilyID from tblClass c,tblClassRegistration cr,tblMember m
-where c.CurrentClass='Yes' and c.Term='Fall' ".$sqlmod1." and c.ClassID=cr.ClassID and cr.StudentMemberID=m.MemberID and cr.Status !='Dropped')
-and not exists (select MemberID from tblReceivable i
-where i.MemberID=tblMember.MemberID ".$sqlmod3." and i.Description='Safety Patrol Deposit ".$SchoolYear."' and IncomeCategory=15)";
-if ( $familyid != "all"  && $familyid != "") {
+//$updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`,  `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+//    select 15 IncomeCategory,MemberID,FamilyID, 'PatrolDeposit',  0, 0,
+//$PARENT_DUTY_FEE Amount,    'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
+//from tblMember
+//where PrimaryContact='Yes' and FamilyID in
+//(select m.FamilyID from tblClass c,tblClassRegistration cr,tblMember m
+//where c.CurrentClass='Yes' and c.Term='Fall' ".$sqlmod1." and c.ClassID=cr.ClassID and cr.StudentMemberID=m.MemberID and cr.Status !='Dropped')
+//and not exists (select MemberID from tblReceivable i
+//where i.MemberID=tblMember.MemberID ".$sqlmod3." and i.Description='Safety Patrol Deposit ".$SchoolYear."' and IncomeCategory=15)";
+//if ( $familyid != "all"  && $familyid != "") {
+
 $updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
 select 15 IncomeCategory, m.MemberID, m.FamilyID, 'PatrolDeposit', 0, 0, ".
 $PARENT_DUTY_FEE ." Amount, 'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
 from tblMember m , viewClassStudents v where m.PrimaryContact='Yes' and m.FamilyID=v.FamilyID and v.Status='OK' and v.CurrentClass='Yes'  and m.FamilyID ='". $familyid ."'  and not exists (select MemberID from tblReceivable i where i.MemberID=m.MemberID and i.FamilyID ='". $familyid ."' and i.Description='Safety Patrol Deposit ".$SchoolYear."' ) limit 1";
-} else {
-$updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
-select 15 IncomeCategory, m.MemberID, m.FamilyID, 'PatrolDeposit', 0, 0, ".
-$PARENT_DUTY_FEE ." Amount, 'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
-from tblMember m  where m.PrimaryContact='Yes' and m.FamilyID in (select v.FamilyID from viewClassStudents v
-where v.Status='OK' and v.CurrentClass='Yes'  )
-and not exists (select MemberID from tblReceivable i where i.
-MemberID=m.MemberID  and i.Description='Safety Patrol Deposit ".$SchoolYear."' )";
-}
+
+//} else {
+//$updatecmd="insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+//select 15 IncomeCategory, m.MemberID, m.FamilyID, 'PatrolDeposit', 0, 0, ".
+//$PARENT_DUTY_FEE ." Amount, 'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
+//from tblMember m  where m.PrimaryContact='Yes' and m.FamilyID in (select v.FamilyID from viewClassStudents v
+//where v.Status='OK' and v.CurrentClass='Yes'  )
+//and not exists (select MemberID from tblReceivable i where i.
+//MemberID=m.MemberID  and i.Description='Safety Patrol Deposit ".$SchoolYear."' )";
+//}
 //echo "$updatecmd<br><br>";
 $qstr = "select count(*) as cnt from tblReceivable i where  i.FamilyID ='".$fid ."' and i.Description='Safety Patrol Deposit ". $SchoolYear. "' ";
 $result = mysqli_query(GetDBConnection(),$qstr) or die ("failed to query exisinting membership record" . $qstr);
 $row = mysqli_fetch_array($result) or die ("failed to read row");
-if ( $row[cnt] < 1 ) {
-	$result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family patrol deposit <br>Debug info: $updatecmd <br>\n");
+if ( $row[cnt] < 1 ) 
+{
+$updatecmd="                       insert into tblReceivable (IncomeCategory,MemberID,FamilyID, `ReceivableType`, `ClassID`,ClassRegistrationID,Amount, `Description` ,`DateTime`,createdByMemberID)
+select 15 IncomeCategory, m.MemberID, m.FamilyID, 'PatrolDeposit', 0, 0, ".
+$PARENT_DUTY_FEE ." Amount, 'Safety Patrol Deposit ".$SchoolYear."' ,now(), ".$_SESSION[memberid] ."
+from tblMember m  where m.PrimaryContact='Yes' and  m.FamilyID ='". $fid ."'   limit 1";
+  $result = mysqli_query(GetDBConnection(),$updatecmd) or die ("died while Updating Income for family patrol deposit <br>Debug info: $updatecmd <br>\n");
 }
 
-}
+} //end-while
+} //end-function
 
 ?>
