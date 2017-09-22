@@ -58,7 +58,8 @@ include("../common/CommonParam/params.php");
 		</td>
 	</tr>
 	<tr >
-		<td width="98%" bgcolor="#993333">
+		<td width="98%" >Note: Please read 
+<a href="SafetyPatrolGuidelines.pdf">Safety Patrol Guidelines</a> carefully.
 			<table height="360" width="100%" border="0" bgcolor="white">
 				<tr>
 					<td width="1%" align="center" valign="top">
