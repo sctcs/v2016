@@ -81,7 +81,7 @@ include("../common/CommonParam/params.php");
                             <td align="center" colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td width="10%" align="Right" valign="Top">To: </td>
+                            <td width="10%" align="Right" valign="Top">To: &nbsp;</td>
 
                             <td><input type="checkbox" name="ParentPC" value="primary" checked>Primary Contact Parents<BR>
                                 <input type="checkbox" name="ParentSP" value="both">Second Parents<BR>
@@ -106,6 +106,10 @@ include("../common/CommonParam/params.php");
                         </tr>
 
                         <tr>
+                            <td align="right" >Batch #: &nbsp;</td>
+                            <td><input type="text" name="batchno" size=6>(y for yahoo,  1 for 1-200, 2 for 201-400, etc.)</td>
+                        </tr>
+                        <tr>
                             <td align="center" colspan="2">&nbsp;</td>
                         </tr>
                         
@@ -117,7 +121,7 @@ include("../common/CommonParam/params.php");
                             </td>
                         </tr>
                         <tr>
-                            <td width="10%" align="Right" valign="Top">BCC: </td>
+                            <td width="10%" align="Right" valign="Top">BCC: &nbsp;</td>
                             <td> 
 <!--                           <input type="email" multiple pattern="" name="bcc" size="60">-->
                             <input type="email" multiple value="" name="bcc" size="60">
@@ -128,14 +132,14 @@ include("../common/CommonParam/params.php");
                         </tr>
 
                         <tr>
-                            <td width="10%" align="Right" valign="Top">Subject: </td>
+                            <td width="10%" align="Right" valign="Top">Subject: &nbsp;</td>
                             <td><input type="text" name="Subject" size=60>
                         </tr>
                         <tr>
                             <td align="center" colspan="2">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td width="10%" align="Right" valign="Top">Message: </td>
+                            <td width="10%" align="Right" valign="Top">Message: &nbsp;</td>
                             <td><textarea cols=90 rows=30 name="Message"></textarea>
                         </tr>
                         <tr>

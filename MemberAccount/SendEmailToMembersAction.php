@@ -31,6 +31,7 @@ $Send = $_POST[Send];
 $From = $_POST[From];
 $CC = $_POST[cc];
 $BCC = $_POST[bcc];
+$batchno = $_POST[batchno];
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +75,7 @@ $BCC = $_POST[bcc];
     if ($ParentPC == "primary" || $ParentSP == "both") {
         $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
-WHERE Email is not null ";
+WHERE Email is not null and ReceiveSchoolEmail='Y' ";
         $SQLstring .= " and tblMember.FamilyID  in (select a.FamilyID from tblMember a, tblClassRegistration b ,tblClass c
                   where a.MemberID=b.StudentMemberID and b.ClassID=c.ClassID ";
         if ($PCYear == "C-year") {
@@ -114,7 +115,7 @@ WHERE Email is not null ";
     if (isset($NewMembers)) {
         $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
- WHERE Email is not null and MostRecentUpdateDate >= '" . $CurrentYear . "-05-01'";
+ WHERE Email is not null and ReceiveSchoolEmail='Y' and MostRecentUpdateDate >= '" . $CurrentYear . "-05-01'";
         if (isset($Preview)) {
             echo "New Members: <br>";
         }
@@ -138,7 +139,7 @@ WHERE Email is not null ";
     if ($Teachers == "teachers") {
         $SQLstring = "SELECT FirstName,LastName,HomePhone,Email 
  FROM tblMember
- WHERE Email is not null ";
+ WHERE Email is not null and ReceiveSchoolEmail='Y' ";
         $SQLstring .= " and tblMember.MemberID in (select distinct MemberID from tblTeacher where CurrentTeacher='Yes')";
 
         if (isset($Preview)) {
@@ -181,11 +182,31 @@ WHERE Email is not null ";
     }
 
     if (isset($emails)) {
-        echo "<br>";
+        ksort($emails);
+            if (!isset($batchno) || ($batchno != 'y' &&  $batchno == 0) ) { $batchno=1;}
+            if ($batchno == 'y') {
+                $range_start = 0;
+                $range_end   = 100000;
+            } else {
+                $range_start = (($batchno - 1)*200 + 1);
+                $range_end   = (($batchno - 1)*200 + 200);
+            }
+        echo "<br><b>Final List:</b><br> ";
         if (isset($Preview)) {
-            foreach (array_keys($emails) as $email) {
-                echo $email;
+            $count=0; $ecount=0; 
+            foreach (array_keys($emails) as $email) 
+            {
+                $count++;
+               if ($batchno != 'y' && $count >= $range_start && $count <= $range_end && strpos($email, 'yahoo') == false)
+               {
+                $ecount++;
+                echo $count .", $ecount, " . $email;
                 echo "<br>";
+               } else if ($batchno == 'y' && strpos($email, 'yahoo') != false ) {
+                $ecount++;
+                echo $count .", " . $ecount . ", " . $email;
+                echo "<br>";
+               }
             }
         }
     } else {
@@ -198,11 +219,19 @@ WHERE Email is not null ";
     if (isset($Send) && isset($emails)) {
         echo "Sending ......<br>";
        
-        foreach (array_keys($emails) as $email) {
-            echo $email . "<br>";
+            $count=0; $ecount=0;
+        foreach (array_keys($emails) as $email) 
+        {
+          $count++;
+          if (($batchno != 'y' && $count >= $range_start && $count <= $range_end &&strpos($email, 'yahoo') == false) || 
+              ($batchno == 'y' && strpos($email, 'yahoo') != false ) )
+          {
+            $ecount++;
+            echo  "<br>$count, $ecount, $email";
             $to = $email;
             $headers = 'From: ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . '<' . strip_tags($From) . ">\r\n" .
                     'Reply-To: ' . strip_tags($From) . "\r\n";
+                    'Return-Path: ' . strip_tags($From) . "\r\n";
             if (isset($CC) && $CC != "") {$headers .="Cc: $CC\r\n" ; }
             if(isset($BCC) && $BCC != "") {$headers .="Bcc: $BCC\r\n" ;}
 //            $headers .= "CC: ".strip_tags($CC)."\r\n BCC: ".strip_tags($BCC)."\r\n";
@@ -210,11 +239,17 @@ WHERE Email is not null ";
             $headers .= "Content-Type:text/html; charset=UTF-8". "\r\n";
             $headers .= 'X-Mailer: PHP/' . phpversion();
 
-            mail($to, $Subject, $Message, $headers);
+            $success = mail($to, $Subject, $Message, $headers);
+            if ($success) {
+               echo ", sent!";
+            } else {
+               echo ", failed.";
+            }
 
-//          sleep(2);
+            if ($batchno == 'y') { sleep(1); }
+          }
         }
-        echo "Done.<br>";
+        echo "<br>Done.<br>";
     } else {
         if (isset($Preview)) {
             ?>
