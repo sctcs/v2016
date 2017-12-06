@@ -3,6 +3,9 @@ if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
   session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
 }
 session_start();
+
+include("../common/CommonParam/params.php");
+
 $seclvl = $_SESSION['membertype'];
 if(  $seclvl !=10 && $seclvl !=20 && $seclvl !=45 && $seclvl !=55  )  // treasurer access
         {
@@ -19,7 +22,8 @@ if ( isset($_GET[begdate]) && strlen($_GET[begdate]) == 10 ){
    print $edate;
    echo "<br><br>";
    //header("Location: index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$_GET[begdate]."&end_date=".$_GET[enddate]);
-   echo "<a href=\"index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$bdate."&end_date=".$edate."&mainmenu=off\">Continue to Form 1</a>";
+   echo "<a href=\"index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$bdate."&end_date=".$edate."&mainmenu=off&orderby_fid=1\">Continue to Form 1 (order by FamilyID)</a>";
+   echo "<br><a href=\"index.php?view=PaymentViewListAll&cid=".$_GET[cid]."&beg_date=".$bdate."&end_date=".$edate."&mainmenu=off&orderby_fid=0\">Continue to Form 1 (order by Date)</a>";
    echo "<br><br><a href=\"index.php?view=PaymentViewListAllExt&cid=".$_GET[cid]."&beg_date=".$bdate."&end_date=".$edate."&mainmenu=off\">Continue to Form 2 (more columns)</a>";
    exit();
 }
@@ -41,8 +45,8 @@ $(function()
 <form action="paymentviewsetup.php">
 
 <input type=hidden name=cid value="<?php echo $_GET[cid]; ?>" >
-Between <input type=text class="datepicker" name="begdate" value="2017-08-01">
-    and <input type=text class="datepicker" name="enddate" value="2017-08-02">
+Between <input type=text class="datepicker" name="begdate" value="<?php echo $CurrentYear; ?>-08-01">
+    and <input type=text class="datepicker" name="enddate" value="<?php echo $NextYear;    ?>-08-01">
 <input type="submit" value="Go">
 </form>
 </body>

@@ -41,14 +41,30 @@ while ($RSA2 = mysqli_fetch_array($RS2)) {
     //echo $RSA2[FamilyID].": ".$registered[$RSA2[FamilyID]]."<BR>";
 }
 
-$SQLstring = "select FReceivable.FamilyID,PayableAmount,COALESCE(PaymentAmount,0) PaymentAmount,PayableAmount-COALESCE(PaymentAmount,0) Balance " .
+$SQLstringP= "select FReceivable.FamilyID,PayableAmount,COALESCE(PaymentAmount,0) PaymentAmount,PayableAmount-COALESCE(PaymentAmount,0) Balance " .
         " from
 (select FamilyID , sum(Amount) PayableAmount
-   from tblReceivable group by FamilyID
+   from tblReceivable where DateTime < '$CurrentYear-07-01' group by FamilyID
 ) FReceivable
 left join
 (select FamilyID, sum(Amount) PaymentAMount
-   from tblPayment group by FamilyID
+   from tblPayment where Date < '$CurrentYear-07-01' group by FamilyID
+) FamilyPayment
+on FReceivable.FamilyID=FamilyPayment.FamilyID";
+
+$RSP = mysqli_query($conn, $SQLstringP);
+while ($RSAP = mysqli_fetch_array($RSP)) {
+   $pbal[$RSAP[FamilyID]] = $RSAP[Balance];
+}
+
+$SQLstring = "select FReceivable.FamilyID,PayableAmount,COALESCE(PaymentAmount,0) PaymentAmount,PayableAmount-COALESCE(PaymentAmount,0) DiffBalance " .
+        " from
+(select FamilyID , sum(Amount) PayableAmount
+   from tblReceivable where DateTime >= '$CurrentYear-07-01' and DateTime <'$NextYear-07-01' group by FamilyID
+) FReceivable
+left join
+(select FamilyID, sum(Amount) PaymentAMount
+   from tblPayment where Date >= '$CurrentYear-07-01' and Date <'$NextYear-07-01' group by FamilyID
 ) FamilyPayment
 on FReceivable.FamilyID=FamilyPayment.FamilyID";
 
@@ -99,7 +115,7 @@ $RS1 = mysqli_query($conn, $SQLstring);
                             echo "  <th>Last Reg </th>";
                         }
                         ?>
-                        <th>Receivable</th><th>Payment</th><th>Balance</th><th>Spring Tuition</th><th>View Transactions</th>
+<th>Past Balance</th>     <th>Receivable</th><th>Payment</th><th>Balance</th><th>Spring Tuition</th><th>View Transactions</th>
                         <th>Payment Voucher</th>
                     </tr>
                 </thead>
@@ -123,11 +139,11 @@ $RS1 = mysqli_query($conn, $SQLstring);
                             }
                             //echo "<td>".$RSA1[Email]."</td>";
                             //echo "<td>".$RSA1[HomePhone]."</td>";
-                            //echo "<td>".$RSA1[CellPhone]."</td>";
+                            echo "<td>".$pbal[$RSA1[FamilyID]]  ."</td>";
                             echo "<td>" . ($RSA1[PayableAmount] - 0) . "</td>";
                             echo "<td>" . ($RSA1[PaymentAmount] - 0) . "</td>";
                             //echo "<td>". ($RSA1[PayableAmount] - $RSA1[PaymentAmount]) ."</td>";
-                            echo "<td>" . ($RSA1[Balance] - 0) ;
+                            echo "<td>" . ($pbal[$RSA1[FamilyID]] + $RSA1[DiffBalance] - 0) ;
                 if ( $RSA1[Balance] < 0 ) {
                             $cs =     credit_selection($conn, $RSA1[FamilyID] ) ;
                             if ( isset( $cs ) ) { echo "(".$cs.")"; }

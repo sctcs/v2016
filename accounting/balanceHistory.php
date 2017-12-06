@@ -12,12 +12,12 @@ if(  $seclvl !=10 && $seclvl !=20 && $seclvl !=45 && $seclvl !=55  )  // treasur
 if ( isset($_GET[begdate]) && strlen($_GET[begdate]) == 10 ){
    $begd = $_GET[begdate];
 } else {
-   $begd = "2015-07-01";
+   $begd = "2017-07-01";
 }
 if ( isset($_GET[enddate]) && strlen($_GET[enddate]) == 10 ){
    $endd = $_GET[enddate];
 } else {
-   $endd = "2016-06-30"  ;
+   $endd = "2018-06-30"  ;
 }
 ?>
 <a href="../MemberAccount/MemberAccountMain.php">My Account</a>
@@ -58,7 +58,8 @@ while ($RSA3 = mysqli_fetch_array($RS3)) {
 }
 
 $sql2 = "SELECT distinct m.FamilyID FROM tblMember m, tblClass c, tblClassRegistration r where m.MemberID=r.StudentMemberID and " .
-        "r.ClassID=c.ClassID and c.CurrentClass='Yes' and r.Status='OK' ";
+        "r.ClassID=c.ClassID                          and r.Status in ('Taken','OK') and r.DateTimeRegistered >= '$begd' and r.DateTimeRegistered <= '$endd' ";
+//      "r.ClassID=c.ClassID and c.CurrentClass='Yes' and r.Status='OK' ";
 //echo $sql2;
 
 $RS2 = mysqli_query($conn, $sql2);
