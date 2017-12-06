@@ -68,12 +68,12 @@ function PaymentViewListAll()
 	session_start();
         $SessionUserName=$_SESSION['logon'];
 
-	$payment_beg_date="2016-07-01";
+	$payment_beg_date="$CurrentYear-07-01";
     if ( isset($_GET[beg_date]) && strlen($_GET[beg_date]) == 10 ) {
         $payment_beg_date=$_GET[beg_date];
     }
 
-    $payment_end_date="2017-07-01";
+    $payment_end_date="$NextYear-07-01";
 	    if ( isset($_GET[end_date]) && strlen($_GET[end_date]) == 10 ) {
 	        $payment_end_date=$_GET[end_date];
     }
@@ -97,8 +97,13 @@ function PaymentViewListAll()
 	if ( strlen ($_GET[cid]) > 0 ) {
 		$query .= " and CollectorID =".$_GET[cid];
 	}
-		$query .= " order by `CollectorID`,`Date`";
-	//echo $query;
+
+    if ( isset($_GET[orderby_fid]) && $_GET[orderby_fid] == 1 ) {
+		$query .= " order by `FamilyID`,`Date`";
+    } else {
+		$query .= " order by `Date`,FamilyID";
+    }
+//	echo $query;
 	$result = mysqli_query(GetDBConnection(),$query) or Die ("Failed to query $query ");
 	$TotalAmount=0;
 	$CashTotalAmount=0;
