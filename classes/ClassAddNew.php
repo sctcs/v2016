@@ -1,5 +1,8 @@
 <?php
+if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
 session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
+}
+
 session_start();
 if(! isset($_SESSION['logon']) )
 {
