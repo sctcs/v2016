@@ -15,7 +15,6 @@ include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 
 $today = getdate();
-$year = $today[year];
 $mon = $today[mon];
 //if ( $mon > 6) {
 //	$term = "Fall";
@@ -23,7 +22,11 @@ $mon = $today[mon];
 //	$term = "Spring";
 //}
 $term=$_GET[term];
-
+$year=$_GET[year];
+if (!isset($year) || $year =="") 
+{
+    $year = $today[year];
+}
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,6 +37,12 @@ $term=$_GET[term];
 </head>
 
 <body>
+ <?php
+    $SQLstring="SELECT Date from tblCalendar where (Year='" . $CurrentYear ."' and Term='". $CurrentTerm . "') or (Year='". $NextYear ."' and Term='". $NextTerm ."')";  
+//  echo $SQLstring;
+    $RS1=mysqli_query($conn,$SQLstring) ;
+?>
+
 <table width="780" background="" bgcolor="" border="0" align="center">
 	<tr>
 		<td>
@@ -58,6 +67,8 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
 }
 ?>
 <table width="100%">
+<tr><td align="left" ><a href="ManageSafetyPatrol.php">Manage Safety Patrol</a></td></tr>
+
 <tr>
 <td align="center"><BR>Assign Safety Patrol  for a Day</td>
 </tr>
@@ -82,14 +93,26 @@ if (isset($_GET[pd]) && $_GET[pd] != "" )
         <option value="Spring">Spring</option> 
 	<?php }  ?>
         </td></tr>
-  <tr><td align=right>Scheduled Date: </td><td><input type="text" name="sdate" value="<?php echo $sdate; ?>"> (YYYY-MM-DD) </td></tr>
+<!--  <tr><td align=right>Scheduled Date: </td><td><input type="text" name="sdate" value="<?php echo $sdate; ?>"> (YYYY-MM-DD) </td></tr> -->
+  <tr><td align=right>Scheduled Date: </td><td>
+          <SELECT            name="sdate" > 
+  <?php 
+    while($RSA1=mysqli_fetch_array($RS1)) {
+      if ($sdate != "" && $sdate == $RSA1[Date] ) {
+       echo "   <OPTION value='".$RSA1[Date] . "' SELECTED>". $RSA1[Date] . "</OPTION>";
+      } else {
+       echo "   <OPTION value='".$RSA1[Date] . "'>". $RSA1[Date] . "</OPTION>";
+      }
+    } ?>
+          </SELECT>
+     </td></tr> 
   <tr><td align=right>Period: </td><td><input type="text" name="period" value="<?php echo $pd; ?>"> (1 or 3)  </td></tr>
   <tr><td align=right>Number of Families: </td><td><input type="text" name="nf" value="<?php echo $nf; ?>">  </td></tr>
 							
 </table> <br><br><br>
 <input type="submit" value="View Output">
 <input type="submit"   name="save" value="Save">
-<input type="button"   onClick="window.location.href='AssignSafetyPatrol_form.php'" value="Cancel">
+<input type="button"   onClick="window.location.href='ManageSafetyPatrol.php'" value="Cancel">
 </form>
 </td>
 </tr>

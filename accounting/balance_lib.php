@@ -40,7 +40,7 @@ function spring_due($conn,$fmid)
 function credit_selection($conn,$ffid)
 {
 
-	$SQLstring = " SELECT CreditChoice FROM `tblFamily` WHERE `FamilyID`=".$ffid;
+	$SQLstring = " SELECT CreditChoice FROM `tblRefundRequest` WHERE Process != 'Yes' and `FamilyID`=".$ffid;
 
 	$RS1=mysqli_query($conn,$SQLstring);
 	$RSA1=mysqli_fetch_array($RS1);
@@ -51,7 +51,7 @@ function credit_selection($conn,$ffid)
 function pay_selection($conn,$ffid)
 {
 
-	$SQLstring = " SELECT PaymentChoice FROM `tblFamily` WHERE `FamilyID`=".$ffid;
+	$SQLstring = " SELECT PaymentChoice FROM `tblRefundRequest` WHERE Process !='Yes' and `FamilyID`=".$ffid;
 
 	$RS1=mysqli_query($conn,$SQLstring);
 	$RSA1=mysqli_fetch_array($RS1);

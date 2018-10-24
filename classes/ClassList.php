@@ -74,12 +74,19 @@ $SQLstring = "select * from tblClass left join tblMember on tblClass.TeacherMemb
 								<td align="center">&nbsp;</td>
 							</tr>
 							<tr>
-								<td align="center"><font><b>Class List: <?php echo $year," ",$term,", "; 
+<td align="center"><font><b>Class List: <?php echo $year," ",$term,", "; 
  if ($year == $CurrentYear) {
    echo "<a href=\"ClassList.php?Year=".$NextYear."&Term=".$NextTerm."\"> ". $NextYear ." ". $NextTerm."</a>";
+   echo "<a href=\"ClassList.php?Year=".$NextYear."&Term=Summer\"> ". $NextYear ." Summer</a>";
  }
  if ($year == $NextYear) {
    echo "<a href=\"ClassList.php?Year=".$CurrentYear."&Term=".$CurrentTerm."\"> ". $CurrentYear ." ". $CurrentTerm."</a>";
+   if ($term == "Spring") {
+     echo "<a href=\"ClassList.php?Year=".$NextYear."&Term=Summer\"> ". $NextYear ." Summer</a>";
+   }
+   if ($term == "Summer") {
+     echo "<a href=\"ClassList.php?Year=".$NextYear."&Term=".$NextTerm."\"> ". $NextYear ." ". $NextTerm."</a>";
+   }
  }
  ?></b></font></td>
 							</tr>

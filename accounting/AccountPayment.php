@@ -22,7 +22,7 @@ function PaymentViewList()
 		<table border=1>
 		<tr>
 		    <th align="left" >&nbsp;</th>
-		    <th align="left" >ID</th>
+		    <th align="left" >Payment ID</th>
 			<th align="left" >Entry Date</th>
 			<th align="left" >Receive Date</th>
 			<th align="left" >Payer</th>
@@ -68,16 +68,16 @@ function PaymentViewListAll()
 	session_start();
         $SessionUserName=$_SESSION['logon'];
 
-	$payment_beg_date="2016-07-01";
+	$payment_beg_date="$CurrentYear-07-01";
     if ( isset($_GET[beg_date]) && strlen($_GET[beg_date]) == 10 ) {
         $payment_beg_date=$_GET[beg_date];
     }
 
-    $payment_end_date="2017-07-01";
+    $payment_end_date="$NextYear-07-01";
 	    if ( isset($_GET[end_date]) && strlen($_GET[end_date]) == 10 ) {
 	        $payment_end_date=$_GET[end_date];
     }
-        print "<center><hr>All Payment Collected <br>between $payment_beg_date and $payment_end_date<br> ";
+        print "<center><hr>All Payments Collected <br>between $payment_beg_date and $payment_end_date<br> ";
         if (strlen ($_GET[cid]) > 0 ) {
            print " by collector ".$_GET[cid];
         } else {
@@ -92,32 +92,37 @@ function PaymentViewListAll()
     //    print "<br>session user: $SessionUserName";
     //    print "<br>MemberID: $CollectorID<hr>";
 	$query="SELECT `PaymentID` , `Date` ,PaymentDate, `FamilyID`,`PaymentType` , `PaymentMethod` , `PaymentIdentifier` , `PayerInfo` ,
-		`Amount`, `PaymentNote` , `CollectorID` , `PaymentStatus` FROM `tblPayment` where `Date`>'".$payment_beg_date.
-		"' and Date < '".$payment_end_date."'";
+		`Amount`, `PaymentNote` , `CollectorID` , `PaymentStatus` FROM `tblPayment` where `PaymentDate`>'".$payment_beg_date.
+		"' and PaymentDate < '".$payment_end_date."'";
 	if ( strlen ($_GET[cid]) > 0 ) {
 		$query .= " and CollectorID =".$_GET[cid];
 	}
-		$query .= " order by `CollectorID`,`Date`";
-	//echo $query;
+
+    if ( isset($_GET[orderby_fid]) && $_GET[orderby_fid] == 1 ) {
+		$query .= " order by `FamilyID`,`Date`";
+    } else {
+		$query .= " order by `Date`,FamilyID";
+    }
+//	echo $query;
 	$result = mysqli_query(GetDBConnection(),$query) or Die ("Failed to query $query ");
 	$TotalAmount=0;
 	$CashTotalAmount=0;
 	$CheckTotalAmount=0;
 
 $myfile = fopen("./temp/$csvfile", "w") or die("Unable to open file!");
-fwrite($myfile, "ID,Receive Date,Payer,Family,Type,Check No,Amount,Method,Note,Collector\n");
+fwrite($myfile, "Payment ID,Received Date,Check No,Payer,Payment,Family,Type,Method,Note,Collector\n");
 		?>
 		<table border=1>
 		<tr>
 		    <th align="left" >&nbsp;</th>
-		    <th align="left" >ID</th>
+		    <th align="left" >Payment ID</th>
 			<th align="left" >Entry Date</th>
 			<th align="left" >Receive Date</th>
-			<th align="left" >Payer</th>
-			<th align="left" >Family</th>
-			<th align="left" >Type</th>
 			<th align="left" >Check #</th>
-			<th align="left" >Amount</th>
+			<th align="left" >Payer</th>
+			<th align="left" >Payment</th>
+			<th align="left" >FamilyID</th>
+			<th align="left" >Type</th>
 			<th align="left" >Method</th>
             <th align="left" >Note</th>
             <th align="left" >Collector</th>
@@ -138,11 +143,11 @@ fwrite($myfile, "ID,Receive Date,Payer,Family,Type,Check No,Amount,Method,Note,C
 		        <td align="left" ><?php echo $row['PaymentID'];?></td>
 			<td align="left" ><?php  echo date( 'Y-m-d H:i',strtotime($row['Date'] ));?></td>
 			<td align="left" ><?php  echo $row['PaymentDate'] ;?></td>
+			<td align="left" ><?php echo $row['PaymentIdentifier'];?></td>
 			<td align="left" ><?php echo $row['PayerInfo'];?></td>
+			<td align="left" ><?php  echo $row['Amount'];?></td>
 		        <td align="left" ><?php echo $row['FamilyID'];?></td>
 			<td align="left" ><?php echo $row['PaymentType'];?></td>
-			<td align="left" ><?php echo $row['PaymentIdentifier'];?></td>
-			<td align="left" ><?php  echo $row['Amount'];?></td>
 			<td align="left" ><?php echo $row['PaymentMethod'];?></td>
                         <td align="left" ><?php  echo $row['PaymentNote'];?></td>
             <td align="left" ><?php  echo $row['CollectorID'];?></td>
@@ -151,16 +156,272 @@ fwrite($myfile, "ID,Receive Date,Payer,Family,Type,Check No,Amount,Method,Note,C
 fwrite($myfile, 
 $row['PaymentID'] .",".
 $row['PaymentDate'] .",".
+$row['PaymentIdentifier'] .",".
 $row['PayerInfo'] .",".
+$row['Amount'] .",".
 $row['FamilyID'] .",".
 $row['PaymentType'] .",".
-$row['PaymentIdentifier'] .",".
-$row['Amount'] .",".
 $row['PaymentMethod'] .",".
 $row['PaymentNote'] .",".
 $row['CollectorID'] . "\n"
 );
        }
+fwrite($myfile, "Cash,".$CashTotalAmount . ",Check," . $CheckTotalAmount .",Total," . $TotalAmount ."\n");
+fclose($myfile);
+?>
+<!--tr>
+			<th colspan=7 align=right>Total&nbsp;&nbsp;</th>
+			<td>&nbsp;<?php  echo $TotalAmount; ?></td>
+			</tr> -->
+	</table>
+&nbsp;Cash: $<?php  echo $CashTotalAmount; ?> <br>
+Check: $<?php  echo $CheckTotalAmount; ?> <br>
+&nbsp;Total: $<?php  echo $TotalAmount; ?>
+<?php
+}
+
+function PaymentViewListAllExt()
+{
+	session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
+	session_start();
+        $SessionUserName=$_SESSION['logon'];
+
+	$payment_beg_date="2017-07-01";
+    if ( isset($_GET[beg_date]) && strlen($_GET[beg_date]) == 10 ) {
+        $payment_beg_date=$_GET[beg_date];
+    }
+
+    $payment_end_date="2018-07-01";
+	    if ( isset($_GET[end_date]) && strlen($_GET[end_date]) == 10 ) {
+	        $payment_end_date=$_GET[end_date];
+    }
+        print "<center><hr>All Payments Collected <br>between $payment_beg_date and $payment_end_date<br> ";
+        if (strlen ($_GET[cid]) > 0 ) {
+           print " by collector ".$_GET[cid];
+        } else {
+           print "by all collectors";
+        }
+        print "</center>";
+
+        $csvfile="sccs-payments-" . date("Ymd-his", time()) .".csv";
+        print "<a href=\"./temp/" . $csvfile . "\" download target=\"_blank\">Download as CSV</a><br>";
+
+    //    print "<br>Your information:";
+    //    print "<br>session user: $SessionUserName";
+    //    print "<br>MemberID: $CollectorID<hr>";
+	$query="SELECT `PaymentID` , `Date` ,PaymentDate, `FamilyID`,`PaymentType` , `PaymentMethod` , `PaymentIdentifier` , `PayerInfo` ,
+		`Amount`, `PaymentNote` , `CollectorID` , `PaymentStatus` FROM `tblPayment` where `PaymentDate`>'".$payment_beg_date.
+		"' and PaymentDate < '".$payment_end_date."'";
+	if ( strlen ($_GET[cid]) > 0 ) {
+		$query .= " and CollectorID =".$_GET[cid];
+	}
+		$query .= " order by `CollectorID`,`Date`";
+	//echo $query;
+	$result = mysqli_query(GetDBConnection(),$query) or Die ("Failed to query $query ");
+	$TotalAmount=0;
+	$CashTotalAmount=0;
+	$CheckTotalAmount=0;
+
+$myfile = fopen("./temp/$csvfile", "w") or die("Unable to open file!");
+fwrite($myfile, "Payment ID,Receive Date,Check No,Payer,Amount,Family ID,Reg. Fee,Memb. Fee,Safety Deposit,Tuition,Current Charges,Past Credit,Past Balance,Balance\n");
+		?>
+		<table border=1>
+		<tr>
+		    <th align="left" >&nbsp;</th>
+		    <th align="left" >Payment ID</th>
+			<th align="left" >Entry Date</th>
+			<th align="left" >Receive Date</th>
+			<th align="left" >Check #</th>
+			<th align="left" >Payer</th>
+			<th align="left" >Payment</th>
+			<th align="left" >Family ID</th>
+			<th align="left" >Reg. Fee</th>
+			<th align="left" >Memb. Fee</th>
+			<th align="left" >Safety Deposit</th>
+			<th align="left" >Tuition</th>
+			<th align="left" >Current Charges</th>
+			<th align="left" >Past Credit</th>
+			<th align="left" >Past Balance</th>
+			<th align="left" >Balance</th>
+<!--			<th align="left" >Type</th>
+			<th align="left" >Method</th>
+            <th align="left" >Note</th>
+            <th align="left" >Collector</th>
+  -->
+			</tr>
+		<?php
+
+while($row = mysqli_fetch_array($result))
+{
+			$TotalAmount= $TotalAmount + $row['Amount'];
+     if ( $row['PaymentMethod'] == "Check" ) {
+	$CheckTotalAmount= $CheckTotalAmount + $row['Amount'];
+     } else {
+	$CashTotalAmount= $CashTotalAmount + $row['Amount'];
+     }
+
+$fid     = $row[FamilyID];
+
+if ( !isset( $past_credit[$fid]) && !isset( $past_balance[$fid])) 
+{
+     $sql2 = "SELECT  sum(Amount) as amount FROM `tblReceivable` where  FamilyID=". $row[FamilyID] ." and DateTime < '2017-07-01' ";
+//  echo $sql2;
+	$result2 = mysqli_query(GetDBConnection(),$sql2) or Die ("Failed to query $sql2 ");
+	$row2 = mysqli_fetch_array($result2);
+        $past_charges = $row2[amount];
+
+     $sql3 = "SELECT  sum(Amount) as amount FROM `tblPayment` where  FamilyID=". $row[FamilyID] ." and PaymentDate < '2017-07-01' ";
+//  echo $sql3;
+	$result3 = mysqli_query(GetDBConnection(),$sql3) or Die ("Failed to query $sql3 ");
+	$row3 = mysqli_fetch_array($result3);
+        $past_payments = $row3[amount];
+
+        if ( !isset($past_credit[$fid]) && ($past_charges < $past_payments) )
+        {
+          $past_credit[$fid] = ($past_payments - $past_charges);
+        } else {
+          $past_credit[$fid] = 0.00;
+        }
+        
+         if ( !isset($past_balance[$fid]) && $past_charges > $past_payments)
+        {
+          $past_balance[$fid]= $past_charges - $past_payments     ;
+        } else {
+          $past_balance[$fid] = 0.00;
+        }
+}
+        if (isset($balance[$fid]) && $balance[$fid] >0 )
+        {
+          $past_balance[$fid] = 0.00; //$balance[$fid];
+        }
+//   $sql1 = "SELECT  IncomeCategory, sum(Amount) as amount FROM `tblReceivable` where DateTime > '".$CurrentYear."-07-01' group by  IncomeCategory";
+     $sql1 = "SELECT  IncomeCategory, sum(Amount) as amount FROM `tblReceivable` where DateTime >='2017-07-01' and FamilyID=". $row[FamilyID] ." group by  IncomeCategory";
+//    echo $sql1;
+	$result1 = mysqli_query(GetDBConnection(),$sql1) or Die ("Failed to query $query ");
+                $tuition = 0;
+$payment[$fid] = $row[Amount]+$past_credit[$fid];
+if (!isset($paid_regfee[$fid])) { $paid_regfee[$fid]=0.00; }
+if (!isset($paid_regfee_t[$fid])) { $paid_regfee_t[$fid]=0.00; }
+if (!isset($paid_deposit[$fid])) { $paid_deposit[$fid]=0.00; }
+if (!isset($paid_membership[$fid])) { $paid_membership[$fid]=0.00; }
+if (!isset($paid_tuition[$fid])) { $paid_tuition[$fid]=0.00; }
+		while($row1 = mysqli_fetch_array($result1))
+		{
+                   $ic = $row1[IncomeCategory];
+                   if ( $ic == "14" )
+                   {
+                      $regfee = $row1[amount]; 
+                      if ( $payment[$fid] >= ($regfee - $paid_regfee_t[$fid]) )
+                      {
+                        $paid_regfee[$fid]  = $regfee - $paid_regfee_t[$fid];
+                        $paid_regfee_t[$fid] += $regfee - $paid_regfee_t[$fid];
+                      } else {
+                        $paid_regfee[$fid] = $payment[$fid];
+                        $paid_regfee_t[$fid] += $payment[$fid];
+                      }
+                      $payment[$fid] -= $paid_regfee[$fid];
+                   } else if ( $ic == "15" )
+                   {
+                      $deposit = $row1[amount];
+                      if ( $payment[$fid] >= ($deposit - $paid_deposit_t[$fid]) )
+                      {
+                        $paid_deposit[$fid]  = $deposit - $paid_deposit_t[$fid];
+                        $paid_deposit_t[$fid] += $deposit - $paid_deposit_t[$fid];
+                      } else {
+                        $paid_deposit[$fid] = $payment[$fid];
+                        $paid_deposit_t[$fid] += $payment[$fid];
+                      }
+                      $payment[$fid] -= $paid_deposit[$fid];
+                   } else if ( $ic == "1" )
+                   {
+                      $membership = $row1[amount];
+                      if ( $payment[$fid] >= ($membership - $paid_membership_t[$fid]) )
+                      {
+                        $paid_membership[$fid]  = $membership - $paid_membership_t[$fid];
+                        $paid_membership_t[$fid] += $membership - $paid_membership_t[$fid];
+                      } else {
+                        $paid_membership[$fid]  = $payment[$fid];
+                        $paid_membership_t[$fid] += $payment[$fid];
+                      }
+                      $payment[$fid] -= $paid_membership[$fid];
+                   } else {
+                      $tuition += $row1[amount];
+                   }
+		}
+                      if ( $payment[$fid] >= ($tuition - $paid_tuition_t[$fid]) )
+                      {
+                        $paid_tuition[$fid]  = $tuition - $paid_tuition_t[$fid];
+                        $paid_tuition_t[$fid] += $tuition - $paid_tuition_t[$fid];
+                      } else {
+                        $paid_tuition[$fid]  = $payment[$fid];
+                        $paid_tuition_t[$fid] += $payment[$fid];
+                      }
+                      $payment[$fid] -= $paid_tuition[$fid];
+        if ( !isset( $charges[$fid]) )
+        {
+                $charges[$fid] = $regfee + $deposit + $membership + $tuition;
+        } else {
+                $charges[$fid] = 0.00;
+        }
+  /*    if ( $past_credit[$fid] >= $charges[$fid] )
+        {
+          $past_credit[$fid] = $past_credit[$fid] - $charges[$fid];
+        } else {
+          $past_credit[$fid] = 0.00;
+        }
+    */
+   if (!isset($balance[$fid]))
+   {
+        $balance[$fid] = $past_balance[$fid] + $charges[$fid] - $past_credit[$fid] - $row[Amount];
+   } else {
+        $balance[$fid] -=                                                      $row[Amount];
+   }
+if (!isset($paid_membership[$fid])) { $paid_membership[$fid]=0.00; }
+if (!isset($paid_tuition[$fid])) { $paid_tuition[$fid]=0.00; }
+		?>
+			<tr>
+			<td>&nbsp;<?php  showViewlink($row['PaymentID']);?></td>
+		        <td align="left" ><?php echo $row['PaymentID'];?></td>
+			<td align="left" ><?php  echo date( 'Y-m-d H:i',strtotime($row['Date'] ));?></td>
+			<td align="left" ><?php  echo $row['PaymentDate'] ;?></td>
+			<td align="left" ><?php echo $row['PaymentIdentifier'];?></td>
+			<td align="left" ><?php echo $row['PayerInfo'];?></td>
+			<td align="left" ><?php  echo $row['Amount'];?></td>
+		        <td align="left" ><?php echo $row['FamilyID'];?></td>
+		        <td align="left" ><?php echo $paid_regfee[$fid]                       ;?></td>
+		        <td align="left" ><?php echo $paid_membership[$fid]                       ;?></td>
+		        <td align="left" ><?php echo $paid_deposit[$fid]                        ;?></td>
+		        <td align="left" ><?php echo $paid_tuition[$fid]                       ;?></td>
+		        <td align="left" ><?php echo $charges[$fid]  ;?></td>
+		        <td align="left" ><?php echo $past_credit[$fid];?></td>
+		        <td align="left" ><?php echo $past_balance[$fid]   ;?></td>
+		        <td align="left" ><?php echo $balance[$fid]  ;?></td>
+<!--			<td align="left" ><?php echo $row['PaymentType'];?></td>
+			<td align="left" ><?php echo $row['PaymentMethod'];?></td>
+                        <td align="left" ><?php  echo $row['PaymentNote'];?></td>
+            <td align="left" ><?php  echo $row['CollectorID'];?></td>
+ -->
+			</tr>
+<?php
+fwrite($myfile, 
+$row['PaymentID'] .",".
+$row['PaymentDate'] .",".
+$row['PaymentIdentifier'] .",".
+$row['PayerInfo'] .",".
+$row['Amount'] .",".
+$row['FamilyID'] .",".
+$paid_regfee[$fid] .",".
+$paid_membership[$fid] .",".
+$paid_deposit[$fid] .",".
+$paid_tuition[$fid] .",".
+$charges[$fid] .",".
+$past_credit[$fid] .",".
+$past_balance[$fid] .",".
+$balance[$fid]. "\n"
+);
+        $past_credit[$fid]=0.00;
+} // end-while
+
 fwrite($myfile, "Cash,".$CashTotalAmount . ",Check," . $CheckTotalAmount .",Total," . $TotalAmount ."\n");
 fclose($myfile);
 ?>

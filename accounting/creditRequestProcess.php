@@ -7,12 +7,15 @@ session_start();
 include("../common/DB/DataStore.php");
 include("../common/CommonParam/params.php");
 
+if ( isset($_GET[RequestID]) && $_GET[RequestID] !="" ) {
+   $rid= $_GET[RequestID];
+} 
 if ( isset($_GET[FamilyID]) && $_GET[FamilyID] !="" ) {
    $fid= $_GET[FamilyID];
 } 
 
 if ( isset($_GET[done]) && $_GET[done] =="yes" ) {
-           $SQLstring = " update tblFamily set Process='Yes', ProcessDate=now() WHERE `FamilyID`=".$fid;
+           $SQLstring = " update tblRefundRequest set Process='Yes', ProcessDate=now() WHERE `RequestID`=".$rid;
            $RS1=mysqli_query($conn,$SQLstring) or die ("died while deleting receivable <br>Debug info: $SQLstring <br>\n");
            if ( ! $RS1 ) {
              exit();

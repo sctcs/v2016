@@ -31,7 +31,7 @@ if ( $mon > 6) {
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Safety Patrol Form</title>
+<title>title>ssign Safety Patrol to a Family</title>
 <meta http-equiv="Content-type" content="text/html; charset=gb2312" />
 <link href="../common/ynhc.css" rel="stylesheet" type="text/css">
 </head>
@@ -63,8 +63,9 @@ $spid = $_GET[spid];
 
 			?>
 				<table width="100%">
+<tr><td align="left" ><a href="ManageSafetyPatrol.php">Manage Safety Patrol</a></td></tr>
 					<tr>
-						<td align="center"><BR>My Safety Patrol Schedule</td>
+						<td align="center">Assign Safety Patrol to a Family</td>
 					</tr>
 
 
@@ -89,8 +90,8 @@ $spid = $_GET[spid];
                                                                                            <option value="Spring">Spring</option> 
 									<?php }  ?>
                                                            </td></tr>
-                                                        <tr><td align=right>Period: </td><td><input type="text" name="period" value="<?php echo $RSA1[Period]; ?>">  </td></tr>
-                                                        <tr><td align=right>Child Class: </td><td><input type="text" name="cclass" value="<?php echo $RSA1[ChildClass]; ?>">  </td></tr>
+                                                        <tr><td align=right>Period: </td><td><input type="text" name="period" value="<?php echo $RSA1[Period]; ?>"> (1 or 3) </td></tr>
+                                                        <tr><td align=right>Child Class: </td><td><input type="text" name="cclass" value="<?php echo $RSA1[ChildClass]; ?>"> e.g. 1.2 </td></tr>
                                                         <tr><td align=right>Scheduled Date: </td><td><input type="text" name="sdate" value="<?php echo $RSA1[ScheduledDate]; ?>"> (YYYY-MM-DD) </td></tr>
                                                         <tr><td align=right>Served Date: </td><td><input type="text" name="vdate" value="<?php echo $RSA1[ServedDate]; ?>"> (YYYY-MM-DD) </td></tr>
 							

@@ -106,6 +106,7 @@ include("../common/CommonParam/params.php");
                     <br /><a href="OpenSeats.php" target=_blank>Class Opening/Available Seats</a>
                     <!--<br /><a href="../Curriculum/CourseDescription.htm" >Course Description</a>-->
                     <br /><a href="FamilyChildList.php">Register/Update/Drop Classes</a>
+                    <br /><a href="FamilyChildList.php">Register Summer Camp</a>
                 </p>       
                 <?php
                 if ($CurrentTerm == 'Fall') {
@@ -123,7 +124,7 @@ include("../common/CommonParam/params.php");
                     <br /><a href="../classes/TeachingMaterialsListDetail.php">Teaching Material List</a>
                     -->
                     <br /><a href="../classes/HomeworkList.php">Homework</a>
-                    <!-- <br /><a href="ViewSafetyPatrol.php">My Safety Patrol Schedule</a>-->
+                     <br /><a href="ViewSafetyPatrol.php">My Safety Patrol Schedule</a>
                 </p>
             <?php } ?>  <!--Parent-->
 
@@ -152,6 +153,13 @@ include("../common/CommonParam/params.php");
                     <br /><a href="ManageSafetyPatrol.php" target="_blank">Manage Safety Patrol Schedule</a>
                     <br /><a href="ValidateMemberEmailListForm.php" target="_blank">Validate Member Email List</a>
                     <br /><a href="ValidateTeacherEmailListForm.php" target="_blank">Validate Teacher Email List</a></p>
+            </div>
+        <?php } ?>
+
+        <?php  if ($seclvl == 40) { ?> <!-- School Administrator -->
+            <div class="col-md-12 accessFrame"><h3 class="text-center">School Administrator</h3>
+                <p class="text-center">
+                          <a href="ManageSafetyPatrol.php" target="_blank">Manage Safety Patrol Schedule</a>
             </div>
         <?php } ?>
 

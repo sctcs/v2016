@@ -179,7 +179,7 @@ function ViewFamilyAccount($ViewFamilyID,$conn)
             <td colspan=2 align="center" valign=top>
       <?php  if ( $TotalAmount < 0 ) { 
         $fid = $_SESSION['family_id'];
-        $SQLstring = " SELECT CreditChoice FROM `tblFamily` WHERE `FamilyID`=".$fid;
+        $SQLstring = " SELECT CreditChoice FROM `tblRefundRequest` WHERE Process != 'Yes' and `FamilyID`=".$fid ;
         $RS1=mysqli_query($conn,$SQLstring);
         $RSA1=mysqli_fetch_array($RS1);
         $current_sel=  $RSA1[CreditChoice];

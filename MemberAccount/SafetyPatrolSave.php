@@ -1,6 +1,7 @@
 <?php
-
-session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
+if ( $_SERVER["SERVER_NAME"] != "localhost" ) {
+   session_save_path("/home/users/web/b2271/sl.ynhchine/phpsessions");
+}
 session_start(); 
 
 include("../common/DB/DataStore.php");

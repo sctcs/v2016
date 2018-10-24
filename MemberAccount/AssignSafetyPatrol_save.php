@@ -48,9 +48,9 @@ $sdate=$_POST[sdate];
 select distinct v.FamilyID, c.Year,c.Term, concat_ws('-', v.GradeOrSubject,v.ClassNumber) as ChildClass, c.Period,'".$sdate . "' as ScheduledDate
 from viewClassStudents v, tblClass c
 where v.ClassID=c.ClassID
-and c.IsLanguage='Yes'
+
 and c.CurrentClass='Yes'
-and c.Period='" . $period . "'
+and c.Period in ('" . $period . "','". ($period + 1)."')  
 and c.Term='" . $term . "'
 and c.Year='" . $year . "'
 and v.FamilyID not in
@@ -61,8 +61,8 @@ and p.Year='". $year . "'
 and v.FamilyID not in
 (SELECT distinct m.FamilyID FROM `tblClass` c,tblMember m where c.TeacherMemberID=m.MemberID and c.CurrentClass='Yes'
 )
-and v.FamilyID not in (64,67,54,195,1092)
-order by v.FamilyID
+and v.FamilyID not in (785,1600,1891,2401,2067,37,54,210,2281)
+
 limit " . $nf ;
 //echo $SQLstring;
      $RS1=mysqli_query($conn,$SQLstring);
@@ -70,7 +70,7 @@ limit " . $nf ;
 ?>
 <table width="100%">
 <tr>
-<td align="center"><BR>Assign Safety Patrol  for a Day</td>
+<td align="center"><BR>Assign Safety Patrol for a Day</td>
 </tr>
 
 <tr>
@@ -136,7 +136,7 @@ for ($i=1; $i <= count($rs); ++$i) {
 </tr>
 <tr>
 <td align="center">&nbsp;
-<a href="AssignSafetyPatrol_form.php?sdate=<?php echo $sdate; ?>&nf=<?php echo $nf;?>&pd=<?php echo $period;?>&term=<?php echo $term;?>">OK</a>
+<a href="AssignSafetyPatrol_form.php?sdate=<?php echo $sdate; ?>&nf=<?php echo $nf;?>&pd=<?php echo $period;?>&term=<?php echo $term;?>&year=<?php echo $year;?>">OK</a>
 </td>
 </tr>
 </table>

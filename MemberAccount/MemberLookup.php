@@ -62,7 +62,7 @@ if (isset($_SESSION['logon'])) {
 $SQLSelect = <<<SQLSELECT
 SELECT `MemberID`, `FirstName`, `LastName`, `ChineseName`,
 	`HomePhone`, `OfficePhone`, `CellPhone`,
-	`Email`, `SecondEmail`,
+	`Email`, `SecondEmail`,`ReceiveSchoolEmail`, 
 	`HomeAddress`, `HomeCity`, `HomeState`, `HomeZip`,
 	`Profession`, `FamilyID`, `UserName`, `Password`
 	FROM `tblMember`
@@ -138,7 +138,11 @@ while ($currentRow = mysqli_fetch_array($RSmember)) {
 				<?php
 				if ($seclvl <= 25 || $seclvl == 35 || $seclvl == 40 || $seclvl == 55) {
 					?>
-					<tr><td>Email:</td><td><?php echo $row["Email"]; ?></td></tr>
+<?php if ($row[ReceiveSchoolEmail] == "Y") { ?>
+					<tr><td>Email:</td><td><?php echo $row["Email"]; ?>&nbsp;<font color=green>Open</font>, &nbsp;<a href="ReceiveSchoolEmail.php?yorn=N&email=<?php echo $row["Email"]; ?>">Not To Receive Email</a></td></tr>
+<?php } else { ?>
+					<tr><td>Email:</td><td><?php echo $row["Email"]; ?>&nbsp;<font color=red>Blocked</font>, &nbsp;<a href="ReceiveSchoolEmail.php?yorn=Y&email=<?php echo $row["Email"]; ?>">To Receive Email</a></td></tr>
+<?php } ?>
 					<tr><td>Office Phone:</td><td><?php echo $row["OfficePhone"]; ?></td></tr>
 					<tr><td>Cell Phone:</td><td><?php echo $row["CellPhone"]; ?></td></tr>
 					<tr><td>Street:</td><td><?php echo $row["HomeAddress"]; ?></td></tr>
@@ -233,4 +237,4 @@ while ($currentRow = mysqli_fetch_array($RSmember)) {
 			<tr><td><a href="MemberLookupForm.php">New Lookup</a></td></tr></table>
 		</div>
     </div>
-	<footer><?php include("../common/site-footer1.php"); ?></footer>
+	<?php include("../common/site-footer1.php"); ?>
