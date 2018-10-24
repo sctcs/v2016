@@ -229,7 +229,8 @@ echo $period;                                                                   
 
 
 										    <td><a href="studentProfile.php?stuid=<?php echo $RSA1[MemberID];?>">Update Profile</a><br><br>
-										        <a href="studentRegisterClass.php?stuid=<?php echo $RSA1[MemberID];?>">Add/Switch/Drop Classes</a>
+										        <a href="studentRegisterClass.php?stuid=<?php echo $RSA1[MemberID];?>">Add/Switch/Drop Classes</a><br><br>
+										        <a href="../classes/studentRegisterCamp.php?stuid=<?php echo $RSA1[MemberID];?>">Register Summer Camp</a>
 										    </td>
 
 

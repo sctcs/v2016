@@ -106,6 +106,7 @@ include("../common/CommonParam/params.php");
                     <br /><a href="OpenSeats.php" target=_blank>Class Opening/Available Seats</a>
                     <!--<br /><a href="../Curriculum/CourseDescription.htm" >Course Description</a>-->
                     <br /><a href="FamilyChildList.php">Register/Update/Drop Classes</a>
+                    <br /><a href="FamilyChildList.php">Register Summer Camp</a>
                 </p>       
                 <?php
                 if ($CurrentTerm == 'Fall') {
